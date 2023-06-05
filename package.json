@@ -1,0 +1,12 @@
+{
+  "name": "gitflow_xastre",
+  "version": "1.0.0",
+  "description": "Para executar o programa, faça o download dos arquivos em uma mesma pasta de nome escolhido;",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

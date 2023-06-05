@@ -4,7 +4,7 @@ function createwindow (){
             width: 1280,
             height: 600
         });
-    win.loadFile('src/index.html');
+    win.loadFile('src/Pinicial.html');
 }
 
 app.whenReady().then(createwindow);
