@@ -12,4 +12,5 @@ server.use('./api', routes);
 
 server.listen(process.env.POR, ()=>{
     console.log('Servidor rodando em: http://localhost:${process.env.PORT}');
+    //teste do git
 });
