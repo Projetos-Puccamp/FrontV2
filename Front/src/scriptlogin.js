@@ -19,7 +19,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
       // Por exemplo, enviar os dados para o servidor através de uma requisição AJAX
 
       const requestOptions = {
-        method: 'GET',
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -27,15 +27,16 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
       };
     
       // Realiza a requisição para a API
-      fetch('http://localhost:3000/api/users', requestOptions)
+      fetch('http://localhost:3000/api/users/login', requestOptions)
         .then(response => response.json())
         .then(data => {
-            console.log('Entrou fora');
           // Processa a resposta da API
           if(data.autenticado){
-            console.log('Entrou');
-          }
-          
+            window.location.href = 'alunos/Paluno.html';
+      } else {
+        // O login falhou, exiba uma mensagem de erro ao usuário
+        alert('Credenciais inválidas. Tente novamente.');
+      }
         })
         .catch(error => {
           // Trata erros
@@ -43,12 +44,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         });
   
       // Limpar os campos do formulário
-      document.getElementById('nome').value = '';
       document.getElementById('email').value = '';
       document.getElementById('senha').value = '';
-  
-      // Exibir uma mensagem de sucesso
-      document.getElementById('mensagem').className = '';
-      document.getElementById('mensagem').textContent = 'Cadastro realizado com sucesso!';
     }
   });

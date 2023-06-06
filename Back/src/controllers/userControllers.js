@@ -20,7 +20,7 @@ module.exports = {
         let senha = req.body.senha;
         let user = await UserServices.buscarUm(email, senha);
 
-        if (usuario) {
+        if (user) {
             // Credenciais corretas, retorna uma resposta de sucesso
             res.json({ autenticado: true });
           } else {
