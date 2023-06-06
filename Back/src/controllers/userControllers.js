@@ -22,7 +22,7 @@ module.exports = {
 
         if (user) {
             // Credenciais corretas, retorna uma resposta de sucesso
-            res.json({ autenticado: true });
+            res.json({ autenticado: true ,});
           } else {
             // Credenciais inválidas, retorna uma resposta de erro
             res.json({ autenticado: false });
@@ -30,12 +30,13 @@ module.exports = {
     },
     inserir: async(req,res) =>{
         let json = {erro:'', result:{}};
-
+        
+        let nome=req.body.nome;
         let email = req.body.email;
         let senha = req.body.senha;
 
         if(email && senha){
-            let userCodigo = await UserServices.inserir(email, senha);
+            let userCodigo = await UserServices.inserir(nome,email, senha);
             json.result = {
                 codigo: userCodigo,
                 email,

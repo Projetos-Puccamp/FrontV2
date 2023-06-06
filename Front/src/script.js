@@ -13,6 +13,7 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
 
       // Criar um objeto com os dados do usuário
       var usuario = {
+        nome:nome,
         email: email,
         senha: senha
       };
@@ -29,7 +30,7 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
       };
     
       // Realiza a requisição para a API
-      fetch('http://localhost:3000/api/users', requestOptions)
+      fetch('http://localhost:3000/api/users/cads', requestOptions)
         .then(response => response.json())
         .then(data => {
           // Processa a resposta da API

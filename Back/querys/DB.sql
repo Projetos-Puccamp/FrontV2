@@ -40,7 +40,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`Treinamento` (
   `CargaHoraria` VARCHAR(45) NOT NULL,
   `DataInicio` DATETIME NOT NULL,
   `DataFim` DATETIME NOT NULL,
-  `` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idTreinamento`),
   UNIQUE INDEX `NomeComercial_UNIQUE` (`NomeComercial` ASC) VISIBLE,
   UNIQUE INDEX `idTreinamento_UNIQUE` (`idTreinamento` ASC) VISIBLE)

@@ -3,7 +3,7 @@ const db = require('../db');
 module.exports = {
     buscarTodos:  () =>{
         return new Promise((aceito, rejeitado) => {
-            db.query('SELECT * FROM users', (error, results) => {
+            db.query('SELECT * FROM Usuario', (error, results) => {
                 if (error) { rejeitado(error); return; }
                 aceito(results);
             });
@@ -13,7 +13,7 @@ module.exports = {
     buscarUm: (email, senha)=>{
         return new Promise((aceito, rejeitado)=>{
 
-            db.query('SELECT * FROM users WHERE email =? AND senha = ?', [email, senha], (error, results)=>{
+            db.query('SELECT * FROM Usuario WHERE email =? AND senha = ?', [email, senha], (error, results)=>{
                 if (error) {rejeitado(error); return; }
                 if(results.length > 0){
                     aceito(results[0]);
@@ -22,10 +22,10 @@ module.exports = {
         });
     },
 
-    inserir: (email, senha)=>{
+    inserir: (nome,email, senha)=>{
         return new Promise((aceito, rejeitado)=>{
 
-            db.query('INSERT INTO users (email, senha) VALUES (?,?)',  [email, senha], (error, results)=>{
+            db.query('INSERT INTO Usuario (nome,email, senha, Nivelpermissao) VALUES (?,?,?,1)',  [nome,email, senha], (error, results)=>{
                 if(error) {rejeitado(error); return;}
                 
                 aceito(results.insertCodigo);
