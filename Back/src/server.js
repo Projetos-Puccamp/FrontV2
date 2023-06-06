@@ -6,7 +6,7 @@ const server = express();
 const routes = require('./routes');
 
 server.use(cors());
-server.use(bodyParser.urlencoded({extended: false}));
+server.use(bodyParser.json());
 
 server.use('/api', routes);
 
