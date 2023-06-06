@@ -12,5 +12,16 @@ module.exports = {
             });
         }
         res.json(json);
+    },
+    buscarUm: async(req,res) =>{
+        let json = {erro:'', result:{}};
+
+        let codigo = req.params.codigo;
+        let user = await UserServices.buscarUm(codigo);
+
+        if(user){
+            json.result = user;
+        }
+        res.json(json);
     }
 }
