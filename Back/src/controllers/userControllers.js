@@ -16,13 +16,17 @@ module.exports = {
     buscarUm: async(req,res) =>{
         let json = {erro:'', result:{}};
 
-        let codigo = req.params.codigo;
-        let user = await UserServices.buscarUm(codigo);
+        let email = req.body.email;
+        let senha = req.body.senha;
+        let user = await UserServices.buscarUm(email, senha);
 
-        if(user){
-            json.result = user;
-        }
-        res.json(json);
+        if (usuario) {
+            // Credenciais corretas, retorna uma resposta de sucesso
+            res.json({ autenticado: true });
+          } else {
+            // Credenciais inválidas, retorna uma resposta de erro
+            res.json({ autenticado: false });
+          }
     },
     inserir: async(req,res) =>{
         let json = {erro:'', result:{}};

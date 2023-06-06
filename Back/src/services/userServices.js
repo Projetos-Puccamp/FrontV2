@@ -10,10 +10,10 @@ module.exports = {
         });
     },
 
-    buscarUm: (codigo)=>{
+    buscarUm: (email, senha)=>{
         return new Promise((aceito, rejeitado)=>{
 
-            db.query('SELECT * FROM users WHERE codigo =?', [codigo], (error, results)=>{
+            db.query('SELECT * FROM users WHERE email =? AND senha = ?', [email, senha], (error, results)=>{
                 if (error) {rejeitado(error); return; }
                 if(results.length > 0){
                     aceito(results[0]);

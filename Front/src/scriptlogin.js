@@ -1,16 +1,14 @@
-document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+document.getElementById('loginForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio do formulário
-
+  
     // Obter os valores dos campos do formulário
-    var nome = document.getElementById('nome').value;
     var email = document.getElementById('email').value;
     var senha = document.getElementById('senha').value;
-
+  
     // Verificar se os campos estão preenchidos
-    if (nome === '' || email === '' || senha === '') {
+    if (email === '' || senha === '') {
       document.getElementById('mensagem').textContent = 'Por favor, preencha todos os campos.';
     } else {
-
       // Criar um objeto com os dados do usuário
       var usuario = {
         email: email,
@@ -21,7 +19,7 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
       // Por exemplo, enviar os dados para o servidor através de uma requisição AJAX
 
       const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         },
@@ -32,8 +30,12 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
       fetch('http://localhost:3000/api/users', requestOptions)
         .then(response => response.json())
         .then(data => {
+            console.log('Entrou fora');
           // Processa a resposta da API
-          console.log(data);
+          if(data.autenticado){
+            console.log('Entrou');
+          }
+          
         })
         .catch(error => {
           // Trata erros
