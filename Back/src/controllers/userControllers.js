@@ -22,7 +22,7 @@ module.exports = {
 
         if (user) {
             // Credenciais corretas, retorna uma resposta de sucesso
-            res.json({ autenticado: true ,});
+            res.json({ autenticado: true });
           } else {
             // Credenciais inválidas, retorna uma resposta de erro
             res.json({ autenticado: false });
