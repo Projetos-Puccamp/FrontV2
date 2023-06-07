@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="criartreinamento.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamentos</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Treinamentos</h1>
+
+        <h2>Adicionar Novo Treinamento:</h2>
+        <form id="form-treinamento">
+            <label for="nome">Nome Comercial:</label>
+            <input type="text" id="nome" required>
+
+            <label for="codigo">Código do Curso:</label>
+            <input type="text" id="codigo" required>
+
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" required></textarea>
+
+            <label for="carga-horaria">Carga Horária:</label>
+            <input type="text" id="carga-horaria" required>
+
+            <label for="data-inscricao">Data de Início e Fim das Inscrições:</label>
+            <input type="text" id="data-inscricao" required>
+
+            <label for="data-treinamento">Data de Início e Fim do Treinamento:</label>
+            <input type="text" id="data-treinamento" required>
+
+            <label for="quantidade-minima">Quantidade Mínima de Inscritos:</label>
+            <input type="number" id="quantidade-minima" required>
+
+            <label for="quantidade-maxima">Quantidade Máxima de Inscritos:</label>
+            <input type="number" id="quantidade-maxima" required>
+
+            <h2>Adicionar Perguntas ao Quiz:</h2>
+            <div id="quiz-questions">
+                <div class="question">
+                    <label for="pergunta1">Pergunta 1:</label>
+                    <input type="text" id="pergunta1" required>
+
+                    <label for="resposta1">Resposta A:</label>
+                    <input type="text" id="resposta1" required>
+
+                    <label for="resposta1">Resposta B:</label>
+                    <input type="text" id="resposta1" required>
+
+                    <label for="resposta2">Resposta C:</label>
+                    <input type="text" id="resposta2" required>
+
+                    <label for="resposta-correta1">Resposta Correta:</label>
+                    <select id="resposta-correta1" required>
+                        <option value="1">Resposta A</option>
+                        <option value="2">Resposta B</option>
+                        <option value="3">Resposta C</option>
+                    </select>
+                </div>
+            </div>
+
+            <button id="add-question">Adicionar Pergunta</button>
+
+            <label for="perguntascriadas">Perguntas criadas:</label>
+            <select id="perguntascriadas" name="perguntascriadas[]" multiple>
+             </select>
+
+            <input type="submit" value="Adicionar treinamento">
+        </form>
+    </div>
+    <a href="Padministrador.html">Voltar ao início</a>
+</body>
+</html>

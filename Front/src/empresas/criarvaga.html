@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="criarvaga.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criação de Vagas de Emprego</title>
+</head>
+<body>
+    <h1 id="titulo">CRUD de Vagas de Emprego</h1>
+    <h2>Adicionar Nova Vaga de Emprego:</h2>
+    <form id="form-vaga">
+        <label for="titulo">Título da Vaga:</label>
+        <input type="text" id="titulo" name="titulo">
+
+        <label for="empresa">Empresa:</label>
+        <input type="text" id="empresa" name="empresa">
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao"></textarea>
+
+        <label for="requisitos">Requisitos:</label>
+        <textarea id="requisitos" name="requisitos"></textarea>
+
+        <label for="faixa-salarial">Faixa Salarial:</label>
+        <input type="text" id="faixa-salarial" name="faixa_salarial">
+
+        <input type="submit" value="Adicionar vaga">
+
+        <label for="inscritos">Inscritos:</label>
+        <select id="inscritos" name="inscritos[]" multiple>
+        </select>
+    </form>
+    <a href="Pempresas.html">Voltar ao início</a>
+</body>
+</html>
