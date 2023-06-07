@@ -19,10 +19,10 @@ module.exports = {
         let email = req.body.email;
         let senha = req.body.senha;
         let user = await UserServices.buscarUm(email, senha);
-
+        let vr = user.NivelPermissao;
         if (user) {
             // Credenciais corretas, retorna uma resposta de sucesso
-            res.json({ autenticado: true });
+            res.json({ autenticado: true, NvP : vr});
           } else {
             // Credenciais inválidas, retorna uma resposta de erro
             res.json({ autenticado: false });
