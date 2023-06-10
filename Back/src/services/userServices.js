@@ -30,13 +30,13 @@ module.exports = {
         });
     },
 
-    inserir: (nome,email, senha)=>{
+    inserir: (nome,email,senha)=>{
         return new Promise((aceito, rejeitado)=>{
 
-            db.query('INSERT INTO Usuario (nome,email, senha, Nivelpermissao) VALUES (?,?,?,1)',  [nome,email, senha], (error, results)=>{
+            db.query('INSERT INTO usuario (nome,email, senha, Nivelpermissao) VALUES (?,?,?,1)',  [nome,email, senha], (error, results)=>{
                 if(error) {rejeitado(error); return;}
                 
-                aceito(results.insertCodigo);
+                aceito(results);
             });
         });
     },

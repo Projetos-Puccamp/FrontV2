@@ -79,10 +79,10 @@ module.exports = {
 
 
     inserir: async(req,res) =>{
+        console.log('entrou');
         let json = {erro:'', result:{}};
-        
-        let nome=req.body.nome;
-        let descricao = req.body.email;
+        let nome = req.body.nome;
+        let email = req.body.email;
         let senha = req.body.senha;
 
         if(email && senha){
@@ -97,6 +97,7 @@ module.exports = {
         }
         res.json(json);
     },
+
     alterar: async(req,res) =>{
         let json = {erro:'', result:{}};
 
@@ -116,6 +117,4 @@ module.exports = {
         }
         res.json(json);
     }
-
-    
 }
