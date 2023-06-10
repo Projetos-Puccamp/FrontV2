@@ -22,12 +22,11 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         body: JSON.stringify(usuario)
       };
       // Realiza a requisição para a API
-      fetch('http://localhost:3000/api/users/login', requestOptions)
+      fetch('http://localhost:3001/api/users/login', requestOptions)
         .then(response => response.json())
         .then(data => {
           // Processa a resposta da API
           if(data.autenticado){
-            alert('Nivel de Permissao' + data.em);
             window.location.href = data.Local;//manda pra outra tela
       } else {
         // O login falhou, exiba uma mensagem de erro ao usuário
@@ -44,3 +43,5 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
       document.getElementById('senha').value = '';
     }
   });
+  
+  

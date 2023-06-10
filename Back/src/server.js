@@ -6,7 +6,7 @@ const session = require('express-session');
 
 const server = express();
 const routes = require('./routes');
-
+ 
 
 server.use(cors());
 server.use(bodyParser.json());
@@ -15,10 +15,10 @@ server.use(express.json());
 //config da  sessao
 server.use(session({
     secret: "sjdnjandjnsaj234234",
-    resave: false,
+    resave: true,
     saveUninitialized: true,
     cookie: {
-        sameSite: 'strict' 
+    sameSite: 'strict' 
     }
 }));
 
@@ -26,8 +26,6 @@ server.use(session({
 server.use('/api', routes);
 
 
-
 server.listen(process.env.PORT, ()=>{
     console.log(`Servidor rodando em: http://localhost:${process.env.PORT}`);
-    
 }); 

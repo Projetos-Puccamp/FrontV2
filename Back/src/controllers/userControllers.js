@@ -30,13 +30,11 @@ module.exports = {
     },
     
     login: async(req,res) =>{
-        let json = {erro:'', result:{}};
         let email = req.body.email;
         let senha = req.body.senha;
         let user = await UserServices.buscarUm(email, senha);
-        let vr = user.NivelPermissao;
-        let l = '';
-        let em = '';
+        
+        let vr =  user.NivelPermissao;
         console.log(vr);
         switch (vr) {
             case '1':
@@ -52,7 +50,7 @@ module.exports = {
              l = 'mentor/Pmentor';
               break;
             default:
-              console.log("Opção inválida toiamnocu");
+              console.log("Opção inválida");
           }
         if (user) {
             //salvando na sessao o valor do idUsuario
@@ -65,18 +63,26 @@ module.exports = {
             res.json({ autenticado: false });
           }
     },
+
     FillCursos: async(req, res) => {
-        console.log(req.session.user+'djbnajkdfakjfnbkjasbnfjk');
-        let em = req.session.user;
-        res.json({em: em});
-          
+            console.log("ID user--->"+req.session.user);
+            let json = {erro:'', result:[]};
+            let cursos = await UserServices.buscarTodosCursos();
+            for(let i in cursos){
+                json.result.push({
+                    codigo: cursos[i].idTreinamento,
+                    descricao: cursos[i].Descricao
+                });
+            }
+            res.json(json);  
     },
+
 
     inserir: async(req,res) =>{
         let json = {erro:'', result:{}};
         
         let nome=req.body.nome;
-        let email = req.body.email;
+        let descricao = req.body.email;
         let senha = req.body.senha;
 
         if(email && senha){
@@ -109,14 +115,6 @@ module.exports = {
             json.erro = 'Campos não enviados';
         }
         res.json(json);
-    },
-    excluir: async(req, res) => {
-        let json = {erro:'', result:{}};
-
-        await UserServices.excluir(req.params.codigo);
-
-        res.json(json);
-        
     }
 
     

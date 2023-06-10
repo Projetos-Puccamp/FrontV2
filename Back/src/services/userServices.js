@@ -9,6 +9,14 @@ module.exports = {
             });
         });
     },
+    buscarTodosCursos:  () =>{
+        return new Promise((aceito, rejeitado) => {
+            db.query('SELECT * FROM treinamento', (error, results) => {
+                if (error) { rejeitado(error); return; }
+                aceito(results);
+            });
+        });
+    },
 
     buscarUm: (email, senha)=>{
         return new Promise((aceito, rejeitado)=>{
