@@ -16,6 +16,14 @@ module.exports = {
                 aceito(results);
             });
         });
+    }, 
+    buscarTodosVagas:  () =>{
+        return new Promise((aceito, rejeitado) => {
+            db.query('SELECT * FROM vagaemprego', (error, results) => {
+                if (error) { rejeitado(error); return; }
+                aceito(results);
+            });
+        });
     },
 
     buscarUm: (email, senha)=>{
@@ -40,6 +48,17 @@ module.exports = {
             });
         });
     },
+    inserirVaga: (id, titulo, descricao, requisitos, fxsal) => {//apos arruamar BD idVaga sera AutoIncr, por enqunto muidar manualmente + linkala a treinamentos
+        return new Promise((resolve, reject) => {
+          db.query('INSERT INTO vagaemprego ( idVagaEmprego, idEmpresa, Vaga, DescricaoAtv, Requisitos, Salario) VALUES (15,?, ?, ?, ?, ?)', [id, titulo, descricao, requisitos, fxsal], (error, results) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve(results);
+          });
+        });
+      },
     alterar: (codigo, email, senha)=>{
         return new Promise((aceito, rejeitado)=>{
 

@@ -3,8 +3,9 @@ window.addEventListener('DOMContentLoaded', function() {
   const requestOptions = {
     method: 'GET',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
     },
+    credentials: 'include'
     //body: JSON.stringify(usuario)
   };
 
@@ -12,6 +13,8 @@ window.addEventListener('DOMContentLoaded', function() {
   fetch('http://localhost:3001/api/users/curso', requestOptions)
   .then(response => response.json())
   .then(dataC => {
+    const ValorTeste =localStorage.getItem('id');
+    console.log('another onee:'+ValorTeste);
     if (dataC && typeof dataC === 'object') {
       var cursos = dataC.result;
 
@@ -22,7 +25,6 @@ window.addEventListener('DOMContentLoaded', function() {
       container.appendChild(row);
 
       var count = 0;
-
       Object.keys(cursos).forEach(key => {
         var curso = cursos[key];
 
@@ -30,6 +32,7 @@ window.addEventListener('DOMContentLoaded', function() {
         div.innerHTML = `
           <p>Código: ${curso.codigo}</p>
           <p>Descrição: ${curso.descricao}</p>
+          <a href="Paluno.html">Botao a ser pgm</a>
         `;
         row.appendChild(div);
 

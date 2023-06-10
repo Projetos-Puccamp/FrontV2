@@ -9,7 +9,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     } else {
       // Criar um objeto com os dados do usuário
       var usuario = {
-        email: email,
+        email: email, 
         senha: senha
       }; 
       // Aqui você pode fazer o que quiser com o objeto 'usuario'
@@ -17,14 +17,18 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
       const requestOptions = {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+            
         },
-        body: JSON.stringify(usuario)
+        body: JSON.stringify(usuario),
+        credentials: 'include'
       };
       // Realiza a requisição para a API
       fetch('http://localhost:3001/api/users/login', requestOptions)
         .then(response => response.json())
         .then(data => {
+          localStorage.setItem('id', data.id );
+          
           // Processa a resposta da API
           if(data.autenticado){
             window.location.href = data.Local;//manda pra outra tela

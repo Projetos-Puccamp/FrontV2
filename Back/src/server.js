@@ -15,10 +15,12 @@ server.use(express.json());
 //config da  sessao
 server.use(session({
     secret: "sjdnjandjnsaj234234",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
     cookie: {
-    sameSite: 'strict' 
+    //secure: true,
+    httpOnly: false,
+    sameSite: 'None',
     }
 }));
 

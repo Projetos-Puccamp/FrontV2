@@ -6,16 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Criação de Vagas de Emprego</title>
+    
 </head>
 <body>
-    <h1 id="titulo">CRUD de Vagas de Emprego</h1>
+   
+    <h1 id="tituloPORRAMARCELOESCOLHE ID DESCENTE">CRUD de Vagas de Emprego</h1>
     <h2>Adicionar Nova Vaga de Emprego:</h2>
-    <form id="form-vaga">
-        <label for="titulo">Título da Vaga:</label>
-        <input type="text" id="titulo" name="titulo">
 
-        <label for="empresa">Empresa:</label>
-        <input type="text" id="empresa" name="empresa">
+    <form id="formvaga">
+        <label for="titulo">Título da Vaga:</label>
+        <textarea id="titulo" name="titulo"></textarea>
 
         <label for="descricao">Descrição:</label>
         <textarea id="descricao" name="descricao"></textarea>
@@ -26,12 +26,9 @@
         <label for="faixa-salarial">Faixa Salarial:</label>
         <input type="text" id="faixa-salarial" name="faixa_salarial">
 
-        <input type="submit" value="Adicionar vaga">
-
-        <label for="inscritos">Inscritos:</label>
-        <select id="inscritos" name="inscritos[]" multiple>
-        </select>
+        <input  type="submit" value="Adicionar Vaga">
     </form>
     <a href="Pempresas.html">Voltar ao início</a>
+    <script src="../scriptCriarVaga.js"></script>
 </body>
 </html>

@@ -90,6 +90,14 @@
     color: #777;
     margin-bottom: 10px;
   }
+  .row {
+    display: flex;
+    margin-bottom: 35px; /* Ajuste o valor conforme desejado */
+  }
+  
+  .row > div {
+    flex: 1;
+  }
   
   footer {
     background-color: #333;

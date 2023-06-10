@@ -13,7 +13,6 @@ module.exports = {
         res.json(json);
     },
     buscarUm: async(req,res) =>{
-        let json = {erro:'', result:{}};
 
         let email = req.body.email;
         let senha = req.body.senha;
@@ -54,10 +53,10 @@ module.exports = {
           }
         if (user) {
             //salvando na sessao o valor do idUsuario
-            req.session.user = user.idUsuario;
-            req.session.save();
+            
+          
             // Credenciais corretas, retorna uma resposta de sucesso
-            res.json({ autenticado: true, NvP : vr, Local : l, em : req.session.user });
+            res.json({ autenticado: true, NvP : vr, Local : l, id :  user.idUsuario});
           } else {
             // Credenciais inválidas, retorna uma resposta de erro
             res.json({ autenticado: false });
@@ -65,7 +64,6 @@ module.exports = {
     },
 
     FillCursos: async(req, res) => {
-            console.log("ID user--->"+req.session.user);
             let json = {erro:'', result:[]};
             let cursos = await UserServices.buscarTodosCursos();
             for(let i in cursos){
@@ -76,6 +74,18 @@ module.exports = {
             }
             res.json(json);  
     },
+
+    FillVagas: async(req, res) => {
+        let json = {erro:'', result:[]};
+        let vagas = await UserServices.buscarTodosVagas();
+        for(let i in vagas){
+            json.result.push({
+                codigo: vagas[i].Vaga,
+                descricao: vagas[i].DescricaoAtv
+            });
+        }
+        res.json(json);  
+},
 
 
     inserir: async(req,res) =>{
@@ -97,6 +107,30 @@ module.exports = {
         }
         res.json(json);
     },
+    inserirVaga: async (req, res) => {
+        console.log('entrou em inserir emp');
+        let json = { erro: '', result: {} };
+        let id = req.body.id;
+        let titulo = req.body.titulo;
+        let descricao = req.body.descricao;
+        let requisitos = req.body.requisitos;
+        let fxsal = req.body.fxsal;
+        console.log('entrou em inserir emp22   '+id+titulo+descricao+requisitos+fxsal);
+        if (id && titulo && descricao && requisitos && fxsal) {
+          let vagaCodigo = await UserServices.inserirVaga(id, titulo, descricao, requisitos, fxsal);
+          json.result = {
+            codigo: vagaCodigo,
+            id,
+            titulo,
+            descricao,
+            requisitos,
+            fxsal
+          };
+        } else {
+          json.erro = 'Campos não enviados';
+        }
+        res.json(json);
+      },
 
     alterar: async(req,res) =>{
         let json = {erro:'', result:{}};
