@@ -108,24 +108,64 @@ module.exports = {
         res.json(json);
     },
     inserirVaga: async (req, res) => {
-        console.log('entrou em inserir emp');
         let json = { erro: '', result: {} };
         let id = req.body.id;
         let titulo = req.body.titulo;
         let descricao = req.body.descricao;
         let requisitos = req.body.requisitos;
         let fxsal = req.body.fxsal;
-        console.log('entrou em inserir emp22   '+id+titulo+descricao+requisitos+fxsal);
         if (id && titulo && descricao && requisitos && fxsal) {
-          let vagaCodigo = await UserServices.inserirVaga(id, titulo, descricao, requisitos, fxsal);
+          let idEmp = await UserServices.buscaIdEmp(id);
+          console.log('Essa é o Id da empresa'+idEmp);
+
+          let vagaCodigo = await UserServices.inserirVaga(idEmp, titulo, descricao, requisitos, fxsal);
           json.result = {
             codigo: vagaCodigo,
-            id,
+            idEmp,
             titulo,
             descricao,
             requisitos,
             fxsal
           };
+        } else {
+          json.erro = 'Campos não enviados';
+        }
+        res.json(json);
+      },
+      inserirPergunta: async (req, res) => {
+        let json = { erro: '', result: {} };
+        console.log('Entrou em Inserir Perguntas');
+        let idQuiz = req.body.idQuiz;
+        let tipoPergunta = req.body.tipoPergunta;
+        let pergunta = req.body.pergunta;
+        let respostaA = req.body.respostaA;
+        let respostaB = req.body.respostaB;
+        let respostaC = req.body.respostaC;
+        let respostaD = req.body.respostaD;
+        let respostaE = req.body.respostaE;
+        let respostaCorreta = req.body.respostaCorreta;
+
+        if (idQuiz && tipoPergunta && pergunta && respostaA && respostaB && respostaC && respostaD && respostaE && respostaCorreta  ) {
+          try {
+            // Aqui você pode implementar a lógica de inserção da pergunta no banco de dados
+            // Exemplo:
+            let perguntaId = await UserServices.inserirPergunta(idQuiz, tipoPergunta, pergunta, respostaA, respostaB, respostaC, respostaD, respostaE, respostaCorreta);
+            json.result = {
+              perguntaId,
+              idQuiz,
+              tipoPergunta,
+              pergunta,
+              respostaA,
+              respostaB,
+              respostaC,
+              respostaD,
+              respostaE,
+              respostaCorreta
+            };
+          } catch (error) {
+            json.erro = 'Erro ao inserir a pergunta';
+            console.error(error);
+          }
         } else {
           json.erro = 'Campos não enviados';
         }

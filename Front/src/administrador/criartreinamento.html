@@ -11,13 +11,16 @@
     <div class="container">
         <h1>Treinamentos</h1>
 
-        <h2>Adicionar Novo Treinamento:</h2>
+        <h2>Adicionar Um Quiz:</h2>
         <form id="form-treinamento">
             <label for="nome">Nome Comercial:</label>
             <input type="text" id="nome" required>
 
-            <label for="codigo">Código do Curso:</label>
-            <input type="text" id="codigo" required>
+            <label for="codigo">Código do Quiz:</label>
+            <input type="text" id="codigoQuiz" required>
+
+            <label for="codigo">Código do Conteudo:</label>
+            <input type="text" id="codigoConteudo" required>
 
             <label for="descricao">Descrição:</label>
             <textarea id="descricao" required></textarea>
@@ -25,78 +28,15 @@
             <label for="carga-horaria">Carga Horária:</label>
             <input type="text" id="carga-horaria" required>
 
-            <label for="data-inscricao">Data de Início e Fim das Inscrições:</label>
+            <label for="data-inscricao">Data de início:</label>
             <input type="text" id="data-inscricao" required>
 
-            <label for="data-treinamento">Data de Início e Fim do Treinamento:</label>
+            <label for="data-treinamento">Data de Fim </label>
             <input type="text" id="data-treinamento" required>
 
-            <label for="quantidade-minima">Quantidade Mínima de Inscritos:</label>
-            <input type="number" id="quantidade-minima" required>
 
-            <label for="quantidade-maxima">Quantidade Máxima de Inscritos:</label>
-            <input type="number" id="quantidade-maxima" required>
 
-            <h2>Adicionar Perguntas ao Teste de aptidão:</h2>
-            <div id="quiz-questions">
-                <div class="question">
-                    <label for="pergunta1">Pergunta 1:</label>
-                    <input type="text" id="pergunta1" required>
-
-                    <label for="resposta1">Resposta A:</label>
-                    <input type="text" id="resposta1" required>
-
-                    <label for="resposta1">Resposta B:</label>
-                    <input type="text" id="resposta1" required>
-
-                    <label for="resposta2">Resposta C:</label>
-                    <input type="text" id="resposta2" required>
-
-                    <label for="resposta-correta1">Resposta Correta:</label>
-                    <select id="resposta-correta1" required>
-                        <option value="1">Resposta A</option>
-                        <option value="2">Resposta B</option>
-                        <option value="3">Resposta C</option>
-                    </select>
-                </div>
-            </div>
-
-            <button id="add-question">Adicionar Pergunta</button>
-
-            <label for="perguntascriadas">Perguntas criadas:</label>
-            <select id="perguntascriadas" name="perguntascriadas[]" multiple>
-             </select>
-            
-            <h2>Adicionar Perguntas ao Teste Final:</h2>
-            <div id="quiz-questions">
-                <div class="question">
-                    <label for="pergunta1">Pergunta 1:</label>
-                    <input type="text" id="pergunta1" required>
-
-                    <label for="resposta1">Resposta A:</label>
-                    <input type="text" id="resposta1" required>
-
-                    <label for="resposta1">Resposta B:</label>
-                    <input type="text" id="resposta1" required>
-
-                    <label for="resposta2">Resposta C:</label>
-                    <input type="text" id="resposta2" required>
-
-                    <label for="resposta-correta1">Resposta Correta:</label>
-                    <select id="resposta-correta1" required>
-                        <option value="1">Resposta A</option>
-                        <option value="2">Resposta B</option>
-                        <option value="3">Resposta C</option>
-                    </select>
-                </div>
-            </div>
-
-            <button id="add-question">Adicionar Pergunta</button>
-
-            <label for="perguntascriadas2">Perguntas criadas:</label>
-            <select id="perguntascriadas2" name="perguntascriadas2[]" multiple>
-             </select>
-
+        
             <input type="submit" value="Adicionar treinamento">
         </form>
     </div>

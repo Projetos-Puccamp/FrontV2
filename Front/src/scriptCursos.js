@@ -32,8 +32,8 @@ window.addEventListener('DOMContentLoaded', function() {
         div.innerHTML = `
           <p>Código: ${curso.codigo}</p>
           <p>Descrição: ${curso.descricao}</p>
-          <a href="Paluno.html">Botao a ser pgm</a>
-        `;
+          <a href="Paluno.html">Inscrever-se</a>
+        `; 
         row.appendChild(div);
 
         count++;
