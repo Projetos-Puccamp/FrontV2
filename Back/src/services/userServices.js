@@ -48,9 +48,9 @@ module.exports = {
             });
         });
     },
-    inserirVaga: (id, titulo, descricao, requisitos, fxsal) => {//apos arruamar BD idVaga sera AutoIncr, por enqunto muidar manualmente + linkala a treinamentos
+    inserirVaga: (id, titulo, descricao, requisitos, fxsal) => {//fazer umm select q busca id da empresa, por qenquanto fazer manualmente
         return new Promise((resolve, reject) => {
-          db.query('INSERT INTO vagaemprego ( idVagaEmprego, idEmpresa, Vaga, DescricaoAtv, Requisitos, Salario) VALUES (15,?, ?, ?, ?, ?)', [id, titulo, descricao, requisitos, fxsal], (error, results) => {
+          db.query('INSERT INTO vagaemprego ( Empresa_idEmpresa, Vaga, DescricaoAtv, Requisitos, Salario) VALUES (1, ?, ?, ?, ?)', [id, titulo, descricao, requisitos, fxsal], (error, results) => {
             if (error) {
               reject(error);
               return;

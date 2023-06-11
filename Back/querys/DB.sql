@@ -1,5 +1,4 @@
-create database SiteCursos;
-Use SiteCursos;
+-- MySQL Workbench Forward Engineering
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
@@ -34,7 +33,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Treinamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Treinamento` (
-  `idTreinamento` INT NOT NULL,
+  `idTreinamento` INT NOT NULL AUTO_INCREMENT,
   `NomeComercial` VARCHAR(45) NOT NULL,
   `Descricao` VARCHAR(80) NOT NULL,
   `CargaHoraria` VARCHAR(45) NOT NULL,
@@ -47,27 +46,35 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Pergunta`
+-- Table `mydb`.`Quiz`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Pergunta` (
-  `idPergunta` INT NOT NULL,
-  `DescricaoPergunta` VARCHAR(300) NOT NULL,
-  `idTreinamento` INT NOT NULL,
-  PRIMARY KEY (`idPergunta`))
+CREATE TABLE IF NOT EXISTS `mydb`.`Quiz` (
+  `idQuiz` INT NOT NULL AUTO_INCREMENT,
+  `Titulo` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`idQuiz`))
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Resposta`
+-- Table `mydb`.`Pergunta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Resposta` (
-  `idResposta` INT NOT NULL,
-  `DescricaoResposta` VARCHAR(45) NOT NULL,
-  `Pergunta_idPergunta` INT NOT NULL,
-  INDEX `fk_Resposta_Pergunta1_idx` (`Pergunta_idPergunta` ASC) VISIBLE,
-  CONSTRAINT `fk_Resposta_Pergunta1`
-    FOREIGN KEY (`Pergunta_idPergunta`)
-    REFERENCES `mydb`.`Pergunta` (`idPergunta`)
+CREATE TABLE IF NOT EXISTS `mydb`.`Pergunta` (
+  `idPergunta` INT NOT NULL AUTO_INCREMENT,
+  `DescricaoPergunta` VARCHAR(300) NOT NULL,
+  `idTreinamento` INT NOT NULL,
+  `Quiz_idQuiz` INT NOT NULL,
+  `Quiz_Pergunta_idPergunta` INT NOT NULL,
+  `Pergunta1` VARCHAR(200) NOT NULL,
+  `Pergunta2` VARCHAR(200) NOT NULL,
+  `Pergunta3` VARCHAR(200) NOT NULL,
+  `Pergunta4` VARCHAR(200) NOT NULL,
+  `Pergunta5` VARCHAR(50) NOT NULL,
+  `Resposta` VARCHAR(50) NOT NULL,
+  PRIMARY KEY (`idPergunta`),
+  INDEX `fk_Pergunta_Quiz1_idx` (`Quiz_idQuiz` ASC, `Quiz_Pergunta_idPergunta` ASC) VISIBLE,
+  CONSTRAINT `fk_Pergunta_Quiz1`
+    FOREIGN KEY (`Quiz_idQuiz`)
+    REFERENCES `mydb`.`Quiz` (`idQuiz`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -77,7 +84,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Mentor`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Mentor` (
-  `idMentor` INT NOT NULL,
+  `idMentor` INT NOT NULL AUTO_INCREMENT,
   `Usuario_idUsuario` INT NOT NULL,
   PRIMARY KEY (`idMentor`),
   INDEX `fk_Mentor_Usuario_idx` (`Usuario_idUsuario` ASC) VISIBLE,
@@ -93,7 +100,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Aluno`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Aluno` (
-  `idAluno` INT NOT NULL,
+  `idAluno` INT NOT NULL AUTO_INCREMENT,
   `idMentor` VARCHAR(45) NULL,
   `Usuario_idUsuario` INT NOT NULL,
   `Mentor_idMentor` INT NOT NULL,
@@ -117,7 +124,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Empresa`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Empresa` (
-  `idEmpresa` INT NOT NULL,
+  `idEmpresa` INT NOT NULL AUTO_INCREMENT,
   `Usuario_idUsuario` INT NOT NULL,
   PRIMARY KEY (`idEmpresa`),
   INDEX `fk_Empresa_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
@@ -133,13 +140,19 @@ ENGINE = InnoDB;
 -- Table `mydb`.`VagaEmprego`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`VagaEmprego` (
-  `idVagaEmprego` INT NOT NULL,
+  `idVagaEmprego` INT NOT NULL AUTO_INCREMENT,
   `Vaga` VARCHAR(45) NOT NULL,
   `DescricaoAtv` VARCHAR(45) NOT NULL,
   `Requisitos` VARCHAR(45) NOT NULL,
   `Salario` VARCHAR(45) NOT NULL,
-  `idEmpresa` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`idVagaEmprego`))
+  `Empresa_idEmpresa` INT NOT NULL,
+  PRIMARY KEY (`idVagaEmprego`),
+  INDEX `fk_VagaEmprego_Empresa1_idx` (`Empresa_idEmpresa` ASC) VISIBLE,
+  CONSTRAINT `fk_VagaEmprego_Empresa1`
+    FOREIGN KEY (`Empresa_idEmpresa`)
+    REFERENCES `mydb`.`Empresa` (`idEmpresa`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -147,13 +160,12 @@ ENGINE = InnoDB;
 -- Table `mydb`.`AlunoTreinamento`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`AlunoTreinamento` (
-  `idAlunoTreinamento` INT NOT NULL,
-  `idAluno` VARCHAR(45) NOT NULL,
-  `idTreinamento` VARCHAR(45) NOT NULL,
+  `idAlunoTreinamento` INT NOT NULL AUTO_INCREMENT,
   `DataInsc` DATETIME NOT NULL,
   `status` VARCHAR(4) NOT NULL,
   `Aluno_idAluno` INT NOT NULL,
   `Treinamento_idTreinamento` INT NOT NULL,
+  `NotaFinal` VARCHAR(45) NULL,
   PRIMARY KEY (`idAlunoTreinamento`),
   INDEX `fk_AlunoTreinamento_Aluno1_idx` (`Aluno_idAluno` ASC) VISIBLE,
   INDEX `fk_AlunoTreinamento_Treinamento1_idx` (`Treinamento_idTreinamento` ASC) VISIBLE,
@@ -174,7 +186,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`TreinamentosParavaga`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`TreinamentosParavaga` (
-  `idTreinamentosParavaga` INT NOT NULL,
+  `idTreinamentosParavaga` INT NOT NULL AUTO_INCREMENT,
   `Treinamento_idTreinamento` INT NOT NULL,
   `VagaEmprego_idVagaEmprego` INT NOT NULL,
   PRIMARY KEY (`idTreinamentosParavaga`),
@@ -197,7 +209,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`Adiministrador`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`Adiministrador` (
-  `idAdiministrador` INT NOT NULL,
+  `idAdiministrador` INT NOT NULL AUTO_INCREMENT,
   `Usuario_idUsuario` INT NOT NULL,
   PRIMARY KEY (`idAdiministrador`),
   INDEX `fk_Adiministrador_Usuario1_idx` (`Usuario_idUsuario` ASC) VISIBLE,
@@ -213,7 +225,7 @@ ENGINE = InnoDB;
 -- Table `mydb`.`CanditatoVagaEmprego`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`CanditatoVagaEmprego` (
-  `idCanditatoVagaEmprego` INT NOT NULL,
+  `idCanditatoVagaEmprego` INT NOT NULL AUTO_INCREMENT,
   `DataCandidatura` VARCHAR(45) NULL,
   `Aluno_idAluno` INT NOT NULL,
   `VagaEmprego_idVagaEmprego` INT NOT NULL,
@@ -234,39 +246,56 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Quiz`
+-- Table `mydb`.`TreinamentosParavaga_has_Quiz`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Quiz` (
-  `idQuiz` INT NOT NULL,
-  `Pergunta_idPergunta` INT NOT NULL,
-  PRIMARY KEY (`idQuiz`, `Pergunta_idPergunta`),
-  INDEX `fk_Quiz_Pergunta1_idx` (`Pergunta_idPergunta` ASC) VISIBLE,
-  CONSTRAINT `fk_Quiz_Pergunta1`
-    FOREIGN KEY (`Pergunta_idPergunta`)
-    REFERENCES `mydb`.`Pergunta` (`idPergunta`)
+CREATE TABLE IF NOT EXISTS `mydb`.`TreinamentosParavaga_has_Quiz` (
+  `TreinamentosParavaga_idTreinamentosParavaga` INT NOT NULL,
+  `Quiz_idQuiz` INT NOT NULL,
+  PRIMARY KEY (`TreinamentosParavaga_idTreinamentosParavaga`, `Quiz_idQuiz`),
+  INDEX `fk_TreinamentosParavaga_has_Quiz_Quiz1_idx` (`Quiz_idQuiz` ASC) VISIBLE,
+  INDEX `fk_TreinamentosParavaga_has_Quiz_TreinamentosParavaga1_idx` (`TreinamentosParavaga_idTreinamentosParavaga` ASC) VISIBLE,
+  CONSTRAINT `fk_TreinamentosParavaga_has_Quiz_TreinamentosParavaga1`
+    FOREIGN KEY (`TreinamentosParavaga_idTreinamentosParavaga`)
+    REFERENCES `mydb`.`TreinamentosParavaga` (`idTreinamentosParavaga`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_TreinamentosParavaga_has_Quiz_Quiz1`
+    FOREIGN KEY (`Quiz_idQuiz`)
+    REFERENCES `mydb`.`Quiz` (`idQuiz`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`Quiz_has_AlunoTreinamento`
+-- Table `mydb`.`ConteudoTreinamento`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`Quiz_has_AlunoTreinamento` (
-  `Quiz_idQuiz` INT NOT NULL,
-  `Quiz_Pergunta_idPergunta` INT NOT NULL,
-  `AlunoTreinamento_idAlunoTreinamento` INT NOT NULL,
-  PRIMARY KEY (`Quiz_idQuiz`, `Quiz_Pergunta_idPergunta`, `AlunoTreinamento_idAlunoTreinamento`),
-  INDEX `fk_Quiz_has_AlunoTreinamento_AlunoTreinamento1_idx` (`AlunoTreinamento_idAlunoTreinamento` ASC) VISIBLE,
-  INDEX `fk_Quiz_has_AlunoTreinamento_Quiz1_idx` (`Quiz_idQuiz` ASC, `Quiz_Pergunta_idPergunta` ASC) VISIBLE,
-  CONSTRAINT `fk_Quiz_has_AlunoTreinamento_Quiz1`
-    FOREIGN KEY (`Quiz_idQuiz` , `Quiz_Pergunta_idPergunta`)
-    REFERENCES `mydb`.`Quiz` (`idQuiz` , `Pergunta_idPergunta`)
+CREATE TABLE IF NOT EXISTS `mydb`.`ConteudoTreinamento` (
+  `idConteudoTreinamento` INT NOT NULL AUTO_INCREMENT,
+  `Titulo` VARCHAR(450) NOT NULL,
+  `Descricao` VARCHAR(450) NOT NULL,
+  `linkVideo` VARCHAR(300) NOT NULL,
+  PRIMARY KEY (`idConteudoTreinamento`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mydb`.`Treinamento_has_ConteudoTreinamento`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mydb`.`Treinamento_has_ConteudoTreinamento` (
+  `Treinamento_idTreinamento` INT NOT NULL,
+  `ConteudoTreinamento_idConteudoTreinamento` INT NOT NULL,
+  PRIMARY KEY (`Treinamento_idTreinamento`, `ConteudoTreinamento_idConteudoTreinamento`),
+  INDEX `fk_Treinamento_has_ConteudoTreinamento_ConteudoTreinamento1_idx` (`ConteudoTreinamento_idConteudoTreinamento` ASC) VISIBLE,
+  INDEX `fk_Treinamento_has_ConteudoTreinamento_Treinamento1_idx` (`Treinamento_idTreinamento` ASC) VISIBLE,
+  CONSTRAINT `fk_Treinamento_has_ConteudoTreinamento_Treinamento1`
+    FOREIGN KEY (`Treinamento_idTreinamento`)
+    REFERENCES `mydb`.`Treinamento` (`idTreinamento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Quiz_has_AlunoTreinamento_AlunoTreinamento1`
-    FOREIGN KEY (`AlunoTreinamento_idAlunoTreinamento`)
-    REFERENCES `mydb`.`AlunoTreinamento` (`idAlunoTreinamento`)
+  CONSTRAINT `fk_Treinamento_has_ConteudoTreinamento_ConteudoTreinamento1`
+    FOREIGN KEY (`ConteudoTreinamento_idConteudoTreinamento`)
+    REFERENCES `mydb`.`ConteudoTreinamento` (`idConteudoTreinamento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -275,3 +304,6 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+
+

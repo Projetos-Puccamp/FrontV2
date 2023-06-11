@@ -98,7 +98,7 @@
   }
   .row {
     display: flex;
-    margin-bottom: 35px; /* Ajuste o valor conforme desejado */
+    margin-bottom: 40px; /* Ajuste o valor conforme desejado */
   }
   
   .row > div {
