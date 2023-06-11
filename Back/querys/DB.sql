@@ -266,7 +266,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`TreinamentosParavaga_has_Quiz` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `mydb`.`ConteudoTreinamento`
 -- -----------------------------------------------------

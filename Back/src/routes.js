@@ -12,9 +12,12 @@ router.get('/users', UserControllers.buscarTodos);
 router.post('/emps/cads', UserControllers.inserirVaga);
 
 ///router.put('/users/:codigo', userControllers.alterar);
-//rotas ADM
 
+
+//rotas ADM
 router.post('/adm/CriarPergunta', UserControllers.inserirPergunta);
+
+router.post('/adm/CriarTreinamento', UserControllers.inserirTreinamento);
 
 module.exports = router;
 

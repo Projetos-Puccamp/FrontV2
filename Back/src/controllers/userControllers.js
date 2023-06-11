@@ -171,6 +171,45 @@ module.exports = {
         }
         res.json(json);
       },
+      inserirTreinamento: async (req, res) => {
+        let json = { erro: '', result: {} };
+        console.log('Entrou em Inserir Treinamento');
+        let nome = req.body.nome;
+        let codigoQuiz = req.body.codigoQuiz;
+        let codigoConteudo = req.body.codigoConteudo;
+        let descricao = req.body.descricao;
+        let cargaHoraria = req.body.cargaHoraria;
+        let dataInicio = req.body.dataInicio;
+        let dataFim = req.body.dataFim;
+      console.log('Entrou em inserir treinamento');
+        if (nome && codigoQuiz && codigoConteudo && descricao && cargaHoraria && dataInicio && dataFim) {
+          try {
+            // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
+            // Exemplo:
+            let treinamentoId = await UserServices.inserirTreinamento(nome, codigoQuiz, codigoConteudo, descricao, cargaHoraria, dataInicio, dataFim);
+            let Idtreinamento = await UserServices.BuscaIdTreinamento(nome);
+            console.log('IdTreinamento criado é'+ Idtreinamento);
+           let Quiztreinamento = await UserServices.inserirQuizTreinamento(Idtreinamento,codigoQuiz);
+            let Conteudotreinamento = await UserServices.inserirConteudoTreinamento(Idtreinamento, codigoConteudo);
+            json.result = {
+              treinamentoId,
+              nome,
+              codigoQuiz,
+              codigoConteudo,
+              descricao,
+              cargaHoraria,
+              dataInicio,
+              dataFim
+            };
+          } catch (error) {
+            json.erro = 'Erro ao inserir o treinamento';
+            console.error(error);
+          }
+        } else {
+          json.erro = 'Campos não enviados';
+        }
+        res.json(json);
+      },
 
     alterar: async(req,res) =>{
         let json = {erro:'', result:{}};

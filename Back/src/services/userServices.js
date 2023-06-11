@@ -10,6 +10,7 @@ module.exports = {
             });
         });
     },
+    
     buscarTodosCursos:  () =>{
         return new Promise((aceito, rejeitado) => {
             db.query('SELECT * FROM treinamento', (error, results) => {
@@ -34,6 +35,16 @@ module.exports = {
                 if (error) {rejeitado(error); return; }
                 if(results.length > 0){
                     aceito(results[0]);
+                }else{ aceito(false);}
+            });
+        });
+    },
+    BuscaIdTreinamento: (nome)=>{
+        return new Promise((aceito, rejeitado)=>{
+            db.query('SELECT idTreinamento FROM treinamento WHERE NomeComercial = ? ', [nome], (error, results)=>{
+                if (error) {rejeitado(error); return; }
+                if(results.length > 0){
+                    aceito(results[0].idTreinamento);
                 }else{ aceito(false);}
             });
         });
@@ -72,6 +83,46 @@ module.exports = {
           });
         });
       },
+      inserirTreinamento: (nome, codigoQuiz, codigoConteudo, descricao, cargaHoraria, dataInicio, dataFim) => {
+        return new Promise((resolve, reject) => {
+          // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
+          // Substitua o código abaixo pelo seu código de inserção no banco de dados
+          db.query('INSERT INTO treinamento (Nomecomercial, Descricao, CargaHoraria, DataInicio, DataFim) VALUES ( ?, ?, ?, ?, ?)', [nome, descricao, cargaHoraria, dataInicio, dataFim], (error, results) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve(results);
+          });
+        });
+      },
+      inserirQuizTreinamento:(Idtreinamento,codigoQuiz) => {
+        return new Promise((resolve, reject) => {
+          // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
+          // Substitua o código abaixo pelo seu código de inserção no banco de dados
+          db.query('INSERT INTO treinamentosparavaga_has_quiz (TreinamentosParavaga_idTreinamentosParavaga,Quiz_idQuiz) VALUES ( ?,?)', [Idtreinamento,codigoQuiz], (error, results) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve(results);
+          });
+        });
+      },
+      inserirConteudoTreinamento:(Idtreinamento, codigoConteudo) => {
+        return new Promise((resolve, reject) => {
+          // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
+          // Substitua o código abaixo pelo seu código de inserção no banco de dados
+          db.query('INSERT INTO treinamento_has_conteudotreinamento (Treinamento_idTreinamento,ConteudoTreinamento_idConteudoTreinamento) VALUES ( ?, ?)', [Idtreinamento, codigoConteudo], (error, results) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            resolve(results);
+          });
+        });
+      },
+
       buscaIdEmp: (id)=>{
         return new Promise((aceito, rejeitado)=>{
             db.query('SELECT idEmpresa FROM empresa WHERE Usuario_idUsuario = ?', [id], (error, results)=>{

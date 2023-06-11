@@ -16,11 +16,9 @@ server.use(express.json());
 server.use(session({
     secret: "sjdnjandjnsaj234234",
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
-    //secure: true,
-    httpOnly: false,
-    sameSite: 'None',
+    sameSite: 'strict',
     }
 }));
 
