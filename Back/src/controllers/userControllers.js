@@ -69,7 +69,8 @@ module.exports = {
             for(let i in cursos){
                 json.result.push({
                     codigo: cursos[i].idTreinamento,
-                    descricao: cursos[i].Descricao
+                    descricao: cursos[i].Descricao,
+                    testehref: 'Plogin.html'
                 });
             }
             res.json(json);  
@@ -203,6 +204,57 @@ module.exports = {
             };
           } catch (error) {
             json.erro = 'Erro ao inserir o treinamento';
+            console.error(error);
+          }
+        } else {
+          json.erro = 'Campos não enviados';
+        }
+        res.json(json);
+      },
+
+      inserirVaga_Treinamento: async (req, res) => {
+        let json = { erro: '', result: {} };
+        let Idtreinamento = req.body.idTreinamento;
+        let VagaEmp= req.body.idVemp;
+
+        console.log('Entrou em Inserir TreinamentoVaga'+Idtreinamento+VagaEmp);
+        if (Idtreinamento && VagaEmp ) {
+          try {
+            console.log('Entrou em Inserir TreinamentoVaga'+Idtreinamento+VagaEmp);
+            // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
+            // Exemplo:
+            let Treinamento_Vaga = await UserServices.InserirTreinamentoVaga(Idtreinamento, VagaEmp);
+            json.result = {
+              Idtreinamento,
+               VagaEmp
+            };
+          } catch (error) {
+            json.erro = 'Erro ao inserir o treinamento_vaga';
+            console.error(error);
+          }
+        } else {
+          json.erro = 'Campos não enviados';
+        }
+        res.json(json);
+      }, 
+      inserirAluno_Treinamento: async (req, res) => {// Falta verificar se o aluno ja é cadastrado no curso
+        let json = { erro: '', result: {} };
+        let Idtreinamento = req.body.idTreinamento;
+        let IdAluno= req.body.idUsuario;
+         IdAluno = await UserServices.buscaIdAluno( IdAluno);
+        console.log('Entrou em Inserir TreinamentoVaga: '+Idtreinamento+IdAluno);
+        if (Idtreinamento && IdAluno ) {
+          try {
+            console.log('Entrou em Inserir TreinamentoAluno'+Idtreinamento+IdAluno);
+            // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
+            // Exemplo:
+            let Treinamento_Vaga = await UserServices.InserirTreinamentoAluno(Idtreinamento, IdAluno);
+            json.result = {
+              Idtreinamento,
+              IdAluno
+            };
+          } catch (error) {
+            json.erro = 'Erro ao inserir o treinamento_vaga';
             console.error(error);
           }
         } else {

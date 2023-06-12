@@ -32,7 +32,7 @@ window.addEventListener('DOMContentLoaded', function() {
         div.innerHTML = `
           <p>Código: ${curso.codigo}</p>
           <p>Descrição: ${curso.descricao}</p>
-          <a href="Paluno.html">Inscrever-se</a>
+          <input id='${curso.codigo}' text='${curso.codigo}'  type="submit" value="Inscrever-se">
         `; 
         row.appendChild(div);
 
@@ -44,6 +44,8 @@ window.addEventListener('DOMContentLoaded', function() {
           container.appendChild(row);
         }
       });
+
+    
     } else {
       alert('Deu Xabu!');
     }
@@ -51,6 +53,42 @@ window.addEventListener('DOMContentLoaded', function() {
   .catch(error => {
     console.error('Erro:', error);
   });
+
+  addEventListener('submit', function(event) {
+    event.preventDefault();
+    var buttonClicked = event.target.querySelector('input[type="submit"]:focus');
+    var idTreinamento = buttonClicked.getAttribute('text');
+    console.log('aaaaa:'+idTreinamento);
+    var idUsuario = localStorage.getItem('id');
+    console.log('aaaaaissii:'+idUsuario);
+
+    var CursoTreinamento = {
+      idTreinamento:idTreinamento,
+      idUsuario: idUsuario,
+    };
+    
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(CursoTreinamento)
+    };
+    
+    
+     fetch('http://localhost:3001/api/adm/Aluno_Treinamento', requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        // Processa a resposta da API
+        alert('Treinamento adicionado a Vaga com  adicionado com sucesso');
+      })
+      .catch(error => {
+        // Trata erros
+        console.error('Erro:', error);
+      });
+
+  });
+
 
   });
   

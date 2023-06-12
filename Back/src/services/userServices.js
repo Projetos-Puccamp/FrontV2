@@ -39,6 +39,19 @@ module.exports = {
             });
         });
     },
+    buscaIdAluno: (id)=>{
+        return new Promise((aceito, rejeitado)=>{
+
+            db.query('SELECT idAluno FROM Aluno WHERE Usuario_idUsuario =? ', [id], (error, results)=>{
+                if (error) {rejeitado(error); return; }
+                if(results.length > 0){
+                    console.log('Id do aluno é '+ results[0].idAluno);
+                    aceito(results[0].idAluno);
+                }else{ aceito(false);}
+            });
+        });
+    },
+    
     BuscaIdTreinamento: (nome)=>{
         return new Promise((aceito, rejeitado)=>{
             db.query('SELECT idTreinamento FROM treinamento WHERE NomeComercial = ? ', [nome], (error, results)=>{
@@ -85,8 +98,7 @@ module.exports = {
       },
       inserirTreinamento: (nome, codigoQuiz, codigoConteudo, descricao, cargaHoraria, dataInicio, dataFim) => {
         return new Promise((resolve, reject) => {
-          // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
-          // Substitua o código abaixo pelo seu código de inserção no banco de dados
+
           db.query('INSERT INTO treinamento (Nomecomercial, Descricao, CargaHoraria, DataInicio, DataFim) VALUES ( ?, ?, ?, ?, ?)', [nome, descricao, cargaHoraria, dataInicio, dataFim], (error, results) => {
             if (error) {
               reject(error);
@@ -98,8 +110,7 @@ module.exports = {
       },
       inserirQuizTreinamento:(Idtreinamento,codigoQuiz) => {
         return new Promise((resolve, reject) => {
-          // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
-          // Substitua o código abaixo pelo seu código de inserção no banco de dados
+  
           db.query('INSERT INTO treinamentosparavaga_has_quiz (TreinamentosParavaga_idTreinamentosParavaga,Quiz_idQuiz) VALUES ( ?,?)', [Idtreinamento,codigoQuiz], (error, results) => {
             if (error) {
               reject(error);
@@ -109,6 +120,33 @@ module.exports = {
           });
         });
       },
+      InserirTreinamentoVaga :(Idtreinamento, idVagaEmprego) => {
+        return new Promise((resolve, reject) => {
+            console.log('tetes da conexao vagaemp');
+          db.query('INSERT INTO treinamentosparavaga (Treinamento_idTreinamento,VagaEmprego_idVagaEmprego) VALUES ( ?,?)', [Idtreinamento, idVagaEmprego], (error, results) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            console.log('tetes da conexao vagaemp');
+            resolve(results);
+          });
+        });
+      },
+      InserirTreinamentoAluno:(Idtreinamento, IdAluno) => {
+        return new Promise((resolve, reject) => {
+            console.log('tetes da conexao vagaemp');
+          db.query('INSERT INTO alunotreinamento (Aluno_idAluno,Treinamento_idTreinamento,DataInsc,status) VALUES ( ?, ?,NOW(),?)', [IdAluno,Idtreinamento,  'N'], (error, results) => {
+            if (error) {
+              reject(error);
+              return;
+            }
+            console.log('tetes da conexao vagaemp');
+            resolve(results);
+          });
+        });
+      },
+
       inserirConteudoTreinamento:(Idtreinamento, codigoConteudo) => {
         return new Promise((resolve, reject) => {
           // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
@@ -134,8 +172,6 @@ module.exports = {
             });
         });
     },
-
-        
     alterar: (codigo, email, senha)=>{
         return new Promise((aceito, rejeitado)=>{
 
