@@ -5,7 +5,7 @@ process.once("SIGUSR2", () => server.close(err => process.kill(process.pid, "SIG
 
 describe('Teste da API', () => {
   test('Deve retornar status 200 ao acessar a rota /usuarios', async () => {
-    const response = await request(app).get('/usuarios');
+    const response = await request(app).get('/api/users');
     expect(response.status).toBe(200);
   });
 });
