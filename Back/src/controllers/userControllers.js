@@ -62,7 +62,7 @@ module.exports = {
               l= 'empresas/Pempresas.html';
               break;
             case '4':
-             l = 'mentor/Pmentor';
+             l = 'mentor/Pmentor.html';
               break;
             default:
               console.log("Opção inválida");

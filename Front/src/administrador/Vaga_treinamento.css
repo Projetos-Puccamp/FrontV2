@@ -7,14 +7,6 @@ body {
     color: aquamarine;
   }
   
-  .question {
-    margin-bottom: 20px;
-  }
-  
-  .question label {
-    margin-top: 10px;
-    font-weight: bold;
-  }
   .container {
     width: 60%;
     margin: 0 auto;
@@ -24,29 +16,46 @@ body {
     box-shadow: 0px 10px 40px #00000056;
   }
   
-  .question input[type="text"],
-  .question textarea {
-    width: 100%;
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 800;
+  }
+  
+  h2 {
+    font-weight: 800;
+  }
+  
+  form {
     display: flex;
+    flex-direction: column;
+  }
+  
+  .label-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .label-container > label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  input[type="text"] {
+    width: 100%;
     padding: 10px;
     margin-bottom: 10px;
     border: none;
     border-radius: 8px;
-    outline: none;
     background: #514869;
+    outline: none;
     color: aquamarine;
-    font-size: 12pt;
-    box-shadow: 0px 10px 40px #00000056;
   }
   
-  #add-question {
+  input[type="submit"] {
     width: 200px;
-    margin: 25px auto;
     padding: 10px;
     margin: 20px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: none;
     border-radius: 8px;
     outline: none;
@@ -58,6 +67,7 @@ body {
     cursor: pointer;
     box-shadow: 0px 10px 40px -12px aquamarine;
   }
+  
   a {
     display: block;
     width: 200px;

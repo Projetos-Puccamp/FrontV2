@@ -28,7 +28,6 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         .then(response => response.json())
         .then(data => {
           localStorage.setItem('id', data.id );
-          
           // Processa a resposta da API
           if(data.autenticado){
             window.location.href = data.Local;//manda pra outra tela

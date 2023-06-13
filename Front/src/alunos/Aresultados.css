@@ -1,42 +1,62 @@
-/* Reset de estilos */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    color: #333;
-  }
-  
-  h1, h2, h3 {
-    margin-bottom: 10px;
-  }
-  
-  .resultados {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 20px;
-  }
-  
-  .resultado-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .resultado-card h3 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .resultado-card p {
-    font-size: 16px;
-    color: #777;
-    margin-bottom: 10px;
-  }
-  
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #201b2c;
+  color: aquamarine;
+}
+
+h1, h2, h3 {
+  text-align: center;
+  margin-top: 50px;
+  font-weight: 800;
+}
+
+.resultados {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.resultado-card {
+  width: 300px;
+  padding: 20px;
+  margin: 20px;
+  background: #2f2841;
+  border-radius: 10px;
+  box-shadow: 0px 10px 40px #00000056;
+  text-align: center;
+}
+
+.resultado-card h3 {
+  color: aquamarine;
+  margin-bottom: 10px;
+}
+
+.resultado-card p {
+  margin: 5px 0;
+}
+.btn-aluno {
+  width: 10%;
+  padding: 12px 0px;
+  margin: 25px auto;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #2b134b;
+  background: aquamarine;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px aquamarine;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

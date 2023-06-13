@@ -1,49 +1,48 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    color: #333;
-    padding: 20px;
-}
-
-h1 {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #201b2c;
+    color: aquamarine;
+  }
+  
+  #Histalunos {
+    text-align: center;
     margin-bottom: 20px;
-}
-
-.table-container {
-    margin-bottom: 40px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-}
-
-th, td {
+    font-weight: 800;
+  }
+  
+  .table-container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px 35px;
+    background: #2f2841;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #00000056;
+    margin-bottom: 30px;
+  }
+  
+  h2 {
+    font-weight: 800;
+  }
+  
+  p {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  a {
+    display: block;
+    width: 200px;
     padding: 10px;
-    border: 1px solid #ccc;
-}
-
-th {
-    background-color: #f2f2f2;
-}
-
-a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
+    margin: 20px auto;
+    border-radius: 8px;
+    text-align: center;
     text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-a:hover {
-    background-color: #0056b3;
-}
+    font-weight: bold;
+    color: #2b134b;
+    background: aquamarine;
+    box-shadow: 0px 10px 40px -12px aquamarine;
+  }
+  

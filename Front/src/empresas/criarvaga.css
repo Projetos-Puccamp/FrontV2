@@ -1,62 +1,68 @@
 body {
-  font-family: Arial, sans-serif;
+  width: 100vw;
+  height: 100vh;
   margin: 0;
-  padding: 0;
-}
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background: #201b2c;
+  color: aquamarine;
 }
 
 h1 {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  font-weight: 800;
 }
 
 h2 {
-  margin-top: 40px;
+  font-weight: 800;
 }
 
 form {
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 label {
-  display: block;
   margin-top: 10px;
+  font-weight: bold;
 }
 
-input[type="text"],
-textarea {
+textarea, input[type="text"] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-select {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  height: 100px;
+  margin-bottom: 10px;
+  background: #2f2841;
+  border: none;
+  border-radius: 8px;
+  outline: none;
 }
 
 input[type="submit"] {
-  display: block;
-  margin-top: 20px;
-  padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
+  width: 200px;
+  padding: 10px;
+  margin: 20px auto;
   border: none;
-  border-radius: 4px;
+  border-radius: 8px;
+  outline: none;
+  text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  color: #2b134b;
+  background: aquamarine;
   cursor: pointer;
+  box-shadow: 0px 10px 40px -12px aquamarine;
 }
 
 a {
   display: block;
-  margin-top: 20px;
+  width: 200px;
+  padding: 10px;
+  margin: 20px auto;
+  border-radius: 8px;
   text-align: center;
+  text-decoration: none;
+  font-weight: bold;
+  color: #2b134b;
+  background: aquamarine;
+  box-shadow: 0px 10px 40px -12px aquamarine;
 }
