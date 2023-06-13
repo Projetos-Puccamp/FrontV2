@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="criartreinamento.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treinamentos</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Treinamentos</h1>
+
+        <h2>Adicionar Treinamento:</h2>
+        <form id="form-treinamento">
+            <div class="textfield">
+            <label for="nome">Nome Comercial:</label>
+            <input type="text" id="nome" required>
+
+            <label for="codigo">Código do Quiz:</label>
+            <input type="text" id="codigoQuiz" required>
+
+            <label for="codigo">Código do Conteudo:</label>
+            <input type="text" id="codigoConteudo" required>
+
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" required></textarea>
+
+            <label for="carga-horaria">Carga Horária:</label>
+            <input type="text" id="carga-horaria" required>
+
+            <label for="data-inscricao">Data de início:</label>
+            <input type="text" id="data-inscricao" required>
+
+            <label for="data-treinamento">Data de Fim </label>
+            <input type="text" id="data-fim" required>
+
+        </div>
+            <input type="submit" value="Adicionar treinamento"> 
+            <a href="Padministrador.html">Voltar</a>
+        </form>
+        <script src="../scriptTreinamento.js"></script>
+    </div>
+   
+</body>
+</html>

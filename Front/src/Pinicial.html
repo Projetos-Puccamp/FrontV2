@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" type="text/css" href="Pinicial.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina inicial</title>
 </head>
 <body>
-    <h1 id = "PagInicial" > Seja bem-vindo!</h1>
-    <a href="Pcadastro.html"> Cadastre-se</a>
+    <form id="loginForm">
+    <div class="main-login">
+        <div class="left-login">
+            <h1 id="PagInicial">Seja bem-vindo!</h1>
+            <img src="imagem.svg" class="left-login-image" alt="imagem">
+        </div>
+        <div class="right-login">
+            <div class="card-login">
+                <h1>Login</h1>
+                <div class="textfield">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required><br>
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" required><br>
+                </div>
+                <button class="btn-login" type="submit" value="Entrar">login</button>
+                <a class="btn-login" href="Pcadastro.html">Cadastrar-se</a>
+                </form>
+                <script src="scriptlogin.js"></script>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

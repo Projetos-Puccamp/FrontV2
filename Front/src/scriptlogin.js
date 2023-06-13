@@ -1,40 +1,40 @@
-document.getElementById('cadastroForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o envio do formulário
-
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio do formulário 
     // Obter os valores dos campos do formulário
-    var nome = document.getElementById('nome').value;
     var email = document.getElementById('email').value;
     var senha = document.getElementById('senha').value;
-
     // Verificar se os campos estão preenchidos
-    if (nome === '' || email === '' || senha === '') {
+    if (email === '' || senha === '') {
       document.getElementById('mensagem').textContent = 'Por favor, preencha todos os campos.';
     } else {
-
       // Criar um objeto com os dados do usuário
       var usuario = {
-        nome: nome,
-        email: email,
+        email: email, 
         senha: senha
-      };
-  
+      }; 
       // Aqui você pode fazer o que quiser com o objeto 'usuario'
       // Por exemplo, enviar os dados para o servidor através de uma requisição AJAX
-
       const requestOptions = {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+            
         },
-        body: JSON.stringify(usuario)
+        body: JSON.stringify(usuario),
+        credentials: 'include'
       };
-    
       // Realiza a requisição para a API
-      fetch('http://localhost:3001/api/users/cads', requestOptions)
+      fetch('http://localhost:3001/api/users/login', requestOptions)
         .then(response => response.json())
         .then(data => {
+          localStorage.setItem('id', data.id );
           // Processa a resposta da API
-          console.log(data);
+          if(data.autenticado){
+            window.location.href = data.Local;//manda pra outra tela
+      } else {
+        // O login falhou, exiba uma mensagem de erro ao usuário
+        document.getElementById('mensagem').textContent = 'Credenciais inválidas. Tente novamente.';
+      }
         })
         .catch(error => {
           // Trata erros
@@ -42,12 +42,9 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
         });
   
       // Limpar os campos do formulário
-      document.getElementById('nome').value = '';
       document.getElementById('email').value = '';
       document.getElementById('senha').value = '';
-  
-      // Exibir uma mensagem de sucesso
-      document.getElementById('mensagem').className = '';
-      document.getElementById('mensagem').textContent = 'Cadastro realizado com sucesso!';
     }
   });
+  
+  
