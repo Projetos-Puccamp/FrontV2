@@ -11,6 +11,7 @@ const routes = require('./routes');
 server.use(cors());
 server.use(bodyParser.json());
 
+
 server.use(express.json());
 //config da  sessao
 server.use(session({

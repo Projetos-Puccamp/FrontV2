@@ -21,4 +21,3 @@ router.post('/adm/CriarTreinamento', UserControllers.inserirTreinamento);
 router.post('/adm/Vaga_Treinamento', UserControllers.inserirVaga_Treinamento);
 router.post('/adm/Aluno_Treinamento', UserControllers.inserirAluno_Treinamento);
 module.exports = router;
-
