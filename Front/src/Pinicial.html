@@ -8,11 +8,27 @@
     <title>Pagina inicial</title>
 </head>
 <body>
-    <p>NÃO ESQUECER O TDD (TESTE AUTOMATIZADO)</p>
-    <h1 id = "PagInicial" > Seja bem-vindo!</h1>
-    <a href="Plogin.html"> Ja tenho uma conta!</a><br><br>
-    <a href="Pcadastro.html"> Cadastre-se!</a><br><br>
-    <p>NÃO ESQUECER O TDD (TESTE AUTOMATIZADO)</p>
-
+    <form id="loginForm">
+    <div class="main-login">
+        <div class="left-login">
+            <h1 id="PagInicial">Seja bem-vindo!</h1>
+            <img src="imagem.svg" class="left-login-image" alt="imagem">
+        </div>
+        <div class="right-login">
+            <div class="card-login">
+                <h1>Login</h1>
+                <div class="textfield">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" required><br>
+                    <label for="senha">Senha:</label>
+                    <input type="password" id="senha" required><br>
+                </div>
+                <button class="btn-login" type="submit" value="Entrar">login</button>
+                <a class="btn-login" href="Pcadastro.html">Cadastrar-se</a>
+                </form>
+                <script src="scriptlogin.js"></script>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,114 +1,80 @@
-/* Reset de estilos */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
-    color: #333;
-  }
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #201b2c;
+  color: aquamarine;
+}
 
-  header {
-    background-color: #007bff;
-    padding: 20px;
-  }
-  
-  nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  nav ul li {
-    margin-right: 10px;
-  }
-  
-  nav ul li a {
-    color: #fff;
-    text-decoration: none;
-  }
-  
-  main {
-    padding: 40px;
-  }
-  
-  .banner {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
+.banner {
+  padding: 20px;
+  text-align: center;
+}
+
+.banner h1 {
+  font-weight: 800;
+}
+
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.footer a {
+  color: aquamarine;
+  text-decoration: none;
+  font-weight: 800;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.footer a:hover {
+  color: #2b134b;
+}
+
+@media (max-width: 768px) {
   .banner h1 {
-    font-size: 36px;
-    color: #333;
-    margin-bottom: 10px;
+    font-size: 24px;
   }
-  
-  .banner p {
-    font-size: 18px;
-    color: #777;
-    margin-bottom: 20px;
-  }
-  
-  .btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
-  
-  .btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .cursos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
-  }
-  
-  .curso-card {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .curso-card img {
-    width: 100%;
-    height: auto;
-    margin-bottom: 10px;
-  }
-  
-  .curso-card h3 {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .curso-card p {
-    font-size: 16px;
-    color: #777;
-    margin-bottom: 10px;
-  }
-  .row {
-    display: flex;
-    margin-bottom: 40px; /* Ajuste o valor conforme desejado */
-  }
-  
-  .row > div {
-    flex: 1;
-  }
-  
-  footer {
-    background-color: #333;
-    color: #fff;
-    padding: 20px;
-    text-align: center;
-  }
-  
+}
+.card-login {
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px 35px;
+  background: #2f2841;
+  border-radius: 20px;
+  box-shadow: 0px 10px 40px #00000056;
+  margin: 0 auto;
+}
+.btn-aluno {
+  width: 10%;
+  padding: 12px 0px;
+  margin: 25px auto;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #2b134b;
+  background: aquamarine;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px aquamarine;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
