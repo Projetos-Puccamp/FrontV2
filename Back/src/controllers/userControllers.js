@@ -27,6 +27,22 @@ module.exports = {
             res.json({ autenticado: false });
           }
     },
+    buscarHistorico:async(req, res) => {
+      console.log('entou em busca do historico');
+      let json = {erro:'', result:[]};
+      let id = req.body.id;
+      let idAluno = await UserServices.buscaIdAluno(id);
+      console.log('Id do aluno no historico: '+ idAluno);
+      let historicos = await UserServices.buscarHistorico(idAluno);
+      for(let i in historicos){
+          json.result.push({
+              codigoT: historicos[i].Treinamento_idTreinamento,
+              codigo: historicos[i].idAlunoTreinamento,
+              status: historicos[i].status
+          });
+      }
+      res.json(json);  
+},
     
     login: async(req,res) =>{
         let email = req.body.email;

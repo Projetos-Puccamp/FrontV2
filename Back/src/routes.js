@@ -8,6 +8,8 @@ router.post('/users/login', UserControllers.login);
 router.get('/users/vagas', UserControllers.FillVagas);
 router.get('/users/curso', UserControllers.FillCursos);
 router.get('/users', UserControllers.buscarTodos);
+router.post('/users/historico', UserControllers.buscarHistorico);
+
 //rotas de empresa
 router.post('/emps/cads', UserControllers.inserirVaga);
 

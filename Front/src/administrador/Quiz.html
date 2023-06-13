@@ -9,40 +9,43 @@
 <body>
     <h2>Adicionar Perguntas ao Teste de Aptidão:</h2>
     <form id="quiz-questions">
-    <div >
-        <div class="question">
+        <div>
+            <div class="question">
+                <label for="id">IdQuiz:</label>
+                <input type="text" id="idQuiz" class="resposta" required>
 
-            <label for="id">IdQuiz:</label>
-            <input type="text" id="idQuiz" class="resposta" required>
+                <label for="tp">TipoPergunta:</label>
+                <input type="text" id="TipoPergunta" class="resposta" required>
 
-            <label for="tp">TipoPergunta:</label>
-            <input type="text" id="TipoPergunta" class="resposta" required>
+                <label for="pergunta1">Pergunta:</label>
+                <input type="text" id="pergunta1" required>
 
-            <label for="pergunta1">Pergunta :</label>
-            <input type="text" id="pergunta1" required>
+                <label for="resposta1">Resposta A:</label>
+                <input type="text" id="resposta1" class="resposta" required>
 
-            <label for="resposta1">Resposta A:</label>
-            <input type="text" id="resposta1" class="resposta" required>
+                <label for="resposta2">Resposta B:</label>
+                <input type="text" id="resposta2" class="resposta" required>
 
-            <label for="resposta2">Resposta B:</label>
-            <input type="text" id="resposta2" class="resposta" required>
+                <label for="resposta3">Resposta C:</label>
+                <input type="text" id="resposta3" class="resposta" required>
 
-            <label for="resposta3">Resposta C:</label>
-            <input type="text" id="resposta3" class="resposta" required>
+                <label for="resposta4">Resposta D:</label>
+                <input type="text" id="resposta4" class="resposta" required>
 
-            <label for="resposta4">Resposta D:</label>
-            <input type="text" id="resposta4" class="resposta" required>
+                <label for="resposta5">Resposta E:</label>
+                <input type="text" id="resposta5" class="resposta" required>
 
-            <label for="resposta5">Resposta E:</label>
-            <input type="text" id="resposta5" class="resposta" required>
-
-            <label for="respC">Resposta Correta:</label>
-            <input type="text" id="respostaCorreta" class="resposta" required>
-             <button id="add-question">Adicionar Pergunta</button>
+                <label for="respC">Resposta Correta:</label>
+                <input type="text" id="respostaCorreta" class="resposta" required>
+                <br>
+                <button id="add-question">Adicionar Pergunta</button>
+            </div>
+            <br>
         </div>
-         <script src="../scriptPergunta.js"></script>
-    </div>
-</form>
-       
+    </form>
+    <form>
+
+    </form>
+    <script src="../scriptPergunta.js"></script>
 </body>
 </html>

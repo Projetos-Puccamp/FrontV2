@@ -1,6 +1,7 @@
 document.getElementById('quiz-questions').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio do formulário
     // Obter os valores dos campos do formulário
+    
     var idQuiz = document.getElementById('idQuiz').value;
     var tipoPergunta = document.getElementById('TipoPergunta').value;
     var pergunta = document.getElementById('pergunta1').value;
@@ -60,3 +61,4 @@ document.getElementById('quiz-questions').addEventListener('submit', function(ev
     // Exibir uma mensagem de sucesso
 
 });
+

@@ -51,7 +51,15 @@ module.exports = {
             });
         });
     },
-    
+    buscarHistorico:(idAluno)=>{
+        return new Promise((aceito, rejeitado) => {
+            db.query('SELECT * FROM alunotreinamento where Aluno_idAluno = ?',[idAluno], (error, results) => {
+                if (error) { rejeitado(error); return; }
+                aceito(results);
+            });
+        });
+
+    },
     BuscaIdTreinamento: (nome)=>{
         return new Promise((aceito, rejeitado)=>{
             db.query('SELECT idTreinamento FROM treinamento WHERE NomeComercial = ? ', [nome], (error, results)=>{
