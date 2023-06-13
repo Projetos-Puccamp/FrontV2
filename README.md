@@ -20,11 +20,11 @@ Siga as etapas abaixo para configurar o projeto em seu ambiente local:
 
 5. Abra um terminal na pasta `app/back` e execute o seguinte comando para instalar as dependências do back-end:
 
-npm install express-session
-npm install --save-dev jest
-npm install express mysql dotenv cors body-parser
-npm install nodemon --save-dev
-npm install --save-dev supertest
+npm install express-session 
+npm install --save-dev jest 
+npm install express mysql dotenv cors body-parser 
+npm install nodemon --save-dev 
+npm install --save-dev supertest 
 
 6. Abra outro terminal na pasta `app/front` e execute o seguinte comando para instalar as dependências do front-end:
 
