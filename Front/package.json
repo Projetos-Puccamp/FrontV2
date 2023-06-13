@@ -4,7 +4,8 @@
   "description": "Para executar o programa, faça o download dos arquivos em uma mesma pasta de nome escolhido;",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +13,9 @@
   "dependencies": {
     "axios": "^1.4.0",
     "electron": "^25.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.5.0",
+    "nodemon": "^2.0.22"
   }
 }

@@ -11,6 +11,7 @@ const routes = require('./routes');
 server.use(cors());
 server.use(bodyParser.json());
 
+
 server.use(express.json());
 //config da  sessao
 server.use(session({
@@ -29,3 +30,5 @@ server.use('/api', routes);
 server.listen(process.env.PORT, ()=>{
     console.log(`Servidor rodando em: http://localhost:${process.env.PORT}`);
 }); 
+
+module.exports = server;
