@@ -129,6 +129,22 @@ module.exports = {
       }
       res.json(json);  
   },
+
+  FillPerguntas:async(req, res) => {
+      
+    let json = {erro:'', result:[]};
+
+    let IdTreinamento = req.body.IdTreinamento;
+    console.log('Id treinmanto em Fill case == '+ IdTreinamento )
+    let conteudo = await UserServices.buscarTodosPerguntas(IdTreinamento);
+    for(let i in conteudo){
+        json.result.push({
+            video: conteudo[i].linkVideo,
+            descricao: conteudo[i].descricao 
+        });
+    }
+    res.json(json);  
+},
     FillVagas: async(req, res) => {
         let json = {erro:'', result:[]};
         let vagas = await UserServices.buscarTodosVagas();
