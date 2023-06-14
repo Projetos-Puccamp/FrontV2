@@ -9,7 +9,7 @@ router.get('/users/vagas', UserControllers.FillVagas);
 router.get('/users/curso', UserControllers.FillCursos);
 router.get('/users', UserControllers.buscarTodos);
 router.post('/users/historico', UserControllers.buscarHistorico);
-
+router.post('/users/case', UserControllers.FillCase);
 //rotas de empresa
 router.post('/emps/cads', UserControllers.inserirVaga);
 

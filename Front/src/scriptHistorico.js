@@ -30,13 +30,13 @@ window.addEventListener('DOMContentLoaded', function() {
         Object.keys(historicos).forEach(key => {
           var historico = historicos[key];
 
-          if(historico.status==='N'){
+         // if(historico.status==='N'){
 
           var div = document.createElement('div');
           div.innerHTML = `
-            <p>Código do Treinamento: ${historico.codigoT}</p> 
+            <p text=>Código do Treinamento: ${historico.codigoT}</p> 
             <p>Status: ${historico.status}</p> 
-            <input id='${historico.codigo}' text='${historico.local}'  type="submit" value="Inscrever-se"> //Botao para continuar
+            <input text='${historico.local}' IdT='${historico.codigoT}'  type="submit" value="Inscrever-se"> //Botao para continuar
           `; 
           row.appendChild(div);
           count++;
@@ -47,26 +47,23 @@ window.addEventListener('DOMContentLoaded', function() {
             container.appendChild(row);
           }
 
-        }
+       // }
 
         });
 
         addEventListener('submit', function(event) {
           event.preventDefault();
+          
           var buttonClicked = event.target.querySelector('input[type="submit"]:focus');
           var Tela = buttonClicked.getAttribute('text');
+          this.alert('Tela é'+ Tela);
+          var buttonClicked2 = event.target.querySelector('input[type="submit"]:focus');
+          var Codigo = buttonClicked2.getAttribute('IdT');
+          localStorage.setItem('idCodigotreinamento',Codigo);
           window.location.href = Tela;//manda pra outra tela
-          var idUsuario = localStorage.getItem('id');
-          console.log('aaaaaissii:'+idUsuario);
-      
-          var CursoTreinamento = {
-            idTreinamento: idTreinamento,
-            idUsuario: idUsuario,
-          };
 
         });
 
-  
       } else {
         alert('Deu Xabu!');
       }

@@ -28,12 +28,10 @@ module.exports = {
           }
     },
     buscarHistorico:async(req, res) => {
-      console.log('entou em busca do historico');
       let json = {erro:'', result:[]};
       let id = req.body.id;
       let l = '';// variavel para o doc correto
       let idAluno = await UserServices.buscaIdAluno(id);
-      console.log('Id do aluno no historico: '+ idAluno);
       let historicos = await UserServices.buscarHistorico(idAluno);
        
       for(let i in historicos){
@@ -41,10 +39,13 @@ module.exports = {
           case 'N':
            l = 'testeaptidao.html';
             break;
+          case 'C1': 
+            l ='case1.html';
+             break;
           case 'C2': 
            l ='case2.html';
             break;
-          case 'C3':
+          case 'TF':
             l= 'testefinal.html';
           case 'C':
             l= 'null';
@@ -63,6 +64,7 @@ module.exports = {
       }
       res.json(json);  
 },
+
     
     login: async(req,res) =>{
         let email = req.body.email;
@@ -112,6 +114,21 @@ module.exports = {
             res.json(json);  
     },
 
+    FillCase:async(req, res) => {
+      
+      let json = {erro:'', result:[]};
+
+      let IdTreinamento = req.body.IdTreinamento;
+      console.log('Id treinmanto em Fill case == '+ IdTreinamento )
+      let conteudo = await UserServices.buscarTodosConteudos(IdTreinamento);
+      for(let i in conteudo){
+          json.result.push({
+              video: conteudo[i].linkVideo,
+              descricao: conteudo[i].descricao 
+          });
+      }
+      res.json(json);  
+  },
     FillVagas: async(req, res) => {
         let json = {erro:'', result:[]};
         let vagas = await UserServices.buscarTodosVagas();
@@ -122,8 +139,8 @@ module.exports = {
             });
         }
         res.json(json);  
-},
 
+      },
 
     inserir: async(req,res) =>{
         console.log('entrou');
