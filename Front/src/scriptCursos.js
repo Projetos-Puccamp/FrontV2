@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', function() {
-
   const requestOptions = {
     method: 'GET',
     headers: {

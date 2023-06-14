@@ -1,4 +1,4 @@
-const { inserirPergunta } = require('../controllers/userControllers');
+
 const db = require('../db');
 
 module.exports = {
@@ -73,14 +73,28 @@ module.exports = {
 
     inserir: (nome,email,senha)=>{
         return new Promise((aceito, rejeitado)=>{
-
             db.query('INSERT INTO usuario (nome,email, senha, Nivelpermissao) VALUES (?,?,?,1)',  [nome,email, senha], (error, results)=>{
-                if(error) {rejeitado(error); return;}
-                
+                if(error) {rejeitado(error); return;}              
                 aceito(results);
             });
         });
     },
+    inserirM: (nome,email,senha)=>{
+      return new Promise((aceito, rejeitado)=>{
+          db.query('INSERT INTO usuario (nome,email, senha, Nivelpermissao) VALUES (?,?,?,4)',  [nome,email, senha], (error, results)=>{
+              if(error) {rejeitado(error); return;}
+              aceito(results);
+          });
+      });
+  },
+  inserirE: (nome,email,senha)=>{
+    return new Promise((aceito, rejeitado)=>{
+        db.query('INSERT INTO usuario (nome,email, senha, Nivelpermissao) VALUES (?,?,?,3)',  [nome,email, senha], (error, results)=>{
+            if(error) {rejeitado(error); return;}            
+            aceito(results);
+        });
+    });
+},
     inserirVaga: (idEmp, titulo, descricao, requisitos, fxsal) => {//fazer umm select q busca id da empresa, por qenquanto fazer manualmente
         return new Promise((resolve, reject) => {    
            console.log('retornou certo. idEmpresa 2:'+ idEmp);

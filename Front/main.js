@@ -4,6 +4,8 @@ function createwindow (){
             width: 1280,
             height: 600
         });
+       //win.removeMenu();
+       //win.maximize();
     win.loadFile('src/Pinicial.html');
 }
 

@@ -31,14 +31,34 @@ module.exports = {
       console.log('entou em busca do historico');
       let json = {erro:'', result:[]};
       let id = req.body.id;
+      let l = '';// variavel para o doc correto
       let idAluno = await UserServices.buscaIdAluno(id);
       console.log('Id do aluno no historico: '+ idAluno);
       let historicos = await UserServices.buscarHistorico(idAluno);
+       
       for(let i in historicos){
+        switch (historicos[i].status) {
+          case 'N':
+           l = 'testeaptidao.html';
+            break;
+          case 'C2': 
+           l ='case2.html';
+            break;
+          case 'C3':
+            l= 'testefinal.html';
+          case 'C':
+            l= 'null';
+          case 'F':
+            l= 'null';
+            break;
+          default:
+            console.log("Opção inválida");
+        }
           json.result.push({
               codigoT: historicos[i].Treinamento_idTreinamento,
               codigo: historicos[i].idAlunoTreinamento,
-              status: historicos[i].status
+              status: historicos[i].status,
+              local : l
           });
       }
       res.json(json);  
@@ -124,6 +144,44 @@ module.exports = {
         }
         res.json(json);
     },
+    inserirM: async(req,res) =>{
+      console.log('entrou');
+      let json = {erro:'', result:{}};
+      let nome = req.body.nome;
+      let email = req.body.email;
+      let senha = req.body.senha;
+
+      if(email && senha){
+          let userCodigo = await UserServices.inserirM(nome,email, senha);
+          json.result = {
+              codigo: userCodigo,
+              email,
+              senha
+          };
+      }else{
+          json.erro = 'Campos não enviados';
+      }
+      res.json(json);
+  },
+  inserirE: async(req,res) =>{
+    console.log('entrou');
+    let json = {erro:'', result:{}};
+    let nome = req.body.nome;
+    let email = req.body.email;
+    let senha = req.body.senha;
+
+    if(email && senha){
+        let userCodigo = await UserServices.inserirE(nome,email, senha);
+        json.result = {
+            codigo: userCodigo,
+            email,
+            senha
+        };
+    }else{
+        json.erro = 'Campos não enviados';
+    }
+    res.json(json);
+},
     inserirVaga: async (req, res) => {
         let json = { erro: '', result: {} };
         let id = req.body.id;

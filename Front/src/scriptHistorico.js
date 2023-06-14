@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', function() {
-
+ 
   var id = {
     id: localStorage.getItem('id'),
 
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', function() {
       },
       body: JSON.stringify(id)
     };
-alert
+
     // Realiza a requisição para a API
     fetch('http://localhost:3001/api/users/historico', requestOptions)
     .then(response => response.json())
@@ -21,21 +21,22 @@ alert
 
         var historicos = dataC.result;
   
+
         var container = document.getElementById('container');
-  
         var row = document.createElement('div');
         row.classList.add('row');
         container.appendChild(row);
-  
         var count = 0;
         Object.keys(historicos).forEach(key => {
           var historico = historicos[key];
-  
+
+          if(historico.status==='N'){
+
           var div = document.createElement('div');
           div.innerHTML = `
             <p>Código do Treinamento: ${historico.codigoT}</p> 
             <p>Status: ${historico.status}</p> 
-            <input id='${historico.codigo}' text='case1.html'  type="submit" value="Inscrever-se"> //Botao para continuar
+            <input id='${historico.codigo}' text='${historico.local}'  type="submit" value="Inscrever-se"> //Botao para continuar
           `; 
           row.appendChild(div);
           count++;
@@ -45,6 +46,9 @@ alert
             row.classList.add('row');
             container.appendChild(row);
           }
+
+        }
+
         });
 
         addEventListener('submit', function(event) {
@@ -56,7 +60,7 @@ alert
           console.log('aaaaaissii:'+idUsuario);
       
           var CursoTreinamento = {
-            idTreinamento:idTreinamento,
+            idTreinamento: idTreinamento,
             idUsuario: idUsuario,
           };
 

@@ -34,6 +34,8 @@ textarea, input[type="text"] {
   background: #2f2841;
   border: none;
   border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  color: aquamarine;
   outline: none;
 }
 
