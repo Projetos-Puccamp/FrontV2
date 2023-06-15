@@ -28,16 +28,21 @@ window.addEventListener('DOMContentLoaded', function() {
         Object.keys(vagas).forEach(key => {
           var vaga = vagas[key];
           var div = document.createElement('div');
+          div.classList.add('vaga-card');
+          div.style.marginRight = '25px'
           div.innerHTML = `
-            <p>Código: ${vaga.codigo}</p>
+            <p>Vaga: ${vaga.codigo}</p>
             <p>Descrição: ${vaga.descricao}</p>
-            <a href="Paluno.html">Botao a ser pgm</a>
+            <p>Requisitos: ${vaga.requisitos}</p>
+            <p>Faixa Salarial: ${vaga.salario}</p>
+            <a class="btn-inscrever-se" href="Paluno.html">Inscrever-se</a>
+            <br>
           `;
           row.appendChild(div);
   
           count++;
   
-          if (count % 1 === 0) {
+          if (count % 2 === 0) {
             row = document.createElement('div');
             row.classList.add('row');
             container.appendChild(row);
