@@ -5,7 +5,7 @@ function createwindow (){
             height: 600
         });
        //win.removeMenu();
-       //win.maximize();
+       win.maximize();
     win.loadFile('src/Pinicial.html');
 }
 

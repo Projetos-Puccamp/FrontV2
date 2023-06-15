@@ -107,7 +107,11 @@ module.exports = {
     for (let i in cursos) {
       json.result.push({
         codigo: cursos[i].idTreinamento,
+        nome: cursos[i].NomeComercial,
         descricao: cursos[i].Descricao,
+        carga: cursos[i].CargaHoraria,
+        inicio: cursos[i].DataInicio,
+        fim: cursos[i].DataFim,
         testehref: 'Plogin.html'
       });
     }
@@ -177,7 +181,9 @@ module.exports = {
     for (let i in vagas) {
       json.result.push({
         codigo: vagas[i].Vaga,
-        descricao: vagas[i].DescricaoAtv
+        descricao: vagas[i].DescricaoAtv,
+        requisitos: vagas[i].Requisitos,
+        salario: vagas[i].Salario
       });
     }
     res.json(json);

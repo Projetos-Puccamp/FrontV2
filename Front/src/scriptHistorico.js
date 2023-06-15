@@ -33,10 +33,11 @@ window.addEventListener('DOMContentLoaded', function() {
          // if(historico.status==='N'){
 
           var div = document.createElement('div');
+          div.classList.add('resultado-card');
           div.innerHTML = `
             <p text=>Código do Treinamento: ${historico.codigoT}</p> 
             <p>Status: ${historico.status}</p> 
-            <input text='${historico.local}' IdT='${historico.codigoT}'  type="submit" value="Inscrever-se"> //Botao para continuar
+            <input text='${historico.local}' IdT='${historico.codigoT}' class="btn-ver" type="submit" value="Entrar">
           `; 
           row.appendChild(div);
           count++;

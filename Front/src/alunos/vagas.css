@@ -18,6 +18,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  flex-direction: row; 
 }
 
 .vaga-card {
@@ -28,6 +29,7 @@ body {
   border-radius: 10px;
   box-shadow: 0px 10px 40px #00000056;
   text-align: center;
+  
 }
 
 .vaga-card h3 {
@@ -38,3 +40,46 @@ body {
 .vaga-card p {
   margin: 5px 0;
 }
+.btn-voltar {
+  width: 10%;
+  padding: 12px 0px;
+  margin: 25px auto;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #2b134b;
+  background: aquamarine;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px aquamarine;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-inscrever-se {
+  width: 50%;
+  padding: 12px 0px;
+  margin: 25px auto;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #2b134b;
+  background: aquamarine;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px aquamarine;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
