@@ -1,14 +1,15 @@
 window.addEventListener('DOMContentLoaded', function() {
     //alert(localStorage.getItem('idCodigotreinamento'));
    // alert(localStorage.getItem('id'));
-//fazer 
-    IdTreinamento ={
+
+    Ids ={
         IdTreinamento: localStorage.getItem('idCodigotreinamento'),
         IdUser: localStorage.getItem('id')
     } 
-      // para fazer um q funcione para todos os testes; 
-      // primeiro verificar o status do aluno neste curso+
-      // pegar as perguntas em treinamentoshasquiz --> quiz --> where status == status do aluno no curso 
+      //Mudar o titulo de acordo com o status em idtreinamento aluno
+      //Para fazer um q funcione para todos os testes; 
+      //Primeiro verificar o status do aluno neste curso+
+      //Pegar as perguntas em treinamentoshasquiz --> quiz --> where status == status do aluno no curso 
 
     alert('entrou em testes');
 
@@ -18,18 +19,24 @@ window.addEventListener('DOMContentLoaded', function() {
         'Content-Type': 'application/json',
       },
       credentials: 'include',
-      body: JSON.stringify(IdTreinamento)
+      body: JSON.stringify(Ids)
     };
   
     // Realiza a requisição para a API
     fetch('http://localhost:3001/api/users/teste', requestOptions)
     .then(response => response.json())
     .then(dataC => { 
+      var Perguntas = dataC.result;
+      var Titulo = document.getElementById('ContainerTitulo');
+      Titulo.innerHTML=`
+      <div>${Perguntas[0].titulo}</div>
+      `;
+
       if (dataC && typeof dataC === 'object') {
-        var Perguntas = dataC.result;
+        
   
         var container = document.getElementById('containerPergunta');
-  
+        
         var row = document.createElement('div');
         row.classList.add('row');
         container.appendChild(row);

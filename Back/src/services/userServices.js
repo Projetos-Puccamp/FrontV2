@@ -13,12 +13,20 @@ module.exports = {
     
     buscarTodosCursos:  () =>{
         return new Promise((aceito, rejeitado) => {
-            db.query('SELECT * FROM treinamento', (error, results) => {
+            db.query('SELECT * FROM perguntas', (error, results) => {
                 if (error) { rejeitado(error); return; }
                 aceito(results);
             });
         });
     }, 
+    buscarTodosPerguntas:  (tipoPergunta,idQuiz) =>{
+      return new Promise((aceito, rejeitado) => {
+          db.query('select * from pergunta  where tipoPergunta = 1 and Quiz_idQuiz=1;',[tipoPergunta,idQuiz], (error, results) => {
+              if (error) { rejeitado(error); return; }
+              aceito(results);
+          });
+      });
+  }, 
     buscarTodosVagas:  () =>{
         return new Promise((aceito, rejeitado) => {
             db.query('SELECT * FROM vagaemprego', (error, results) => {
@@ -50,7 +58,31 @@ module.exports = {
                 }else{ aceito(false);}
             });
         });
-    },
+    }, 
+    buscarStatus: (IdAluno,IdTreinamento)=>{
+      return new Promise((aceito, rejeitado)=>{
+        console.log('O starus no service es: Na real teste da service'+IdAluno+IdTreinamento )
+          db.query('select status from alunotreinamento  where Aluno_idAluno =? and Treinamento_idTreinamento =?; ', [IdAluno,IdTreinamento], (error, results)=>{
+              if (error) {rejeitado(error); return; }
+              if(results.length > 0){
+                  console.log('status do aluno no curso é  '+ results[0].status);
+                  aceito(results[0].status);
+                 
+              }else{ aceito(false);}
+          });
+      });
+  },
+  buscarQuiz: (IdAluno,IdTreinamento)=>{
+    return new Promise((aceito, rejeitado)=>{
+        db.query('select Quiz_idQuiz from treinamentosparavaga_has_quiz where TreinamentosParavaga_idTreinamentosParavaga =?; ', [IdTreinamento], (error, results)=>{
+            if (error) {rejeitado(error); return; }
+            if(results.length > 0){
+                console.log('status do aluno no curso é  '+ results[0].Quiz_idQuiz);
+                aceito(results[0].Quiz_idQuiz);
+            }else{ aceito(false);}
+        });
+    });
+},
 
     buscarTodosConteudos:(IdTreinamento)=>{
       return new Promise((aceito, rejeitado) => {
