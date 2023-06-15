@@ -1,9 +1,16 @@
 window.addEventListener('DOMContentLoaded', function() {
-    this.alert(localStorage.getItem('idCodigotreinamento'))
+    //alert(localStorage.getItem('idCodigotreinamento'));
+   // alert(localStorage.getItem('id'));
+//fazer 
     IdTreinamento ={
         IdTreinamento: localStorage.getItem('idCodigotreinamento'),
-
+        IdUser: localStorage.getItem('id')
     } 
+      // para fazer um q funcione para todos os testes; 
+      // primeiro verificar o status do aluno neste curso+
+      // pegar as perguntas em treinamentoshasquiz --> quiz --> where status == status do aluno no curso 
+
+    alert('entrou em testes');
 
     const requestOptions = {
       method: 'POST',
@@ -54,7 +61,6 @@ window.addEventListener('DOMContentLoaded', function() {
             ${Pergunta.P4}
           </label><br>
         </form>
-             
           `; 
 
           row.appendChild(div);
