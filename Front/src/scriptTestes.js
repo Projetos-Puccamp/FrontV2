@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('DOMContentLoaded', function () {
   //alert(localStorage.getItem('idCodigotreinamento'));
   // alert(localStorage.getItem('id'));
 
@@ -36,13 +36,14 @@ window.addEventListener('DOMContentLoaded', function() {
         var row = document.createElement('div');
         row.classList.add('row');
         container.appendChild(row);
-
+        this.alert(Perguntas);
         var count = 0;
-        var countP = 0;
+        var countP = 1;
         Object.keys(Perguntas).forEach(key => {
-          var Pergunta = Perguntas[key];
-          var div = document.createElement('div'); //vai ser necessario uma funcao na api q verifica as respostas
-          div.innerHTML = `
+          if (key !== '0') {
+            var Pergunta = Perguntas[key];
+            var div = document.createElement('div'); //vai ser necessario uma funcao na api q verifica as respostas
+            div.innerHTML = `
           <form id ='${Pergunta.id}' >
           <label>${countP}: ${Pergunta.descricao}</label><br>
           <label for="${Pergunta.P1}">
@@ -63,63 +64,37 @@ window.addEventListener('DOMContentLoaded', function() {
           </label><br>
         </form>
           `;
-          var containerPergunta = document.getElementById('containerPergunta');
-          containerPergunta.appendChild(div);
+            var containerPergunta = document.getElementById('containerPergunta');
+            containerPergunta.appendChild(div);
 
-          // Adicionar o listener apenas para os checkboxes dentro dessa div
-          var checkboxes = div.querySelectorAll('input[type="checkbox"]');
-          checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', () => {
-              if (checkbox.checked) {
-                checkboxes.forEach(cb => {
-                  if (cb !== checkbox) {
-                    cb.checked = false;
-                  }
-                });
-              }
-            });
-          });
-
-          row.appendChild(div);
-          countP++;
-          count++;
-
-          if (count % 2 === 0) {
-            row = document.createElement('div');
-            row.classList.add('row');
-            container.appendChild(row);
-            count = 0;
-          }
-
-          //event listener aguardando a pergunta ser respondida, entao verifica a partir do id da mesma se o valor selecionado para
-          //cada idPergunta corresponde a sua resposta, fazer um para cada pergunta, da pra utilizar o count P para identificar cada uma
-          div.addEventListener('submit', function(event) {
-            event.preventDefault();
-            var buttonClicked = event.target.querySelector('input[type="submit"]:focus');
-            var idPergunta = buttonClicked.getAttribute('idPergunta');
-
-            var CursoTreinamento = {
-              idTreinamento: idTreinamento,
-              idUsuario: idUsuario,
-            };
-
-            const requestOptions = {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(CursoTreinamento)
-            };
-
-            fetch('http://localhost:3001/api/adm/Aluno_Treinamento', requestOptions)
-              .then(response => response.json())
-              .then(data => {})
-              .catch(error => {
-                // Trata erros
-                console.error('Erro:', error);
+            // Adicionar o listener apenas para os checkboxes dentro dessa div
+            var checkboxes = div.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+              checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                  checkboxes.forEach(cb => {
+                    if (cb !== checkbox) {
+                      cb.checked = false;
+                    }
+                  });
+                }
               });
-          });
+            });
+
+            row.appendChild(div);
+            countP++;
+            count++;
+
+            if (count % 2 === 0) {
+              row = document.createElement('div');
+              row.classList.add('row');
+              container.appendChild(row);
+              count = 0;
+            }
+          }
         });
+        
+
       } else {
         alert('Deu Xabu!');
       }
@@ -127,4 +102,27 @@ window.addEventListener('DOMContentLoaded', function() {
     .catch(error => {
       console.error('Erro:', error);
     });
+
+    //event listener aguardando a pergunta ser respondida, entao verifica a partir do id da mesma se o valor selecionado para
+    //cada idPergunta corresponde a sua resposta, fazer um para cada pergunta, da pra utilizar o count P para identificar cada uma
+
+    document.getElementById('containerPergunta').addEventListener('submit', function(event) {
+      event.preventDefault(); // Impede que o formulário seja enviado
+    
+      var form = event.target;
+      var checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+      var selectedOptions = [];
+    
+      checkboxes.forEach(function(checkbox) {//salvar o id tbm para a comparacao com a resposta
+        selectedOptions.push(checkbox.value);
+      });
+    
+      if (selectedOptions.length > 0) {
+        var message = 'Opções selecionadas: ' + selectedOptions.join(', ');
+        alert(message);
+      } else {
+        alert('Nenhuma opção selecionada.');
+      }
+    });
+
 });

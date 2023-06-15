@@ -162,17 +162,25 @@ module.exports = {
       default:
         console.log("Opção inválida");
     }
-    let conteudo = await UserServices.buscarTodosPerguntas(IdTreinamento, tipoPergunta, idQuiz);
-    console.log(conteudo);
+    let Perguntas = await UserServices.buscarTodosPerguntas(IdTreinamento, tipoPergunta, idQuiz);
+    console.log(Perguntas);
 
     json.result.push({
       titulo: titulo
     });
-    for (let i in conteudo) {
+
+    for (let i in Perguntas) {
       json.result.push({
+        descricao: Perguntas[i].DescricaoPergunta,
+        P1: Perguntas[i].Pergunta1,
+        P2: Perguntas[i].Pergunta2,
+        P3: Perguntas[i].Pergunta3,
+        P4: Perguntas[i].Pergunta4,
+        P5: Perguntas[i].Pergunta5
        
       });
     }
+    
     res.json(json);
   },
   FillVagas: async (req, res) => {

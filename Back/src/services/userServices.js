@@ -19,6 +19,7 @@ module.exports = {
             });
         });
     }, 
+    
     buscarTodosPerguntas:  (tipoPergunta,idQuiz) =>{
       return new Promise((aceito, rejeitado) => {
           db.query('select * from pergunta  where tipoPergunta = 1 and Quiz_idQuiz=1;',[tipoPergunta,idQuiz], (error, results) => {
