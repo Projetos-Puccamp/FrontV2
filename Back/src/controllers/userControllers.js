@@ -166,11 +166,13 @@ module.exports = {
     console.log(Perguntas);
 
     json.result.push({
-      titulo: titulo
+      titulo: titulo,
+      status: status
     });
 
     for (let i in Perguntas) {
       json.result.push({
+        id :Perguntas[i].idPergunta,
         descricao: Perguntas[i].DescricaoPergunta,
         P1: Perguntas[i].Pergunta1,
         P2: Perguntas[i].Pergunta2,
@@ -407,6 +409,18 @@ module.exports = {
     } else {
       json.erro = 'Campos não enviados';
     }
+    res.json(json);
+  },
+  VerificarRespostas: async (req, res) => {
+    let json = { erro: '', result: {} };
+    
+    
+    if(status ='N')await UserServices.alterarStatus(IdUsuario, IdTreinamento);
+      
+      json.result = {
+        //coloca alguma bomba aq
+      };
+  
     res.json(json);
   },
 

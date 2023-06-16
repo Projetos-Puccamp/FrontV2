@@ -47,19 +47,19 @@ window.addEventListener('DOMContentLoaded', function () {
           <form id ='${Pergunta.id}' >
           <label>${countP}: ${Pergunta.descricao}</label><br>
           <label for="${Pergunta.P1}">
-            <input type="checkbox" id="${Pergunta.P1}" name="options[]" value="${Pergunta.P1}">
+            <input type="checkbox" id="${Pergunta.id}" name="options[]" value="${Pergunta.P1}">
             ${Pergunta.P1}
           </label><br>
           <label for="${Pergunta.P2}">
-            <input type="checkbox" id="${Pergunta.P2}" name="options[]" value="${Pergunta.P2}">
+            <input type="checkbox" id="${Pergunta.id}" name="options[]" value="${Pergunta.P2}">
             ${Pergunta.P2}
           </label><br>
           <label for="${Pergunta.P3}">
-            <input type="checkbox" id="${Pergunta.P3}" name="options[]" value="${Pergunta.P3}">
+            <input type="checkbox" id="${Pergunta.id}" name="options[]" value="${Pergunta.P3}">
             ${Pergunta.P3}
           </label><br>
           <label for="${Pergunta.P4}">
-            <input type="checkbox" id="${Pergunta.P4}" name="options[]" value="${Pergunta.P4}">
+            <input type="checkbox" id="${Pergunta.id}" name="options[]" value="${Pergunta.P4}">
             ${Pergunta.P4}
           </label><br>
         </form>
@@ -92,12 +92,74 @@ window.addEventListener('DOMContentLoaded', function () {
               count = 0;
             }
           }
+
+          
+
         });
+        var buttonContainer = document.createElement('div');
+        buttonContainer.classList.add('button-container');
+        buttonContainer.innerHTML = `
+          <button class="btn-ver" id="submit-quiz">Enviar</button>
+          <a class="btn-ver" href="Paluno.html">Voltar</a>
+          <a class="btn-ver" href="case1.html">CASE 1</a>
+        `;
+        container.appendChild(buttonContainer);
         
 
       } else {
         alert('Deu Xabu!');
       }
+
+      
+      document.getElementById('containerPergunta').addEventListener('submit', function(event) {
+        event.preventDefault(); // Impede que o formulário seja enviado
+      
+        var form = event.target;
+        var checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
+        var selectedOptions = [];
+        var selectedOptionsId = [];
+        checkboxes.forEach(function(checkbox) {//salvar o id tbm para a comparacao com a resposta
+          selectedOptions.push(checkbox.value);
+          selectedOptionsId.push(checkbox.id);
+        });
+        
+        if (selectedOptions.length > 0) {
+          var message = 'Opções selecionadas: ' + selectedOptions.join(', ');
+          var messageid = 'Opções selecionadas: ' + selectedOptionsId.join(', ');
+          alert(message);
+          alert(messageid);
+          alert(Perguntas[0].status);
+
+          valoresSelecionados = {
+          Respostas: selectedOptions,
+          Idpergunta:selectedOptionsId,
+          Status: Perguntas[0].status
+          }
+          const requestOptions = {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(valoresSelecionados )
+          };
+          // Realiza a requisição para a API
+          fetch('http://localhost:3001/api/users/verificaResp', requestOptions)
+            .then(response => response.json())
+            .then(data => {
+    
+              console.log(data);
+            })
+            .catch(error => {
+              // Trata erros
+              console.error('Erro:', error);
+            });
+         
+          
+        } else {
+          alert('Nenhuma opção selecionada.');
+        }
+      });
+
     })
     .catch(error => {
       console.error('Erro:', error);
@@ -106,23 +168,6 @@ window.addEventListener('DOMContentLoaded', function () {
     //event listener aguardando a pergunta ser respondida, entao verifica a partir do id da mesma se o valor selecionado para
     //cada idPergunta corresponde a sua resposta, fazer um para cada pergunta, da pra utilizar o count P para identificar cada uma
 
-    document.getElementById('containerPergunta').addEventListener('submit', function(event) {
-      event.preventDefault(); // Impede que o formulário seja enviado
     
-      var form = event.target;
-      var checkboxes = form.querySelectorAll('input[type="checkbox"]:checked');
-      var selectedOptions = [];
-    
-      checkboxes.forEach(function(checkbox) {//salvar o id tbm para a comparacao com a resposta
-        selectedOptions.push(checkbox.value);
-      });
-    
-      if (selectedOptions.length > 0) {
-        var message = 'Opções selecionadas: ' + selectedOptions.join(', ');
-        alert(message);
-      } else {
-        alert('Nenhuma opção selecionada.');
-      }
-    });
 
 });
