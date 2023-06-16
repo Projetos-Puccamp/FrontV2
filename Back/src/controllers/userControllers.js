@@ -190,7 +190,8 @@ module.exports = {
     let vagas = await UserServices.buscarTodosVagas();
     for (let i in vagas) {
       json.result.push({
-        codigo: vagas[i].Vaga,
+        codigo: vagas[i].idVagaEmprego,
+        vaga: vagas[i].Vaga,
         descricao: vagas[i].DescricaoAtv,
         requisitos: vagas[i].Requisitos,
         salario: vagas[i].Salario
@@ -281,7 +282,7 @@ module.exports = {
       json.erro = 'Campos não enviados';
     }
     res.json(json);
-  },
+  },  
   inserirPergunta: async (req, res) => {
     let json = { erro: '', result: {} };
     console.log('Entrou em Inserir Perguntas');
@@ -447,5 +448,27 @@ module.exports = {
       json.erro = 'Campos não enviados';
     }
     res.json(json);
+  },
+
+atualizarDescricao: async (req, res) => {
+  let json = { erro: '', result: {} };
+  let IdVaga = req.body.codigo;
+  let descricao = req.body.descricao;
+  
+  if (IdVaga && descricao) {
+    try {
+      await UserServices.atualizarDescricao(IdVaga, descricao);
+  
+      json.result = {
+        IdVaga,
+        descricao
+      };
+    } catch (error) {
+      json.erro = 'Erro ao atualizar a descrição da vaga';
+    }
+  } else {
+    json.erro = 'Campos não enviados';
   }
-}
+  
+  res.json(json);
+}}

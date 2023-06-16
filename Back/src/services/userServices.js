@@ -117,7 +117,6 @@ module.exports = {
             });
         });
     },
-
     inserir: (nome,email,senha)=>{
         return new Promise((aceito, rejeitado)=>{
             db.query('INSERT INTO usuario (nome,email, senha, Nivelpermissao) VALUES (?,?,?,1)',  [nome,email, senha], (error, results)=>{
@@ -240,12 +239,10 @@ module.exports = {
             });
         });
     },
-    alterar: (codigo, email, senha)=>{
+    atualizarDescricao: (idVagaEmprego, DescricaoAtv)=>{
         return new Promise((aceito, rejeitado)=>{
-
-            db.query('UPDATE users SET email = ?, senha = ? where codigo = ?',  [email, senha, codigo], (error, results)=>{
+            db.query('UPDATE vagaemprego SET DescricaoAtv = ? where idVagaEmprego = ?',  [DescricaoAtv,idVagaEmprego], (error, results)=>{
                 if(error) {rejeitado(error); return;}
-                
                 aceito(results);
             });
         });

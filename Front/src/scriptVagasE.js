@@ -31,11 +31,12 @@ window.addEventListener('DOMContentLoaded', function() {
           div.classList.add('vaga-card');
           div.style.marginRight = '25px'
           div.innerHTML = `
+            <p>Codigo: ${vaga.codigo}</p>
             <p>Vaga: ${vaga.vaga}</p>
             <p>Descrição: ${vaga.descricao}</p>
             <p>Requisitos: ${vaga.requisitos}</p>
             <p>Faixa Salarial: ${vaga.salario}</p>
-            <a class="btn-inscrever-se" href="Paluno.html">Inscrever-se</a>
+            <a class="btn-inscrever-se" href="atualizarVaga.html">Alterar Vaga</a>
             <br>
           `;
           row.appendChild(div);
