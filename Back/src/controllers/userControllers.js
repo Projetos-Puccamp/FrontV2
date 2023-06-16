@@ -421,7 +421,7 @@ module.exports = {
     let Status = req.body.Status;
     
     console.log('Entrou em Verificar Resposta: ' + IdTreinamento + IdAluno + Respostas[1] + idPergunta[1] + Status);
-      
+    NovoStatus_Nota = 
       json.result = {
         //coloca alguma bomba aq
       };

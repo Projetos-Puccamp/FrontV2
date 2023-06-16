@@ -48,8 +48,6 @@ window.addEventListener('DOMContentLoaded', function() {
             container.appendChild(row);
           }
 
-       // }
-
         });
 
         addEventListener('submit', function(event) {
