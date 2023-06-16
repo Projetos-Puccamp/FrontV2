@@ -412,10 +412,15 @@ module.exports = {
     res.json(json);
   },
   VerificarRespostas: async (req, res) => {
+    console.log('Entrou em Verificar Resposta');
     let json = { erro: '', result: {} };
+    let IdAluno = await UserServices.buscaIdAluno(req.body.IdUsuario);
+    let IdTreinamento = req.body.IdTreinamento;
+    let Respostas = req.body.Respostas;
+    let idPergunta = req.body.Idpergunta;
+    let Status = req.body.Status;
     
-    
-    if(status ='N')await UserServices.alterarStatus(IdUsuario, IdTreinamento);
+    console.log('Entrou em Verificar Resposta: ' + IdTreinamento + IdAluno + Respostas[1] + idPergunta[1] + Status);
       
       json.result = {
         //coloca alguma bomba aq

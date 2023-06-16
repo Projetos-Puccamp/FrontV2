@@ -235,7 +235,6 @@ module.exports = {
             db.query('SELECT idEmpresa FROM empresa WHERE Usuario_idUsuario = ?', [id], (error, results)=>{
                 if (error) {rejeitado(error); return; }
                 if(results.length > 0){
-                    console.log('safdas///////////////////'+results[0].idEmpresa);
                     aceito(results[0].idEmpresa);
                 }else{ aceito(false);}
             });

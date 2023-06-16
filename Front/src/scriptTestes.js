@@ -124,8 +124,8 @@ window.addEventListener('DOMContentLoaded', function () {
         });
         
         if (selectedOptions.length > 0) {
-          var message = 'Opções selecionadas: ' + selectedOptions.join(', ');
-          var messageid = 'Opções selecionadas: ' + selectedOptionsId.join(', ');
+          var message = 'Opções selecionadas: ' + selectedOptions.join(' ');
+          var messageid = 'Opções selecionadas: ' + selectedOptionsId.join(' ');
           alert(message);
           alert(messageid);
           alert(Perguntas[0].status);
@@ -133,14 +133,17 @@ window.addEventListener('DOMContentLoaded', function () {
           valoresSelecionados = {
           Respostas: selectedOptions,
           Idpergunta:selectedOptionsId,
-          Status: Perguntas[0].status
+          Status: Perguntas[0].status,
+          IdUsuario: localStorage.getItem('id'),
+          IdTreinamento: localStorage.getItem('idCodigotreinamento')
           }
+          alert(valoresSelecionados);
           const requestOptions = {
-            method: 'PUT',
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json'
             },
-            body: JSON.stringify(valoresSelecionados )
+            body: JSON.stringify(valoresSelecionados)
           };
           // Realiza a requisição para a API
           fetch('http://localhost:3001/api/users/verificaResp', requestOptions)
