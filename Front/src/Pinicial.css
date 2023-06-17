@@ -93,3 +93,7 @@ body{
   text-decoration: none;
   font-size: medium;
 }
+.btn-login:hover {
+  background: #2b134b;
+  color: aquamarine;
+}

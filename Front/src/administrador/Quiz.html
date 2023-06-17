@@ -17,8 +17,26 @@
             <label for="id">IdQuiz:</label>
             <input type="text" id="idQuiz" class="resposta" required>
 
-            <label for="tp">TipoPergunta:</label>
-            <input type="text" id="TipoPergunta" class="resposta" required>
+            <form>
+                <label for="id">Tipo Quiz:</label><br>
+                <label for="option1">
+                    <input type="checkbox" id="option" name="options[]" value="1">
+                    Teste de Aptidão
+                </label><br>
+                <label for="option2">
+                    <input type="checkbox" id="option" name="options[]" value="2">
+                    Case 1
+                </label><br>
+                <label for="option3">
+                    <input type="checkbox" id="option" name="options[]" value="3">
+                    Case 2
+                </label><br>
+                <label for="option4">
+                    <input type="checkbox" id="option" name="options[]" value="4">
+                    Teste Final
+                </label><br>
+            </form>
+            <script src="scriptquiz.js"></script>
 
             <label for="pergunta1">Pergunta :</label>
             <input type="text" id="pergunta1" required>

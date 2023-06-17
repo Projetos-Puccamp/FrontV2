@@ -34,6 +34,8 @@ textarea, input[type="text"] {
   background: #2f2841;
   border: none;
   border-radius: 8px;
+  font-family: 'Segoe UI', sans-serif;
+  color: aquamarine;
   outline: none;
 }
 
@@ -52,6 +54,10 @@ input[type="submit"] {
   cursor: pointer;
   box-shadow: 0px 10px 40px -12px aquamarine;
 }
+input[type="submit"]:hover {
+  background: #2b134b;
+  color: aquamarine;
+}
 
 a {
   display: block;
@@ -65,4 +71,8 @@ a {
   color: #2b134b;
   background: aquamarine;
   box-shadow: 0px 10px 40px -12px aquamarine;
+}
+a:hover {
+  background: #2b134b;
+  color: aquamarine;
 }

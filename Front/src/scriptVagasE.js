@@ -31,11 +31,12 @@ window.addEventListener('DOMContentLoaded', function() {
           div.classList.add('vaga-card');
           div.style.marginRight = '25px'
           div.innerHTML = `
+            <p>Codigo: ${vaga.codigo}</p>
             <p>Vaga: ${vaga.vaga}</p>
             <p>Descrição: ${vaga.descricao}</p>
             <p>Requisitos: ${vaga.requisitos}</p>
             <p>Faixa Salarial: ${vaga.salario}</p>
-            <a class="btn-inscrever-se" href="Paluno.html">Inscrever-se</a>
+            <a class="btn-inscrever-se" href="atualizarVaga.html" id='${vaga.codigo}' >Alterar Vaga</a>
             <br>
           `;
           row.appendChild(div);
@@ -47,9 +48,18 @@ window.addEventListener('DOMContentLoaded', function() {
             row.classList.add('row');
             container.appendChild(row);
           }
+          var btnsInscrever = document.getElementsByClassName('btn-inscrever-se');
+          Array.from(btnsInscrever).forEach(btn => {
+            btn.addEventListener('click', function(event) {
+              
+              var vagaId = event.target.getAttribute('id');
+              localStorage.setItem('IdVaga', vagaId);
+            });
+
+          });
         });
       } else {
-        alert('Deu Xabu!');
+        alert('Erro!');
       }
     })
     .catch(error => {

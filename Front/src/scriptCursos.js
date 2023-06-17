@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', function() {
-
   const requestOptions = {
     method: 'GET',
     headers: {
@@ -27,18 +26,23 @@ window.addEventListener('DOMContentLoaded', function() {
       var count = 0;
       Object.keys(cursos).forEach(key => {
         var curso = cursos[key];
-
+      
         var div = document.createElement('div');
+        div.classList.add('curso-card');
+        div.style.marginRight = '25px'
         div.innerHTML = `
-          <p>Código: ${curso.codigo}</p>
+          
+          <h2 class="curso-titulo">${curso.nome}</h2>
           <p>Descrição: ${curso.descricao}</p>
-          <input id='${curso.codigo}' text='${curso.codigo}'  type="submit" value="Inscrever-se">
-        `; 
+          <p>Carga Horaria: ${curso.carga}</p>
+          <p>Data Inicio: ${new Date(curso.inicio).toLocaleDateString('pt-BR')}</p>
+          <p>Data Fim: ${new Date(curso.fim).toLocaleDateString('pt-BR')}</p>
+          <input id='${curso.codigo}' text='${curso.codigo}' class="btn-inscrever-se" type="submit" value="Inscrever-se">
+          `;
         row.appendChild(div);
-
         count++;
 
-        if (count % 3 === 0) {
+        if (count % 1 === 0) {
           row = document.createElement('div');
           row.classList.add('row');
           container.appendChild(row);

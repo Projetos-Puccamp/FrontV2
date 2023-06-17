@@ -1,4 +1,4 @@
-document.getElementById('cadastroForm').addEventListener('submit', function(event) {
+document.getElementById('cadastroMForm').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio do formulário
 
     // Obter os valores dos campos do formulário
@@ -30,12 +30,12 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
       };
     
       // Realiza a requisição para a API
-      fetch('http://localhost:3001/api/users/cads', requestOptions)
+      fetch('http://localhost:3001/api/adm/cadsM', requestOptions)
         .then(response => response.json())
         .then(data => {
           // Processa a resposta da API
           console.log(data);
-            // Exibir uma mensagem de sucesso
+        
       document.getElementById('mensagem').className = '';
       document.getElementById('mensagem').textContent = 'Cadastro realizado com sucesso!';
         })
@@ -50,6 +50,6 @@ document.getElementById('cadastroForm').addEventListener('submit', function(even
       document.getElementById('nome').value = '';
       document.getElementById('email').value = '';
       document.getElementById('senha').value = '';
-  
+
     }
   });

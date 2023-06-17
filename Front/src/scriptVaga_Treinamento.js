@@ -4,7 +4,6 @@ document.getElementById('form-treinamento-vaga').addEventListener('submit', func
     // Obter os valores dos campos do formulário
     var idVemp = document.getElementById('IdVemp').value;
     var idTreinamento = document.getElementById('IdTreinamento').value;
-alert('TESTE DUS BUTAO');
     var TreinamentoVaga = {
       idTreinamento:idTreinamento,
       idVemp: idVemp,
@@ -20,7 +19,6 @@ alert('TESTE DUS BUTAO');
       },
       body: JSON.stringify(TreinamentoVaga)
     };
-    alert('Treinamento');
     // Realiza a requisição para a API
     fetch('http://localhost:3001/api/adm/Vaga_Treinamento', requestOptions)
       .then(response => response.json())

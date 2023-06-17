@@ -18,8 +18,10 @@ body {
 
 #container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
-  margin-top: 30px;
+  flex-direction: row;
 }
 
 .footer {
@@ -44,17 +46,24 @@ body {
     font-size: 24px;
   }
 }
-.card-login {
-  width: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 30px 35px;
+.curso-card {
+  width: 300px;
+  padding: 20px;
+  margin: 20px;
   background: #2f2841;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0px 10px 40px #00000056;
-  margin: 0 auto;
+  text-align: center;
+  height: 300px; 
+}
+
+.curso-card h3 {
+  color: aquamarine;
+  margin-bottom: 10px;
+}
+
+.curso-card p {
+  margin: 5px 0;
 }
 .btn-aluno {
   width: 10%;
@@ -77,4 +86,37 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+.btn-aluno:hover {
+  background: #2b134b;
+  color: aquamarine;
+}
+.btn-inscrever-se {
+  width: 80%;
+  padding: 12px 0px;
+  margin: 25px auto;
+  border: none;
+  border-radius: 8px;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #2b134b;
+  background: aquamarine;
+  cursor: pointer;
+  box-shadow: 0px 10px 40px -12px aquamarine;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-inscrever-se:hover {
+  background: #2b134b;
+  color: aquamarine;
+}
+.curso-titulo {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 0px;
+}

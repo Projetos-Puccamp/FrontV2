@@ -1,9 +1,16 @@
 document.getElementById('quiz-questions').addEventListener('submit', function(event) {
     event.preventDefault(); // Impede o envio do formulário
     // Obter os valores dos campos do formulário
-    
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        let selectedValue = '';
+
+        checkboxes.forEach((checkbox) => {
+            if (checkbox.checked) {
+                selectedValue = checkbox.value;
+            }
+        });
+
     var idQuiz = document.getElementById('idQuiz').value;
-    var tipoPergunta = document.getElementById('TipoPergunta').value;
     var pergunta = document.getElementById('pergunta1').value;
     var respostaA = document.getElementById('resposta1').value;
     var respostaB = document.getElementById('resposta2').value;
@@ -14,7 +21,7 @@ document.getElementById('quiz-questions').addEventListener('submit', function(ev
 
     var novaPergunta = {
         idQuiz: idQuiz,
-        tipoPergunta: tipoPergunta,
+        tipoPergunta: selectedValue,
         pergunta: pergunta,
         respostaA: respostaA,
         respostaB: respostaB,

@@ -1,5 +1,5 @@
 window.addEventListener('DOMContentLoaded', function() {
-
+ 
   var id = {
     id: localStorage.getItem('id'),
 
@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', function() {
       },
       body: JSON.stringify(id)
     };
-alert
+
     // Realiza a requisição para a API
     fetch('http://localhost:3001/api/users/historico', requestOptions)
     .then(response => response.json())
@@ -21,48 +21,68 @@ alert
 
         var historicos = dataC.result;
   
+
         var container = document.getElementById('container');
-  
         var row = document.createElement('div');
         row.classList.add('row');
         container.appendChild(row);
-  
         var count = 0;
         Object.keys(historicos).forEach(key => {
           var historico = historicos[key];
-  
           var div = document.createElement('div');
-          div.innerHTML = `
-            <p>Código do Treinamento: ${historico.codigoT}</p> 
-            <p>Status: ${historico.status}</p> 
-            <input id='${historico.codigo}' text='case1.html'  type="submit" value="Inscrever-se"> //Botao para continuar
+          div.classList.add('resultado-card');
+          if(historico.status==='N'|| historico.status==='C1' || historico.status==='C2'){
+            div.innerHTML = `
+            <h1> Em andamento</h1>
+            <p text=>${historico.nomecurso}</p> 
+            <p>Status: Não Finalizado</p> 
+            <input text='${historico.local}' IdT='${historico.codigoT}' class="btn-ver" type="submit" value="Entrar">
           `; 
           row.appendChild(div);
           count++;
-  
-          if (count % 3 === 0) {
+          if (count % 2 === 0) {
             row = document.createElement('div');
             row.classList.add('row');
             container.appendChild(row);
           }
+            }
+          });
+        Object.keys(historicos).forEach(key => {
+          var historico = historicos[key];
+          var div = document.createElement('div');
+          div.classList.add('resultado-card');
+          if(historico.status==='R'){
+            div.innerHTML = `
+            <h1> Finalizado</h1>
+            <p text=>Código do Treinamento: ${historico.codigoT}</p> 
+            <p>Status: Reprovado no teste de aptidão</p>
+            <p>Nota: ${historico.nota}</p> 
+          `; 
+          row.appendChild(div);
+          count++;  }
+          
+  
+          if (count % 2 === 0) {
+            row = document.createElement('div');
+            row.classList.add('row');
+            container.appendChild(row);
+          }
+
         });
 
         addEventListener('submit', function(event) {
           event.preventDefault();
+          
           var buttonClicked = event.target.querySelector('input[type="submit"]:focus');
           var Tela = buttonClicked.getAttribute('text');
+          this.alert('Tela é'+ Tela);
+          var buttonClicked2 = event.target.querySelector('input[type="submit"]:focus');
+          var Codigo = buttonClicked2.getAttribute('IdT');
+          localStorage.setItem('idCodigotreinamento',Codigo);
           window.location.href = Tela;//manda pra outra tela
-          var idUsuario = localStorage.getItem('id');
-          console.log('aaaaaissii:'+idUsuario);
-      
-          var CursoTreinamento = {
-            idTreinamento:idTreinamento,
-            idUsuario: idUsuario,
-          };
 
         });
 
-  
       } else {
         alert('Deu Xabu!');
       }

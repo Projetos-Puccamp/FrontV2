@@ -9,16 +9,23 @@ router.get('/users/vagas', UserControllers.FillVagas);
 router.get('/users/curso', UserControllers.FillCursos);
 router.get('/users', UserControllers.buscarTodos);
 router.post('/users/historico', UserControllers.buscarHistorico);
-
+router.post('/users/case', UserControllers.FillCase);
+router.post('/users/teste', UserControllers.FillPerguntas);
+router.post('/users/verificaResp', UserControllers.VerificarRespostas);
 //rotas de empresa
 router.post('/emps/cads', UserControllers.inserirVaga);
+router.put('/emps/cads/att', UserControllers.atualizarDescricao);
+router.put('/emps/cads/attNome', UserControllers.atualizarNome);
+router.put('/emps/cads/attReq', UserControllers.atualizarRequisito);
 
-///router.put('/users/:codigo', userControllers.alterar);
+
+//router.put('/users/:codigo', userControllers.alterar);
 
 
 //rotas ADM
 router.post('/adm/CriarPergunta', UserControllers.inserirPergunta);
-
+router.post('/adm/cadsM', UserControllers.inserirM);
+router.post('/adm/cadsE', UserControllers.inserirE);
 router.post('/adm/CriarTreinamento', UserControllers.inserirTreinamento);
 router.post('/adm/Vaga_Treinamento', UserControllers.inserirVaga_Treinamento);
 router.post('/adm/Aluno_Treinamento', UserControllers.inserirAluno_Treinamento);
