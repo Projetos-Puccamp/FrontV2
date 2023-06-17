@@ -29,18 +29,38 @@ window.addEventListener('DOMContentLoaded', function() {
         var count = 0;
         Object.keys(historicos).forEach(key => {
           var historico = historicos[key];
-
-         // if(historico.status==='N'){
-
           var div = document.createElement('div');
           div.classList.add('resultado-card');
-          div.innerHTML = `
+          if(historico.status==='N'|| historico.status==='C1' || historico.status==='C2'){
+            div.innerHTML = `
+            <h1> Em andamento</h1>
             <p text=>Código do Treinamento: ${historico.codigoT}</p> 
-            <p>Status: ${historico.status}</p> 
+            <p>Status: Não Finalizado</p> 
             <input text='${historico.local}' IdT='${historico.codigoT}' class="btn-ver" type="submit" value="Entrar">
           `; 
           row.appendChild(div);
           count++;
+          if (count % 3 === 0) {
+            row = document.createElement('div');
+            row.classList.add('row');
+            container.appendChild(row);
+          }
+            }
+          });
+        Object.keys(historicos).forEach(key => {
+          var historico = historicos[key];
+          var div = document.createElement('div');
+          div.classList.add('resultado-card');
+          if(historico.status==='R'){
+            div.innerHTML = `
+            <h1> Finalizado</h1>
+            <p text=>Código do Treinamento: ${historico.codigoT}</p> 
+            <p>Status: Aprovado</p>
+            <p>Nota: ${historico.nota}</p> 
+          `; 
+          row.appendChild(div);
+          count++;  }
+          
   
           if (count % 3 === 0) {
             row = document.createElement('div');

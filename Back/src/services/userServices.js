@@ -95,9 +95,6 @@ module.exports = {
 
 
   },
-
-
-
   buscarHistorico: (idAluno) => {
     return new Promise((aceito, rejeitado) => {
       db.query('SELECT * FROM alunotreinamento where Aluno_idAluno = ?', [idAluno], (error, results) => {

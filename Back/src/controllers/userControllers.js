@@ -59,6 +59,7 @@ module.exports = {
         codigoT: historicos[i].Treinamento_idTreinamento,
         codigo: historicos[i].idAlunoTreinamento,
         status: historicos[i].status,
+        nota: historicos[i].NotaN,
         local: l
       });
     }
