@@ -58,6 +58,7 @@ module.exports = {
       json.result.push({
         codigoT: historicos[i].Treinamento_idTreinamento,
         codigo: historicos[i].idAlunoTreinamento,
+        nomecurso: historicos[i].NomeTreinamento,
         status: historicos[i].status,
         nota: historicos[i].NotaN,
         local: l
@@ -393,16 +394,21 @@ module.exports = {
     let Idtreinamento = req.body.idTreinamento;
     let IdAluno = req.body.idUsuario;
     IdAluno = await UserServices.buscaIdAluno(IdAluno);
-    console.log('Entrou em Inserir TreinamentoVaga: ' + Idtreinamento + IdAluno);
+    let cursos = await UserServices.BuscaNomeTreinamento(Idtreinamento);
+    if (cursos.length > 0) {
+      let nomeComercial = cursos[0].NomeComercial; // Obtém o valor do nome comercial do primeiro objeto do array
+      let cursosString = JSON.stringify(nomeComercial); // Converte o valor para uma string JSON
+      cursosString = cursosString.replace(/"/g, '');
+      console.log(cursosString);
     if (Idtreinamento && IdAluno) {
       try {
-        console.log('Entrou em Inserir TreinamentoAluno' + Idtreinamento + IdAluno);
         // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
         // Exemplo:
-        let Treinamento_Vaga = await UserServices.InserirTreinamentoAluno(Idtreinamento, IdAluno);
+        let Treinamento_Vaga = await UserServices.InserirTreinamentoAluno(Idtreinamento, IdAluno ,cursosString);
         json.result = {
           Idtreinamento,
-          IdAluno
+          IdAluno,
+          cursos
         };
       } catch (error) {
         json.erro = 'Erro ao inserir o treinamento_vaga';
@@ -411,7 +417,7 @@ module.exports = {
     } else {
       json.erro = 'Campos não enviados';
     }
-    res.json(json);
+    res.json(json);}
   },
   VerificarRespostas: async (req, res) => {
     console.log('Entrou em Verificar Resposta');

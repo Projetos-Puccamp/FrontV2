@@ -34,13 +34,13 @@ window.addEventListener('DOMContentLoaded', function() {
           if(historico.status==='N'|| historico.status==='C1' || historico.status==='C2'){
             div.innerHTML = `
             <h1> Em andamento</h1>
-            <p text=>Código do Treinamento: ${historico.codigoT}</p> 
+            <p text=>${historico.nomecurso}</p> 
             <p>Status: Não Finalizado</p> 
             <input text='${historico.local}' IdT='${historico.codigoT}' class="btn-ver" type="submit" value="Entrar">
           `; 
           row.appendChild(div);
           count++;
-          if (count % 3 === 0) {
+          if (count % 2 === 0) {
             row = document.createElement('div');
             row.classList.add('row');
             container.appendChild(row);
@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', function() {
           count++;  }
           
   
-          if (count % 3 === 0) {
+          if (count % 2 === 0) {
             row = document.createElement('div');
             row.classList.add('row');
             container.appendChild(row);

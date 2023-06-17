@@ -19,6 +19,14 @@ module.exports = {
       });
     });
   },
+  buscarNomeCurso: () => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('SELECT NomeComercial FROM treinamento', (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
 
   buscarTodosPerguntas: (tipoPergunta, idQuiz) => {
     return new Promise((aceito, rejeitado) => {
@@ -114,6 +122,16 @@ module.exports = {
       });
     });
   },
+  BuscaNomeTreinamento: (Id) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('SELECT NomeComercial FROM treinamento WHERE idTreinamento = ? ', [Id], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        console.log(results); // Verificar o objeto results retornado
+        aceito(results);
+      });
+    });
+  },
+  
   inserir: (nome, email, senha) => {
     return new Promise((aceito, rejeitado) => {
       db.query('INSERT INTO usuario (nome,email, senha, Nivelpermissao) VALUES (?,?,?,1)', [nome, email, senha], (error, results) => {
@@ -198,10 +216,10 @@ module.exports = {
       });
     });
   },
-  InserirTreinamentoAluno: (Idtreinamento, IdAluno) => {
+  InserirTreinamentoAluno: (Idtreinamento, IdAluno, nome) => {
     return new Promise((resolve, reject) => {
       console.log('tetes da conexao vagaemp');
-      db.query('INSERT INTO alunotreinamento (Aluno_idAluno,Treinamento_idTreinamento,DataInsc,status) VALUES ( ?, ?,NOW(),?)', [IdAluno, Idtreinamento, 'N'], (error, results) => {
+      db.query('INSERT INTO alunotreinamento (Aluno_idAluno,Treinamento_idTreinamento,DataInsc,status,NomeTreinamento) VALUES ( ?, ?,NOW(),?,?)', [IdAluno, Idtreinamento, 'N', nome], (error, results) => {
         if (error) {
           reject(error);
           return;
