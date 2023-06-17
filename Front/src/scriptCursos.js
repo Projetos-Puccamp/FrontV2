@@ -35,10 +35,10 @@ window.addEventListener('DOMContentLoaded', function() {
           <h2 class="curso-titulo">${curso.nome}</h2>
           <p>Descrição: ${curso.descricao}</p>
           <p>Carga Horaria: ${curso.carga}</p>
-          <p>Data Inicio: ${curso.inicio}</p>
-          <p>Data Fim: ${curso.fim}</p>
+          <p>Data Inicio: ${new Date(curso.inicio).toLocaleDateString('pt-BR')}</p>
+          <p>Data Fim: ${new Date(curso.fim).toLocaleDateString('pt-BR')}</p>
           <input id='${curso.codigo}' text='${curso.codigo}' class="btn-inscrever-se" type="submit" value="Inscrever-se">
-        `; 
+          `;
         row.appendChild(div);
         count++;
 

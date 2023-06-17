@@ -109,3 +109,6 @@ a:hover {
   outline: none;
   box-sizing: border-box;
 }
+.ui-datepicker {
+  background-color: rgba(0, 0, 0, 0);
+}
