@@ -30,7 +30,7 @@ module.exports = {
 
   buscarTodosPerguntas: (tipoPergunta, idQuiz) => {
     return new Promise((aceito, rejeitado) => {
-      db.query('select * from pergunta  where tipoPergunta = 1 and Quiz_idQuiz=1;', [tipoPergunta, idQuiz], (error, results) => {
+      db.query('select * from pergunta  where tipoPergunta = ? and Quiz_idQuiz=?;', [tipoPergunta, idQuiz], (error, results) => {
         if (error) { rejeitado(error); return; }
         aceito(results);
       });
@@ -81,12 +81,13 @@ module.exports = {
       });
     });
   },
-  buscarQuiz: (IdAluno, IdTreinamento) => {
+  buscarQuiz: (IdTreinamento) => {
     return new Promise((aceito, rejeitado) => {
+      console.log('IdQuiz é teste da Servide QuizBusca');
       db.query('select Quiz_idQuiz from treinamentosparavaga_has_quiz where TreinamentosParavaga_idTreinamentosParavaga =?; ', [IdTreinamento], (error, results) => {
         if (error) { rejeitado(error); return; }
         if (results.length > 0) {
-          console.log('status do aluno no curso é  ' + results[0].Quiz_idQuiz);
+          console.log('IdQuiz é do aluno no curso é  ' + results[0].Quiz_idQuiz);
           aceito(results[0].Quiz_idQuiz);
         } else { aceito(false); }
       });
@@ -297,14 +298,14 @@ module.exports = {
           }
           break;
         case 'C1':
-          db.query('Update alunotreinamento set status = "C2" , NotaC1 = ? where Aluno_idAluno = ? AND Treinamento_idTreinamento = ?;', [nota,IdAluno,IdTreinamento], (error, results) => {
+          db.query('Update alunotreinamento set status = "C2" , NotaCase1 = ? where Aluno_idAluno = ? AND Treinamento_idTreinamento = ?;', [nota,IdAluno,IdTreinamento], (error, results) => {
             if (error) { rejeitado(error); return; }
             aceito(results);
           });
 
           break;
         case 'C2':
-          db.query('Update alunotreinamento set status = "F" , NotaC2 = ? where Aluno_idAluno = ? AND Treinamento_idTreinamento = ?;', [nota,IdAluno,IdTreinamento], (error, results) => {
+          db.query('Update alunotreinamento set status = "F" , NotaCase2 = ? where Aluno_idAluno = ? AND Treinamento_idTreinamento = ?;', [nota,IdAluno,IdTreinamento], (error, results) => {
             if (error) { rejeitado(error); return; }
             aceito(results);
           });

@@ -24,7 +24,7 @@ window.addEventListener('DOMContentLoaded', function() {
         var cases = dataC.result;
   
         var container = document.getElementById('containerConteudo');
-  
+        var container2 = document.getElementById('containerBotao');
         var row = document.createElement('div');
         row.classList.add('row');
         container.appendChild(row);
@@ -49,6 +49,12 @@ window.addEventListener('DOMContentLoaded', function() {
             count=0;
           }
         });
+
+        container2.innerHTML = `
+       <a class="btn" href="testeaptidao.html">Fazer Teste do Case </a> 
+      `; 
+
+
   
       
       } else {

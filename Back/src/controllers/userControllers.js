@@ -45,12 +45,8 @@ module.exports = {
         case 'C2':
           l = 'case2.html';
           break;
-        case 'TF':
-          l = 'testefinal.html';
-        case 'C':
-          l = 'null';
         case 'F':
-          l = 'null';
+          l = 'testeaptidao.html';
           break;
         default:
           console.log("Opção inválida");
@@ -60,7 +56,7 @@ module.exports = {
         codigo: historicos[i].idAlunoTreinamento,
         nomecurso: historicos[i].NomeTreinamento,
         status: historicos[i].status,
-        nota: historicos[i].NotaN,
+        nota: historicos[i].NotaFinal,
         local: l
       });
     }
@@ -164,7 +160,8 @@ module.exports = {
       default:
         console.log("Opção inválida");
     }
-    let Perguntas = await UserServices.buscarTodosPerguntas(IdTreinamento, tipoPergunta, idQuiz);
+    console.log('Teste no Fill PErguntas, IdQuiz e Tipo Pergunta'+ tipoPergunta+ idQuiz)
+    let Perguntas = await UserServices.buscarTodosPerguntas(tipoPergunta, idQuiz);
     console.log(Perguntas);
 
     json.result.push({

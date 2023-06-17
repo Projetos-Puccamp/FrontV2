@@ -1,5 +1,5 @@
-window.addEventListener('DOMContentLoaded', function() {
- 
+window.addEventListener('DOMContentLoaded', function(event) {
+  event.preventDefault();
   var id = {
     id: localStorage.getItem('id'),
 
@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', function() {
           var historico = historicos[key];
           var div = document.createElement('div');
           div.classList.add('resultado-card');
-          if(historico.status==='N'|| historico.status==='C1' || historico.status==='C2'){
+          if(historico.status==='N'|| historico.status==='C1' || historico.status==='C2'  || historico.status==='F'){
             div.innerHTML = `
             <h1> Em andamento</h1>
             <p text=>${historico.nomecurso}</p> 
@@ -56,6 +56,27 @@ window.addEventListener('DOMContentLoaded', function() {
             <h1> Finalizado</h1>
             <p text=>Código do Treinamento: ${historico.codigoT}</p> 
             <p>Status: Reprovado no teste de aptidão</p>
+          `; 
+          row.appendChild(div);
+          count++;  }
+          
+  
+          if (count % 2 === 0) {
+            row = document.createElement('div');
+            row.classList.add('row');
+            container.appendChild(row);
+          }
+
+        });
+        Object.keys(historicos).forEach(key => {
+          var historico = historicos[key];
+          var div = document.createElement('div');
+          div.classList.add('resultado-card');
+          if(historico.status==='T'){
+            div.innerHTML = `
+            <h1> Finalizado</h1>
+            <p text=>Código do Treinamento: ${historico.codigoT}</p> 
+            <p>Status: Aprovado</p>
             <p>Nota: ${historico.nota}</p> 
           `; 
           row.appendChild(div);
@@ -69,6 +90,7 @@ window.addEventListener('DOMContentLoaded', function() {
           }
 
         });
+
 
         addEventListener('submit', function(event) {
           event.preventDefault();
