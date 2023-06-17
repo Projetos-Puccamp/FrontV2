@@ -93,7 +93,10 @@ body {
     cursor: pointer;
     box-shadow: 0px 10px 40px -12px aquamarine;
   }
-  
+  input[type="submit"]:hover {
+    background: #2b134b;
+    color: aquamarine;
+  }
   a {
     display: block;
     width: 200px;
@@ -106,5 +109,9 @@ body {
     color: #2b134b;
     background: aquamarine;
     box-shadow: 0px 10px 40px -12px aquamarine;
+  }
+  a:hover {
+    background: #2b134b;
+    color: aquamarine;
   }
   

@@ -86,6 +86,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+.btn-aluno:hover {
+  background: #2b134b;
+  color: aquamarine;
+}
 .btn-inscrever-se {
   width: 80%;
   padding: 12px 0px;
@@ -106,6 +110,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.btn-inscrever-se:hover {
+  background: #2b134b;
+  color: aquamarine;
 }
 .curso-titulo {
   text-align: center;

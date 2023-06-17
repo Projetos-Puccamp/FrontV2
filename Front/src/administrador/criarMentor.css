@@ -94,4 +94,8 @@ body {
     text-decoration: none;
     font-size: medium;
   }
+  .btn-cadastro:hover {
+    background: #2b134b;
+    color: aquamarine;
+  }
   
