@@ -36,7 +36,7 @@ window.addEventListener('DOMContentLoaded', function() {
             <p>Descrição: ${vaga.descricao}</p>
             <p>Requisitos: ${vaga.requisitos}</p>
             <p>Faixa Salarial: ${vaga.salario}</p>
-            <a class="btn-inscrever-se" href="atualizarVaga.html">Alterar Vaga</a>
+            <a class="btn-inscrever-se" href="atualizarVaga.html" id='${vaga.codigo}' >Alterar Vaga</a>
             <br>
           `;
           row.appendChild(div);
@@ -48,9 +48,18 @@ window.addEventListener('DOMContentLoaded', function() {
             row.classList.add('row');
             container.appendChild(row);
           }
+          var btnsInscrever = document.getElementsByClassName('btn-inscrever-se');
+          Array.from(btnsInscrever).forEach(btn => {
+            btn.addEventListener('click', function(event) {
+              
+              var vagaId = event.target.getAttribute('id');
+              localStorage.setItem('IdVaga', vagaId);
+            });
+
+          });
         });
       } else {
-        alert('Deu Xabu!');
+        alert('Erro!');
       }
     })
     .catch(error => {

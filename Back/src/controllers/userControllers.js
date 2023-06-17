@@ -136,28 +136,28 @@ module.exports = {
 
   FillPerguntas: async (req, res) => {
     let tipoPergunta = '';
-    let titulo='';
+    let titulo = '';
     let json = { erro: '', result: [] };
-    let IdAluno = await UserServices.buscaIdAluno(req.body.IdUser) ;
+    let IdAluno = await UserServices.buscaIdAluno(req.body.IdUser);
     let IdTreinamento = req.body.IdTreinamento;
     let status = await UserServices.buscarStatus(IdAluno, IdTreinamento);
     let idQuiz = await UserServices.buscarQuiz(IdTreinamento);
     switch (status) {
       case 'N':
         tipoPergunta = '1';
-        titulo='Teste de Apitidão';
+        titulo = 'Teste de Apitidão';
         break;
       case 'C1':
         tipoPergunta = '2';
-        titulo='Teste do Case 1';
+        titulo = 'Teste do Case 1';
         break;
       case 'C2':
         tipoPergunta = '3';
-        titulo='Teste do Case 2';
+        titulo = 'Teste do Case 2';
         break;
       case 'F':
         tipoPergunta = '4';
-        titulo='Teste Final';
+        titulo = 'Teste Final';
         break;
       default:
         console.log("Opção inválida");
@@ -172,17 +172,17 @@ module.exports = {
 
     for (let i in Perguntas) {
       json.result.push({
-        id :Perguntas[i].idPergunta,
+        id: Perguntas[i].idPergunta,
         descricao: Perguntas[i].DescricaoPergunta,
         P1: Perguntas[i].Pergunta1,
         P2: Perguntas[i].Pergunta2,
         P3: Perguntas[i].Pergunta3,
         P4: Perguntas[i].Pergunta4,
         P5: Perguntas[i].Pergunta5
-       
+
       });
     }
-    
+
     res.json(json);
   },
   FillVagas: async (req, res) => {
@@ -282,7 +282,7 @@ module.exports = {
       json.erro = 'Campos não enviados';
     }
     res.json(json);
-  },  
+  },
   inserirPergunta: async (req, res) => {
     let json = { erro: '', result: {} };
     console.log('Entrou em Inserir Perguntas');
@@ -418,15 +418,20 @@ module.exports = {
     let IdAluno = await UserServices.buscaIdAluno(req.body.IdUsuario);
     let IdTreinamento = req.body.IdTreinamento;
     let Respostas = req.body.Respostas;
-    let idPergunta = req.body.Idpergunta;
+    let IdPergunta = req.body.Idpergunta;
     let Status = req.body.Status;
-    
-    console.log('Entrou em Verificar Resposta: ' + IdTreinamento + IdAluno + Respostas[1] + idPergunta[1] + Status);
-    NovoStatus_Nota = 
+
+    console.log('Entrou em Verificar Resposta: ' + IdTreinamento + IdAluno + Respostas[1] + IdPergunta[1] + Status);
+    let nota = await UserServices.calculaNota(IdPergunta, Respostas);
+    console.log('A nota é:  :'+nota);
+    let mensagem = await UserServices.atualizaNotaStatus(IdTreinamento,IdAluno,nota,Status);
+    console.log('O novo status:  :'+mensagem);
+
+    NovoStatus_Nota =
       json.result = {
-        //coloca alguma bomba aq
+        mensagem: 'nao sei oq escrever'
       };
-  
+
     res.json(json);
   },
 
@@ -450,25 +455,26 @@ module.exports = {
     res.json(json);
   },
 
-atualizarDescricao: async (req, res) => {
-  let json = { erro: '', result: {} };
-  let IdVaga = req.body.codigo;
-  let descricao = req.body.descricao;
-  
-  if (IdVaga && descricao) {
-    try {
-      await UserServices.atualizarDescricao(IdVaga, descricao);
-  
-      json.result = {
-        IdVaga,
-        descricao
-      };
-    } catch (error) {
-      json.erro = 'Erro ao atualizar a descrição da vaga';
+  atualizarDescricao: async (req, res) => {
+    let json = { erro: '', result: {} };
+    let IdVaga = req.body.IdVaga;
+    let descricao = req.body.desc;
+    console.log('entrou em attdesc e '+IdVaga+descricao );
+    if (IdVaga && descricao) {
+      try {
+        await UserServices.atualizarDescricao(IdVaga, descricao);
+
+        json.result = {
+          IdVaga,
+          descricao
+        };
+      } catch (error) {
+        json.erro = 'Erro ao atualizar a descrição da vaga';
+      }
+    } else {
+      json.erro = 'Campos não enviados';
     }
-  } else {
-    json.erro = 'Campos não enviados';
+
+    res.json(json);
   }
-  
-  res.json(json);
-}}
+}

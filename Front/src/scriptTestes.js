@@ -62,6 +62,10 @@ window.addEventListener('DOMContentLoaded', function () {
             <input type="checkbox" id="${Pergunta.id}" name="options[]" value="${Pergunta.P4}">
             ${Pergunta.P4}
           </label><br>
+          <label for="${Pergunta.P5}">
+            <input type="checkbox" id="${Pergunta.id}" name="options[]" value="${Pergunta.P5}">
+            ${Pergunta.P5}
+          </label><br>
         </form>
           `;
             var containerPergunta = document.getElementById('containerPergunta');

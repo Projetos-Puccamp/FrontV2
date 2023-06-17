@@ -4,7 +4,8 @@ document.getElementById('form-atualizar-vaga').addEventListener('submit', functi
     // Obter os valores dos campos do formulário
     var desc = document.getElementById('newdesc').value;
     var AltVaga = {
-      desc: desc
+      desc: desc,
+      IdVaga: localStorage.getItem('IdVaga')
     };
   
   
@@ -16,7 +17,7 @@ document.getElementById('form-atualizar-vaga').addEventListener('submit', functi
       body: JSON.stringify(AltVaga)
     };
     // Realiza a requisição para a API
-    fetch('http://localhost:3001//emps/cads/att', requestOptions)
+    fetch('http://localhost:3001/api/emps/cads/att', requestOptions)
       .then(response => response.json())
       .then(data => {
         // Processa a resposta da API
