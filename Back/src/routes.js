@@ -15,6 +15,8 @@ router.post('/users/verificaResp', UserControllers.VerificarRespostas);
 //rotas de empresa
 router.post('/emps/cads', UserControllers.inserirVaga);
 router.put('/emps/cads/att', UserControllers.atualizarDescricao);
+router.put('/emps/cads/attNome', UserControllers.atualizarNome);
+router.put('/emps/cads/attReq', UserControllers.atualizarRequisito);
 
 
 //router.put('/users/:codigo', userControllers.alterar);

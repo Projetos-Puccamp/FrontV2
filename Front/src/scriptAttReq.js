@@ -2,9 +2,9 @@ document.getElementById('form-atualizar-vaga').addEventListener('submit', functi
     event.preventDefault(); // Impede o envio do formulário
   
     // Obter os valores dos campos do formulário
-    var desc = document.getElementById('newdesc').value;
-    var AltVaga = {
-      desc: desc,
+    var req = document.getElementById('newreq').value;
+    var AltReq = {
+      req: req,
       IdVaga: localStorage.getItem('IdVaga')
     };
   
@@ -14,14 +14,13 @@ document.getElementById('form-atualizar-vaga').addEventListener('submit', functi
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(AltVaga)
+      body: JSON.stringify(AltReq)
     };
     // Realiza a requisição para a API
-    fetch('http://localhost:3001/api/emps/cads/att', requestOptions)
+    fetch('http://localhost:3001/api/emps/cads/attReq', requestOptions)
       .then(response => response.json())
       .then(data => {
         // Processa a resposta da API
-        alert('Alterado com sucesso');
       })
       .catch(error => {
         // Trata erros
@@ -30,7 +29,7 @@ document.getElementById('form-atualizar-vaga').addEventListener('submit', functi
   
     // Limpar os campos do formulário
  
-    document.getElementById('newdesc').value = '';
+    document.getElementById('newreq').value = '';
 
   
     // Exibir uma mensagem de sucesso

@@ -476,5 +476,49 @@ module.exports = {
     }
 
     res.json(json);
+  },
+  atualizarNome: async (req, res) => {
+    let json = { erro: '', result: {} };
+    let IdVaga = req.body.IdVaga;
+    let nome = req.body.nome;
+    console.log('entrou em attnome e '+IdVaga+nome );
+    if (IdVaga && nome) {
+      try {
+        await UserServices.atualizarNome(IdVaga, nome);
+
+        json.result = {
+          IdVaga,
+          nome
+        };
+      } catch (error) {
+        json.erro = 'Erro ao atualizar o nome da vaga';
+      }
+    } else {
+      json.erro = 'Campos não enviados';
+    }
+
+    res.json(json);
+  },
+  atualizarRequisito: async (req, res) => {
+    let json = { erro: '', result: {} };
+    let IdVaga = req.body.IdVaga;
+    let requisito = req.body.req;
+    console.log('entrou em attreq e '+IdVaga+requisito );
+    if (IdVaga && requisito) {
+      try {
+        await UserServices.atualizarRequisito(IdVaga, requisito);
+
+        json.result = {
+          IdVaga,
+          requisito
+        };
+      } catch (error) {
+        json.erro = 'Erro ao atualizar o requisito da vaga';
+      }
+    } else {
+      json.erro = 'Campos não enviados';
+    }
+
+    res.json(json);
   }
 }

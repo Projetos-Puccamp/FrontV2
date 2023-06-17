@@ -14,10 +14,18 @@
         <h2>Aterar Descricao da Vaga:</h2>
         <div class="textfield">
         <form id="form-atualizar-vaga">
+            <label for="nome">Novo Nome de Vaga:</label>
+            <textarea type="text" id="newnome"></textarea>
+            <input type="submit" value="Alterar Nome">
+        <script src="../scriptAttNome.js"></script>
             <label for="nome">Nova descricao:</label>
-            <textarea type="text" id="newdesc" required></textarea>
-        <script src="../atualizarVaga.js"></script>
-            <input type="submit" value="Alterar Vaga">
+            <textarea type="text" id="newdesc"></textarea>
+            <input type="submit" value="Alterar Descricao">
+        <script src="../scriptAttDesc.js"></script>
+            <label for="nome">Novos Requisitos:</label>
+            <textarea type="text" id="newreq"></textarea>
+            <input type="submit" value="Alterar Requisitos">
+        <script src="../scriptAttReq.js"></script>
         </form>
     </div>
     <a href="vagasE.html">Voltar</a>

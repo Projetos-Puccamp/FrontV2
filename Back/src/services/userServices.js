@@ -247,7 +247,22 @@ module.exports = {
       });
     });
   },
-
+  atualizarNome: (idVagaEmprego, Vaga) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('UPDATE vagaemprego SET Vaga = ? where idVagaEmprego = ?', [Vaga, idVagaEmprego], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
+  atualizarRequisito: (idVagaEmprego, Requisitos) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('UPDATE vagaemprego SET Requisitos = ? where idVagaEmprego = ?', [Requisitos, idVagaEmprego], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
   atualizaNotaStatus: ( IdTreinamento,IdAluno, nota, Status) => {
     return new Promise((aceito, rejeitado) => {
       console.log('entrou em atualizaNotaStatus', IdTreinamento,IdAluno, nota, Status);

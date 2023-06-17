@@ -53,7 +53,30 @@ body {
     color: aquamarine;
     outline: none;
   }
-  
+  textarea#newnome {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    resize: vertical;
+    background: #2f2841;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    color: aquamarine;
+    outline: none;
+  }
+  textarea#newreq {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    resize: vertical;
+    background: #2f2841;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    color: aquamarine;
+    outline: none;
+  }
   
   input[type="submit"] {
     width: 200px;
