@@ -55,7 +55,7 @@ window.addEventListener('DOMContentLoaded', function() {
             div.innerHTML = `
             <h1> Finalizado</h1>
             <p text=>Código do Treinamento: ${historico.codigoT}</p> 
-            <p>Status: Aprovado</p>
+            <p>Status: Reprovado no teste de aptidão</p>
             <p>Nota: ${historico.nota}</p> 
           `; 
           row.appendChild(div);

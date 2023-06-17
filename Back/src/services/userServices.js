@@ -352,7 +352,7 @@ module.exports = {
             }
 
           });
-
+          console.log(Nota+'essa é a nota'+ IdPerguntas.length);
           Nota = (Nota / IdPerguntas.length) * 10;
           console.log('Nota:', Nota);
           aceito(Nota);

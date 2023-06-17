@@ -153,8 +153,14 @@ window.addEventListener('DOMContentLoaded', function () {
           fetch('http://localhost:3001/api/users/verificaResp', requestOptions)
             .then(response => response.json())
             .then(data => {
-    
+              
               console.log(data);
+              let red = data.result;
+              if(red.status == 'C1'){
+                window.location.href = 'case1.html';//manda pra outra tela
+              }
+            
+
             })
             .catch(error => {
               // Trata erros
@@ -170,11 +176,6 @@ window.addEventListener('DOMContentLoaded', function () {
     })
     .catch(error => {
       console.error('Erro:', error);
-    });
-
-    //event listener aguardando a pergunta ser respondida, entao verifica a partir do id da mesma se o valor selecionado para
-    //cada idPergunta corresponde a sua resposta, fazer um para cada pergunta, da pra utilizar o count P para identificar cada uma
-
-    
+    });    
 
 });

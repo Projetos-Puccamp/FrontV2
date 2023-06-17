@@ -432,12 +432,13 @@ module.exports = {
     let nota = await UserServices.calculaNota(IdPergunta, Respostas);
     console.log('A nota é:  :'+nota);
     let mensagem = await UserServices.atualizaNotaStatus(IdTreinamento,IdAluno,nota,Status);
-    console.log('O novo status:  :'+mensagem);
-
-    NovoStatus_Nota =
+   
+    let busca = await UserServices.buscarHistorico(IdAluno);
+    let status = busca[0].status;
       json.result = {
-        mensagem: 'nao sei oq escrever'
+        status : status
       };
+      console.log('O novo status:  :'+status);
 
     res.json(json);
   },
