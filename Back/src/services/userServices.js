@@ -263,6 +263,14 @@ module.exports = {
       });
     });
   },
+  atualizarDescricaoT: (idTreinamento, Descricao) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('UPDATE treinamento SET Descricao = ? where idTreinamento = ?', [Descricao, idTreinamento], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
   atualizarNome: (idVagaEmprego, Vaga) => {
     return new Promise((aceito, rejeitado) => {
       db.query('UPDATE vagaemprego SET Vaga = ? where idVagaEmprego = ?', [Vaga, idVagaEmprego], (error, results) => {
@@ -271,9 +279,25 @@ module.exports = {
       });
     });
   },
+  atualizarNomeT: (idTreinamento, NomeComercial) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('UPDATE treinamento SET NomeComercial = ? where idTreinamento = ?', [NomeComercial, idTreinamento], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
   atualizarRequisito: (idVagaEmprego, Requisitos) => {
     return new Promise((aceito, rejeitado) => {
       db.query('UPDATE vagaemprego SET Requisitos = ? where idVagaEmprego = ?', [Requisitos, idVagaEmprego], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
+  atualizarCarga: (idTreinamento, carga) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('UPDATE treinamento SET CargaHoraria = ? where idTreinamento = ?', [carga, idTreinamento], (error, results) => {
         if (error) { rejeitado(error); return; }
         aceito(results);
       });

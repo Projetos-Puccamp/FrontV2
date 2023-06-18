@@ -482,6 +482,28 @@ module.exports = {
 
     res.json(json);
   },
+  atualizarDescricaoT: async (req, res) => {
+    let json = { erro: '', result: {} };
+    let IdTreinamento = req.body.IdTreinamento;
+    let descricao = req.body.desc;
+    console.log('entrou em attdesc e treinamento');
+    if (IdTreinamento && descricao) {
+      try {
+        await UserServices.atualizarDescricaoT(IdTreinamento, descricao);
+
+        json.result = {
+          IdTreinamento,
+          descricao
+        };
+      } catch (error) {
+        json.erro = 'Erro ao atualizar a descrição do treinamento';
+      }
+    } else {
+      json.erro = 'Campos não enviados';
+    }
+
+    res.json(json);
+  },
   atualizarNome: async (req, res) => {
     let json = { erro: '', result: {} };
     let IdVaga = req.body.IdVaga;
@@ -504,6 +526,28 @@ module.exports = {
 
     res.json(json);
   },
+  atualizarNomeT: async (req, res) => {
+    let json = { erro: '', result: {} };
+    let IdTreinamento = req.body.IdTreinamento;
+    let nome = req.body.nome;
+    console.log('entrou em attnome e ');
+    if (IdTreinamento && nome) {
+      try {
+        await UserServices.atualizarNomeT(IdTreinamento, nome);
+
+        json.result = {
+          IdVaga,
+          nome
+        };
+      } catch (error) {
+        json.erro = 'Erro ao atualizar o nome do treinamento';
+      }
+    } else {
+      json.erro = 'Campos não enviados';
+    }
+
+    res.json(json);
+  },
   atualizarRequisito: async (req, res) => {
     let json = { erro: '', result: {} };
     let IdVaga = req.body.IdVaga;
@@ -516,6 +560,29 @@ module.exports = {
         json.result = {
           IdVaga,
           requisito
+        };
+      } catch (error) {
+        json.erro = 'Erro ao atualizar o requisito da vaga';
+      }
+    } else {
+      json.erro = 'Campos não enviados';
+    }
+
+    res.json(json);
+  },
+  atualizarCarga: async (req, res) => {
+    let json = { erro: '', result: {} };
+    let IdTreinamento = req.body.IdTreinamento;
+    let carga = req.body.carga;
+    console.log('entrou em attreq e carga');
+    if (IdTreinamento && carga) {
+      console.log('entrounoif');
+      try {
+        await UserServices.atualizarCarga(IdTreinamento, carga);
+
+        json.result = {
+          IdTreinamento,
+          carga
         };
       } catch (error) {
         json.erro = 'Erro ao atualizar o requisito da vaga';

@@ -24,9 +24,9 @@ window.addEventListener('DOMContentLoaded', function() {
         container.appendChild(row);
   
         var count = 0;
+        console.log('teste de rota do ver treinamentos+cursos');
         Object.keys(cursos).forEach(key => {
           var curso = cursos[key];
-        
           var div = document.createElement('div');
           div.classList.add('curso-card');
           div.style.marginRight = '25px'
@@ -37,6 +37,8 @@ window.addEventListener('DOMContentLoaded', function() {
             <p>Carga Horaria: ${curso.carga}</p>
             <p>Data Inicio: ${new Date(curso.inicio).toLocaleDateString('pt-BR')}</p>
             <p>Data Fim: ${new Date(curso.fim).toLocaleDateString('pt-BR')}</p>
+            <a class="btn-inscrever-se" href="atualizarTreinamento.html" id='${curso.codigo}' >Alterar Treinamento</a>
+            <br>
             `;
           row.appendChild(div);
           count++;
@@ -46,6 +48,15 @@ window.addEventListener('DOMContentLoaded', function() {
             row.classList.add('row');
             container.appendChild(row);
           }
+          var btnsInscrever = document.getElementsByClassName('btn-inscrever-se');
+          Array.from(btnsInscrever).forEach(btn => {
+            btn.addEventListener('click', function(event) {
+              
+              var treinamentoId = event.target.getAttribute('id');
+              localStorage.setItem('IdTreinamento', treinamentoId);
+            });
+
+          });
         });
   
       

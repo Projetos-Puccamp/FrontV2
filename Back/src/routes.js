@@ -29,4 +29,7 @@ router.post('/adm/cadsE', UserControllers.inserirE);
 router.post('/adm/CriarTreinamento', UserControllers.inserirTreinamento);
 router.post('/adm/Vaga_Treinamento', UserControllers.inserirVaga_Treinamento);
 router.post('/adm/Aluno_Treinamento', UserControllers.inserirAluno_Treinamento);
+router.put('/adm/cads/attNome', UserControllers.atualizarNomeT);
+router.put('/adm/cads/attDesc', UserControllers.atualizarDescricaoT);
+router.put('/adm/cads/attCarga', UserControllers.atualizarCarga);
 module.exports = router;
