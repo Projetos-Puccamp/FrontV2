@@ -1,0 +1,123 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #201b2c;
+    color: aquamarine;
+  }
+  
+  .banner {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .banner h1 {
+    font-weight: 800;
+  }
+  
+  #container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  
+  .footer {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .footer a {
+    color: aquamarine;
+    text-decoration: none;
+    font-weight: 800;
+    margin-top: 20px;
+    display: inline-block;
+  }
+  
+  .footer a:hover {
+    color: #2b134b;
+  }
+  
+  @media (max-width: 768px) {
+    .banner h1 {
+      font-size: 24px;
+    }
+  }
+  .curso-card {
+    width: 300px;
+    padding: 20px;
+    margin: 20px;
+    background: #2f2841;
+    border-radius: 10px;
+    box-shadow: 0px 10px 40px #00000056;
+    text-align: center;
+    height: 300px; 
+  }
+  
+  .curso-card h3 {
+    color: aquamarine;
+    margin-bottom: 10px;
+  }
+  
+  .curso-card p {
+    margin: 5px 0;
+  }
+  .btn-aluno {
+    width: 10%;
+    padding: 12px 0px;
+    margin: 25px auto;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #2b134b;
+    background: aquamarine;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px aquamarine;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn-aluno:hover {
+    background: #2b134b;
+    color: aquamarine;
+  }
+  .btn-inscrever-se {
+    width: 80%;
+    padding: 12px 0px;
+    margin: 25px auto;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #2b134b;
+    background: aquamarine;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px aquamarine;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .btn-inscrever-se:hover {
+    background: #2b134b;
+    color: aquamarine;
+  }
+  .curso-titulo {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 0px;
+  }
+  
