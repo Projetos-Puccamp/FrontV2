@@ -56,7 +56,7 @@ module.exports = {
         codigo: historicos[i].idAlunoTreinamento,
         nomecurso: historicos[i].NomeTreinamento,
         status: historicos[i].status,
-        nota: historicos[i].NotaFinal,
+        nota: historicos[i].NotaCase2,
         local: l
       });
     }
@@ -125,8 +125,13 @@ module.exports = {
     let conteudo = await UserServices.buscarTodosConteudos(IdTreinamento);
     for (let i in conteudo) {
       json.result.push({
+        titulo: conteudo[i].Titulo,
         video: conteudo[i].linkVideo,
-        descricao: conteudo[i].descricao
+        descricao: conteudo[i].descricao,
+        tipo: conteudo[i].Tipo,
+        titulo2: conteudo[i].Titulo2,
+        video2: conteudo[i].linkVideo2,
+        descricao2: conteudo[i].Descricao2
       });
     }
     res.json(json);

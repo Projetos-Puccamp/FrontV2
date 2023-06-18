@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
   UNIQUE INDEX `idUsuario_UNIQUE` (`idUsuario` ASC) VISIBLE,
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`aluno` (
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `mydb`.`usuario` (`idUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 10
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`treinamento` (
   UNIQUE INDEX `NomeComercial_UNIQUE` (`NomeComercial` ASC) VISIBLE,
   UNIQUE INDEX `idTreinamento_UNIQUE` (`idTreinamento` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 16
+AUTO_INCREMENT = 19
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`alunotreinamento` (
     FOREIGN KEY (`Treinamento_idTreinamento`)
     REFERENCES `mydb`.`treinamento` (`idTreinamento`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 63
+AUTO_INCREMENT = 76
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`empresa` (
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `mydb`.`usuario` (`idUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 2
+AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`vagaemprego` (
     FOREIGN KEY (`Empresa_idEmpresa`)
     REFERENCES `mydb`.`empresa` (`idEmpresa`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -194,13 +194,16 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`conteudotreinamento` (
   `idConteudoTreinamento` INT NOT NULL AUTO_INCREMENT,
-  `Titulo` VARCHAR(450) NOT NULL,
-  `Descricao` VARCHAR(450) NOT NULL,
-  `linkVideo` VARCHAR(300) NOT NULL,
+  `Titulo1` VARCHAR(450) NOT NULL,
+  `Descricao1` VARCHAR(1450) NOT NULL,
+  `linkVideo1` VARCHAR(300) NOT NULL,
   `Tipo` INT NULL DEFAULT NULL,
+  `Titulo2` VARCHAR(45) NOT NULL,
+  `Descricao2` VARCHAR(1450) NOT NULL,
+  `linkVideo2` VARCHAR(145) NOT NULL,
   PRIMARY KEY (`idConteudoTreinamento`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 8
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -212,7 +215,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`quiz` (
   `Titulo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idQuiz`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 12
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -236,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pergunta` (
     FOREIGN KEY (`Quiz_idQuiz`)
     REFERENCES `mydb`.`quiz` (`idQuiz`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 19
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -308,7 +311,18 @@ TRIGGER `mydb`.`usuario_AFTER_INSERT`
 AFTER INSERT ON `mydb`.`usuario`
 FOR EACH ROW
 BEGIN
-    INSERT INTO aluno (Usuario_idUsuario) VALUES (NEW.idUsuario);
+    IF NEW.NivelPermissao = 1 THEN
+        INSERT INTO aluno (Usuario_idUsuario) VALUES (NEW.idUsuario);
+    END IF;
+    IF NEW.NivelPermissao = 2 THEN
+        INSERT INTO adiministrador (Usuario_idUsuario) VALUES (NEW.idUsuario);
+    END IF;
+    IF NEW.NivelPermissao = 3 THEN
+        INSERT INTO empresa (Usuario_idUsuario) VALUES (NEW.idUsuario);
+    END IF;
+    IF NEW.NivelPermissao = 4 THEN
+        INSERT INTO mentor (Usuario_idUsuario) VALUES (NEW.idUsuario);
+    END IF;
 END$$
 
 

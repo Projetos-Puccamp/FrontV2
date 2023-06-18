@@ -56,7 +56,6 @@ document.getElementById('quiz-questions').addEventListener('submit', function(ev
 
     // Limpar os campos do formulário
     document.getElementById('idQuiz').value = '';
-    document.getElementById('TipoPergunta').value = '';
     document.getElementById('pergunta1').value = '';
     document.getElementById('resposta1').value = '';
     document.getElementById('resposta2').value = '';

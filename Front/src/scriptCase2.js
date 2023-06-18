@@ -35,10 +35,10 @@ window.addEventListener('DOMContentLoaded', function() {
   
         var div = document.createElement('div');
         div.innerHTML = `
-         <h1 class="curso-titulo">${curso.titulo}</h1>
-          <p class="curso-descricao">Descricao: ${curso.descricao}</p>
-          <p class="curso-video">Video: <a href="${curso.video}" target="_blank">${curso.video}</a></p>
-        `; 
+        <h1 class="curso-titulo">${curso.titulo2}</h1>
+        <p class="curso-descricao">Descricao: ${curso.descricao2}</p>
+        <p class="curso-video">Video: <a href="${curso.video2}" target="_blank">${curso.video2}</a></p>
+      `; 
     row.appendChild(div);
 
           row.appendChild(div);

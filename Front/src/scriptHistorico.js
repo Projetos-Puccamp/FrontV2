@@ -31,11 +31,11 @@ window.addEventListener('DOMContentLoaded', function(event) {
           var historico = historicos[key];
           var div = document.createElement('div');
           div.classList.add('resultado-card');
-          if(historico.status==='N'|| historico.status==='C1' || historico.status==='C2'  || historico.status==='F'){
+          if(historico.status==='N'){
             div.innerHTML = `
             <h1> Em andamento</h1>
             <p text=>${historico.nomecurso}</p> 
-            <p>Status: Não Finalizado</p> 
+            <p>Status: A fazer teste de aptidão</p> 
             <input text='${historico.local}' IdT='${historico.codigoT}' class="btn-ver" type="submit" value="Entrar">
           `; 
           row.appendChild(div);
@@ -47,6 +47,46 @@ window.addEventListener('DOMContentLoaded', function(event) {
           }
             }
           });
+          Object.keys(historicos).forEach(key => {
+            var historico = historicos[key];
+            var div = document.createElement('div');
+            div.classList.add('resultado-card');
+            if(historico.status==='C1'){
+              div.innerHTML = `
+              <h1> Em andamento</h1>
+              <p text=>${historico.nomecurso}</p> 
+              <p>Status: Case 1</p> 
+              <input text='${historico.local}' IdT='${historico.codigoT}' class="btn-ver" type="submit" value="Entrar">
+            `; 
+            row.appendChild(div);
+            count++;
+            if (count % 2 === 0) {
+              row = document.createElement('div');
+              row.classList.add('row');
+              container.appendChild(row);
+            }
+              }
+            });
+            Object.keys(historicos).forEach(key => {
+              var historico = historicos[key];
+              var div = document.createElement('div');
+              div.classList.add('resultado-card');
+              if(historico.status==='C2'){
+                div.innerHTML = `
+                <h1> Em andamento</h1>
+                <p text=>${historico.nomecurso}</p> 
+                <p>Status: Case 2</p> 
+                <input text='${historico.local}' IdT='${historico.codigoT}' class="btn-ver" type="submit" value="Entrar">
+              `; 
+              row.appendChild(div);
+              count++;
+              if (count % 2 === 0) {
+                row = document.createElement('div');
+                row.classList.add('row');
+                container.appendChild(row);
+              }
+                }
+              });
         Object.keys(historicos).forEach(key => {
           var historico = historicos[key];
           var div = document.createElement('div');
@@ -54,7 +94,7 @@ window.addEventListener('DOMContentLoaded', function(event) {
           if(historico.status==='R'){
             div.innerHTML = `
             <h1> Finalizado</h1>
-            <p text=>Código do Treinamento: ${historico.codigoT}</p> 
+            <p text=>${historico.nomecurso}</p> 
             <p>Status: Reprovado no teste de aptidão</p>
           `; 
           row.appendChild(div);
@@ -72,10 +112,10 @@ window.addEventListener('DOMContentLoaded', function(event) {
           var historico = historicos[key];
           var div = document.createElement('div');
           div.classList.add('resultado-card');
-          if(historico.status==='T'){
+          if(historico.status==='F'){
             div.innerHTML = `
             <h1> Finalizado</h1>
-            <p text=>Código do Treinamento: ${historico.codigoT}</p> 
+            <p text=>${historico.nomecurso}</p> 
             <p>Status: Aprovado</p>
             <p>Nota: ${historico.nota}</p> 
           `; 

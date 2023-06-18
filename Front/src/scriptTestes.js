@@ -104,8 +104,7 @@ window.addEventListener('DOMContentLoaded', function () {
         buttonContainer.classList.add('button-container');
         buttonContainer.innerHTML = `
           <button class="btn-ver" id="submit-quiz">Enviar</button>
-          <a class="btn-ver" href="Paluno.html">Voltar</a>
-          <a class="btn-ver" href="case1.html">CASE 1</a>
+          <a class="btn-ver" href="Aresultados.html">Voltar</a>
         `;
         container.appendChild(buttonContainer);
         
@@ -113,7 +112,16 @@ window.addEventListener('DOMContentLoaded', function () {
       } else {
         alert('Deu Xabu!');
       }
+      var submitBtn = document.getElementById("submit-quiz");
 
+      submitBtn.addEventListener("click", function() {
+        // Aqui você pode adicionar a lógica para voltar para a tela desejada
+        // Por exemplo, redirecionar para outra página ou ocultar/mostrar elementos na tela
+      
+        // Exemplo de redirecionamento para outra página:
+        window.location.href = "Aresultados.html";
+      });
+      
       
       document.getElementById('containerPergunta').addEventListener('submit', function(event) {
         event.preventDefault(); // Impede que o formulário seja enviado

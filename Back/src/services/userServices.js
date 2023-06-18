@@ -96,7 +96,7 @@ module.exports = {
 
   buscarTodosConteudos: (IdTreinamento) => {
     return new Promise((aceito, rejeitado) => {
-      db.query('SELECT descricao, linkVideo FROM conteudotreinamento WHERE idConteudoTreinamento IN (SELECT ConteudoTreinamento_idConteudoTreinamento FROM treinamento_has_conteudotreinamento  WHERE Treinamento_idTreinamento = ?)', [IdTreinamento], (error, results) => {
+      db.query('SELECT * FROM conteudotreinamento WHERE idConteudoTreinamento IN (SELECT ConteudoTreinamento_idConteudoTreinamento FROM treinamento_has_conteudotreinamento  WHERE Treinamento_idTreinamento = ?)', [IdTreinamento], (error, results) => {
         if (error) { rejeitado(error); return; }
         aceito(results);
       });
