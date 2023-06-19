@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
   UNIQUE INDEX `idUsuario_UNIQUE` (`idUsuario` ASC) VISIBLE,
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 17
+AUTO_INCREMENT = 18
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -68,7 +68,6 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `mydb`.`aluno` (
   `idAluno` INT NOT NULL AUTO_INCREMENT,
-  `idMentor` VARCHAR(45) NULL DEFAULT NULL,
   `Usuario_idUsuario` INT NOT NULL,
   `Mentor_idMentor` INT NULL DEFAULT NULL,
   PRIMARY KEY (`idAluno`),
@@ -81,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`aluno` (
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `mydb`.`usuario` (`idUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 15
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -99,7 +98,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`treinamento` (
   UNIQUE INDEX `NomeComercial_UNIQUE` (`NomeComercial` ASC) VISIBLE,
   UNIQUE INDEX `idTreinamento_UNIQUE` (`idTreinamento` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 23
+AUTO_INCREMENT = 24
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -112,7 +111,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`alunotreinamento` (
   `status` VARCHAR(4) NOT NULL,
   `Aluno_idAluno` INT NOT NULL,
   `Treinamento_idTreinamento` INT NOT NULL,
-  `NotaFinal` FLOAT NULL DEFAULT NULL,
   `NotaN` FLOAT NULL DEFAULT NULL,
   `NotaCase1` FLOAT NULL DEFAULT NULL,
   `NotaCase2` FLOAT NULL DEFAULT NULL,
@@ -127,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`alunotreinamento` (
     FOREIGN KEY (`Treinamento_idTreinamento`)
     REFERENCES `mydb`.`treinamento` (`idTreinamento`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 86
+AUTO_INCREMENT = 90
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -203,7 +201,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`conteudotreinamento` (
   `linkVideo2` VARCHAR(145) NOT NULL,
   PRIMARY KEY (`idConteudoTreinamento`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 124
+AUTO_INCREMENT = 1235
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -215,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`quiz` (
   `Titulo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idQuiz`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 12
+AUTO_INCREMENT = 21
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -239,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pergunta` (
     FOREIGN KEY (`Quiz_idQuiz`)
     REFERENCES `mydb`.`quiz` (`idQuiz`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 20
+AUTO_INCREMENT = 25
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -279,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`treinamentosparavaga` (
     FOREIGN KEY (`VagaEmprego_idVagaEmprego`)
     REFERENCES `mydb`.`vagaemprego` (`idVagaEmprego`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 11
+AUTO_INCREMENT = 13
 DEFAULT CHARACTER SET = utf8mb3;
 
 

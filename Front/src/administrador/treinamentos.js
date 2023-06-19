@@ -33,6 +33,7 @@ window.addEventListener('DOMContentLoaded', function() {
           div.innerHTML = `
             
             <h2 class="curso-titulo">${curso.nome}</h2>
+            <p>Codigo: ${curso.codigo}</p>
             <p>Descrição: ${curso.descricao}</p>
             <p>Carga Horaria: ${curso.carga}</p>
             <p>Data Inicio: ${new Date(curso.inicio).toLocaleDateString('pt-BR')}</p>

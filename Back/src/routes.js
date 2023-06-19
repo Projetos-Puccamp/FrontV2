@@ -20,7 +20,8 @@ router.put('/emps/cads/attReq', UserControllers.atualizarRequisito);
 
 
 //router.put('/users/:codigo', userControllers.alterar);
-
+//rotas mentor
+router.get('/mentor/historico', UserControllers.FillConteudo);
 
 //rotas ADM
 router.post('/adm/CriarPergunta', UserControllers.inserirPergunta);
