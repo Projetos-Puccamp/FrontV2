@@ -101,8 +101,14 @@ module.exports = {
         aceito(results);
       });
     });
-
-
+  },
+  buscarTodosConteudos2: () => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('SELECT * FROM conteudotreinamento', (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
   },
   buscarHistorico: (idAluno) => {
     return new Promise((aceito, rejeitado) => {

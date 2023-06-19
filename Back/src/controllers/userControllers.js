@@ -136,6 +136,23 @@ module.exports = {
     }
     res.json(json);
   },
+  FillConteudo: async (req, res) => {
+
+    let json = { erro: '', result: [] };
+    let conteudo = await UserServices.buscarTodosConteudos2();
+    for (let i in conteudo) {
+      json.result.push({
+        titulo: conteudo[i].Titulo1,
+        video: conteudo[i].linkVideo1,
+        descricao: conteudo[i].Descricao1,
+        idconteudo: conteudo[i].idConteudoTreinamento,
+        titulo2: conteudo[i].Titulo2,
+        video2: conteudo[i].linkVideo2,
+        descricao2: conteudo[i].Descricao2
+      });
+    }
+    res.json(json);
+  },
 
   FillPerguntas: async (req, res) => {
     let tipoPergunta = '';
