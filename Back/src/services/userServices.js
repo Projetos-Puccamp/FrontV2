@@ -147,6 +147,14 @@ module.exports = {
       });
     });
   },
+  inserirQuiz: (idquiz, Nomequiz) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('INSERT INTO quiz (idQuiz,Titulo) VALUES (?,?)', [idquiz, Nomequiz], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
   inserirM: (nome, email, senha) => {
     return new Promise((aceito, rejeitado) => {
       db.query('INSERT INTO usuario (nome,email, senha, Nivelpermissao) VALUES (?,?,?,4)', [nome, email, senha], (error, results) => {

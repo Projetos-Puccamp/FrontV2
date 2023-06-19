@@ -279,6 +279,23 @@ module.exports = {
     }
     res.json(json);
   },
+  inserirQuiz: async (req, res) => {
+    console.log('entrou');
+    let json = { erro: '', result: {} };
+    let id = req.body.idQuiz;
+    let titulo = req.body.titulo;
+    if (id && titulo) {
+      let Quiz = await UserServices.inserirQuiz(id,titulo);
+      json.result = {
+        quiz: Quiz,
+        id,
+        titulo
+      };
+    } else {
+      json.erro = 'Campos não enviados';
+    }
+    res.json(json);
+  },
   inserirVaga: async (req, res) => {
     let json = { erro: '', result: {} };
     let id = req.body.id;
