@@ -53,6 +53,10 @@ h2 {
   text-decoration: none;
   font-size: 14px;
 }
+.btn-ver:hover{
+  background: #2b134b;
+  color: aquamarine;
+}
 form {
   margin-bottom: 20px;
 }

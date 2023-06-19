@@ -67,5 +67,19 @@ a.btn:hover {
   background: #2b134b;
   color: aquamarine;
 }
+.curso-descricao {
+  font-size: 16px;
+  color: aquamarine;
+  margin-bottom: 10px;
+}
+
+.curso-video {
+  font-size: 14px;
+  color: aquamarine;
+}
+.curso-titulo{
+  color: aquamarine;
+}
+
 
 

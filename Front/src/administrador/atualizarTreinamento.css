@@ -1,0 +1,129 @@
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #201b2c;
+    color: aquamarine;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 800;
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 800;
+  }
+  h2 {
+    font-weight: 800;
+  }
+  
+  .textfield {
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  textarea#newdesc {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    resize: vertical;
+    background: #2f2841;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    color: aquamarine;
+    outline: none;
+  }
+  textarea#newnome {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    resize: vertical;
+    background: #2f2841;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    color: aquamarine;
+    outline: none;
+  }
+  textarea#newreq {
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    resize: vertical;
+    background: #2f2841;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    color: aquamarine;
+    outline: none;
+  }
+  textarea#newcarga{
+    width: 100%;
+    height: 150px;
+    padding: 10px;
+    resize: vertical;
+    background: #2f2841;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    color: aquamarine;
+    outline: none;
+  }
+  
+  input[type="submit"] {
+    width: 200px;
+    padding: 10px;
+    margin: 20px auto;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #2b134b;
+    background: aquamarine;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px aquamarine;
+  }
+  input[type="submit"]:hover {
+    background: #2b134b;
+    color: aquamarine;
+  }
+  a {
+    display: block;
+    width: 200px;
+    padding: 10px;
+    margin: 20px auto;
+    border-radius: 8px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #2b134b;
+    background: aquamarine;
+    box-shadow: 0px 10px 40px -12px aquamarine;
+  }
+  a:hover {
+    background: #2b134b;
+    color: aquamarine;
+  }
+  

@@ -30,7 +30,7 @@ module.exports = {
 
   buscarTodosPerguntas: (tipoPergunta, idQuiz) => {
     return new Promise((aceito, rejeitado) => {
-      db.query('select * from pergunta  where tipoPergunta = 1 and Quiz_idQuiz=1;', [tipoPergunta, idQuiz], (error, results) => {
+      db.query('select * from pergunta  where tipoPergunta = ? and Quiz_idQuiz=?;', [tipoPergunta, idQuiz], (error, results) => {
         if (error) { rejeitado(error); return; }
         aceito(results);
       });
@@ -81,12 +81,13 @@ module.exports = {
       });
     });
   },
-  buscarQuiz: (IdAluno, IdTreinamento) => {
+  buscarQuiz: (IdTreinamento) => {
     return new Promise((aceito, rejeitado) => {
+      console.log('IdQuiz é teste da Servide QuizBusca');
       db.query('select Quiz_idQuiz from treinamentosparavaga_has_quiz where TreinamentosParavaga_idTreinamentosParavaga =?; ', [IdTreinamento], (error, results) => {
         if (error) { rejeitado(error); return; }
         if (results.length > 0) {
-          console.log('status do aluno no curso é  ' + results[0].Quiz_idQuiz);
+          console.log('IdQuiz é do aluno no curso é  ' + results[0].Quiz_idQuiz);
           aceito(results[0].Quiz_idQuiz);
         } else { aceito(false); }
       });
@@ -95,13 +96,19 @@ module.exports = {
 
   buscarTodosConteudos: (IdTreinamento) => {
     return new Promise((aceito, rejeitado) => {
-      db.query('SELECT descricao, linkVideo FROM conteudotreinamento WHERE idConteudoTreinamento IN (SELECT ConteudoTreinamento_idConteudoTreinamento FROM treinamento_has_conteudotreinamento  WHERE Treinamento_idTreinamento = ?)', [IdTreinamento], (error, results) => {
+      db.query('SELECT * FROM conteudotreinamento WHERE idConteudoTreinamento IN (SELECT ConteudoTreinamento_idConteudoTreinamento FROM treinamento_has_conteudotreinamento  WHERE Treinamento_idTreinamento = ?)', [IdTreinamento], (error, results) => {
         if (error) { rejeitado(error); return; }
         aceito(results);
       });
     });
-
-
+  },
+  buscarTodosConteudos2: () => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('SELECT * FROM conteudotreinamento', (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
   },
   buscarHistorico: (idAluno) => {
     return new Promise((aceito, rejeitado) => {
@@ -243,6 +250,19 @@ module.exports = {
       });
     });
   },
+  inserirConteudo: (Titulo1,Titulo2,codigoConteudo,descricao1,descricao2,link1,link2) => {
+    return new Promise((resolve, reject) => {
+      // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
+      // Substitua o código abaixo pelo seu código de inserção no banco de dados
+      db.query('insert into conteudotreinamento(idConteudoTreinamento,Titulo1,Descricao1,linkVideo1,Titulo2,Descricao2,linkVideo2) values (?,?,?,?,?,?,?)', [codigoConteudo, Titulo1,descricao1,link1,Titulo2,descricao2,link2], (error, results) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+        resolve(results);
+      });
+    });
+  },
 
   buscaIdEmp: (id) => {
     return new Promise((aceito, rejeitado) => {
@@ -262,6 +282,14 @@ module.exports = {
       });
     });
   },
+  atualizarDescricaoT: (idTreinamento, Descricao) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('UPDATE treinamento SET Descricao = ? where idTreinamento = ?', [Descricao, idTreinamento], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
   atualizarNome: (idVagaEmprego, Vaga) => {
     return new Promise((aceito, rejeitado) => {
       db.query('UPDATE vagaemprego SET Vaga = ? where idVagaEmprego = ?', [Vaga, idVagaEmprego], (error, results) => {
@@ -270,9 +298,25 @@ module.exports = {
       });
     });
   },
+  atualizarNomeT: (idTreinamento, NomeComercial) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('UPDATE treinamento SET NomeComercial = ? where idTreinamento = ?', [NomeComercial, idTreinamento], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
   atualizarRequisito: (idVagaEmprego, Requisitos) => {
     return new Promise((aceito, rejeitado) => {
       db.query('UPDATE vagaemprego SET Requisitos = ? where idVagaEmprego = ?', [Requisitos, idVagaEmprego], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
+  atualizarCarga: (idTreinamento, carga) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('UPDATE treinamento SET CargaHoraria = ? where idTreinamento = ?', [carga, idTreinamento], (error, results) => {
         if (error) { rejeitado(error); return; }
         aceito(results);
       });
@@ -297,14 +341,14 @@ module.exports = {
           }
           break;
         case 'C1':
-          db.query('Update alunotreinamento set status = "C2" , NotaC1 = ? where Aluno_idAluno = ? AND Treinamento_idTreinamento = ?;', [nota,IdAluno,IdTreinamento], (error, results) => {
+          db.query('Update alunotreinamento set status = "C2" , NotaCase1 = ? where Aluno_idAluno = ? AND Treinamento_idTreinamento = ?;', [nota,IdAluno,IdTreinamento], (error, results) => {
             if (error) { rejeitado(error); return; }
             aceito(results);
           });
 
           break;
         case 'C2':
-          db.query('Update alunotreinamento set status = "F" , NotaC2 = ? where Aluno_idAluno = ? AND Treinamento_idTreinamento = ?;', [nota,IdAluno,IdTreinamento], (error, results) => {
+          db.query('Update alunotreinamento set status = "F" , NotaCase2 = ? where Aluno_idAluno = ? AND Treinamento_idTreinamento = ?;', [nota,IdAluno,IdTreinamento], (error, results) => {
             if (error) { rejeitado(error); return; }
             aceito(results);
           });

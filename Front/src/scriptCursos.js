@@ -83,6 +83,7 @@ window.addEventListener('DOMContentLoaded', function() {
      fetch('http://localhost:3001/api/adm/Aluno_Treinamento', requestOptions)
       .then(response => response.json())
       .then(data => {
+        alert('Inscrição realizada!');
       })
       .catch(error => {
         // Trata erros

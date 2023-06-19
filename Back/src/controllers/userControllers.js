@@ -45,12 +45,8 @@ module.exports = {
         case 'C2':
           l = 'case2.html';
           break;
-        case 'TF':
-          l = 'testefinal.html';
-        case 'C':
-          l = 'null';
         case 'F':
-          l = 'null';
+          l = 'testeaptidao.html';
           break;
         default:
           console.log("Opção inválida");
@@ -60,7 +56,7 @@ module.exports = {
         codigo: historicos[i].idAlunoTreinamento,
         nomecurso: historicos[i].NomeTreinamento,
         status: historicos[i].status,
-        nota: historicos[i].NotaN,
+        nota: historicos[i].NotaCase2,
         local: l
       });
     }
@@ -129,8 +125,30 @@ module.exports = {
     let conteudo = await UserServices.buscarTodosConteudos(IdTreinamento);
     for (let i in conteudo) {
       json.result.push({
-        video: conteudo[i].linkVideo,
-        descricao: conteudo[i].descricao
+        titulo: conteudo[i].Titulo1,
+        video: conteudo[i].linkVideo1,
+        descricao: conteudo[i].Descricao1,
+        tipo: conteudo[i].Tipo,
+        titulo2: conteudo[i].Titulo2,
+        video2: conteudo[i].linkVideo2,
+        descricao2: conteudo[i].Descricao2
+      });
+    }
+    res.json(json);
+  },
+  FillConteudo: async (req, res) => {
+
+    let json = { erro: '', result: [] };
+    let conteudo = await UserServices.buscarTodosConteudos2();
+    for (let i in conteudo) {
+      json.result.push({
+        titulo: conteudo[i].Titulo1,
+        video: conteudo[i].linkVideo1,
+        descricao: conteudo[i].Descricao1,
+        idconteudo: conteudo[i].idConteudoTreinamento,
+        titulo2: conteudo[i].Titulo2,
+        video2: conteudo[i].linkVideo2,
+        descricao2: conteudo[i].Descricao2
       });
     }
     res.json(json);
@@ -164,7 +182,8 @@ module.exports = {
       default:
         console.log("Opção inválida");
     }
-    let Perguntas = await UserServices.buscarTodosPerguntas(IdTreinamento, tipoPergunta, idQuiz);
+    console.log('Teste no Fill PErguntas, IdQuiz e Tipo Pergunta'+ tipoPergunta+ idQuiz)
+    let Perguntas = await UserServices.buscarTodosPerguntas(tipoPergunta, idQuiz);
     console.log(Perguntas);
 
     json.result.push({
@@ -485,6 +504,28 @@ module.exports = {
 
     res.json(json);
   },
+  atualizarDescricaoT: async (req, res) => {
+    let json = { erro: '', result: {} };
+    let IdTreinamento = req.body.IdTreinamento;
+    let descricao = req.body.desc;
+    console.log('entrou em attdesc e treinamento');
+    if (IdTreinamento && descricao) {
+      try {
+        await UserServices.atualizarDescricaoT(IdTreinamento, descricao);
+
+        json.result = {
+          IdTreinamento,
+          descricao
+        };
+      } catch (error) {
+        json.erro = 'Erro ao atualizar a descrição do treinamento';
+      }
+    } else {
+      json.erro = 'Campos não enviados';
+    }
+
+    res.json(json);
+  },
   atualizarNome: async (req, res) => {
     let json = { erro: '', result: {} };
     let IdVaga = req.body.IdVaga;
@@ -500,6 +541,28 @@ module.exports = {
         };
       } catch (error) {
         json.erro = 'Erro ao atualizar o nome da vaga';
+      }
+    } else {
+      json.erro = 'Campos não enviados';
+    }
+
+    res.json(json);
+  },
+  atualizarNomeT: async (req, res) => {
+    let json = { erro: '', result: {} };
+    let IdTreinamento = req.body.IdTreinamento;
+    let nome = req.body.nome;
+    console.log('entrou em attnome e ');
+    if (IdTreinamento && nome) {
+      try {
+        await UserServices.atualizarNomeT(IdTreinamento, nome);
+
+        json.result = {
+          IdVaga,
+          nome
+        };
+      } catch (error) {
+        json.erro = 'Erro ao atualizar o nome do treinamento';
       }
     } else {
       json.erro = 'Campos não enviados';
@@ -528,5 +591,65 @@ module.exports = {
     }
 
     res.json(json);
+  },
+  atualizarCarga: async (req, res) => {
+    let json = { erro: '', result: {} };
+    let IdTreinamento = req.body.IdTreinamento;
+    let carga = req.body.carga;
+    console.log('entrou em attreq e carga');
+    if (IdTreinamento && carga) {
+      console.log('entrounoif');
+      try {
+        await UserServices.atualizarCarga(IdTreinamento, carga);
+
+        json.result = {
+          IdTreinamento,
+          carga
+        };
+      } catch (error) {
+        json.erro = 'Erro ao atualizar o requisito da vaga';
+      }
+    } else {
+      json.erro = 'Campos não enviados';
+    }
+
+    res.json(json);
+},
+
+inserirConteudo: async (req, res) => {
+  let json = { erro: '', result: {} };
+  console.log('Entrou em Inserir Conteudo');
+
+  let Titulo1 = req.body.Titulo1;
+  let Titulo2 = req.body.Titulo2;
+  let codigoConteudo = req.body.codigoConteudo;
+  let descricao1 = req.body.descricao1;
+  let descricao2= req.body.descricao2;
+  let link1 = req.body.link1;
+  let link2 = req.body.link2;
+  console.log('Entrou em inserir Conteudo');
+  if (Titulo1 && Titulo2 && codigoConteudo && descricao1 && descricao2 && link1 && link2) {
+    try {
+      // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
+      // Exemplo:
+      let Conteudo = await UserServices.inserirConteudo(Titulo1,Titulo2,codigoConteudo,descricao1,descricao2,link1,link2);
+      json.result = {
+        Conteudo,
+        Titulo1,
+        Titulo2,
+        codigoConteudo,
+        descricao1,
+        descricao2,
+        link1,
+        link2
+      };
+    } catch (error) {
+      json.erro = 'Erro ao inserir o Conteudo';
+      console.error(error);
+    }
+  } else {
+    json.erro = 'Campos não enviados';
   }
+  res.json(json);
+},
 }

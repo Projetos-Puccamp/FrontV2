@@ -12,4 +12,4 @@ function createwindow (){
 app.whenReady().then(createwindow);
 app.on("window-all-closed", () => {
     if(process.platform !== 'darwin') app.quit()
-});
+});//atualizar para q a treinamentohas quiz seja incremente
