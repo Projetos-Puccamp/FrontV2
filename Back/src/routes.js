@@ -27,6 +27,7 @@ router.post('/adm/CriarPergunta', UserControllers.inserirPergunta);
 router.post('/adm/cadsM', UserControllers.inserirM);
 router.post('/adm/cadsE', UserControllers.inserirE);
 router.post('/adm/CriarTreinamento', UserControllers.inserirTreinamento);
+router.post('/adm/CriarConteudo', UserControllers.inserirConteudo);
 router.post('/adm/Vaga_Treinamento', UserControllers.inserirVaga_Treinamento);
 router.post('/adm/Aluno_Treinamento', UserControllers.inserirAluno_Treinamento);
 router.put('/adm/cads/attNome', UserControllers.atualizarNomeT);

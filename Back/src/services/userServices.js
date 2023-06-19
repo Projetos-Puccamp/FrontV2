@@ -244,6 +244,19 @@ module.exports = {
       });
     });
   },
+  inserirConteudo: (Titulo1,Titulo2,codigoConteudo,descricao1,descricao2,link1,link2) => {
+    return new Promise((resolve, reject) => {
+      // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
+      // Substitua o código abaixo pelo seu código de inserção no banco de dados
+      db.query('insert into conteudotreinamento(idConteudoTreinamento,Titulo1,Descricao1,linkVideo1,Titulo2,Descricao2,linkVideo2) values (?,?,?,?,?,?,?)', [codigoConteudo, Titulo1,descricao1,link1,Titulo2,descricao2,link2], (error, results) => {
+        if (error) {
+          reject(error);
+          return;
+        }
+        resolve(results);
+      });
+    });
+  },
 
   buscaIdEmp: (id) => {
     return new Promise((aceito, rejeitado) => {

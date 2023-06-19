@@ -125,9 +125,9 @@ module.exports = {
     let conteudo = await UserServices.buscarTodosConteudos(IdTreinamento);
     for (let i in conteudo) {
       json.result.push({
-        titulo: conteudo[i].Titulo,
-        video: conteudo[i].linkVideo,
-        descricao: conteudo[i].descricao,
+        titulo: conteudo[i].Titulo1,
+        video: conteudo[i].linkVideo1,
+        descricao: conteudo[i].Descricao1,
         tipo: conteudo[i].Tipo,
         titulo2: conteudo[i].Titulo2,
         video2: conteudo[i].linkVideo2,
@@ -597,5 +597,42 @@ module.exports = {
     }
 
     res.json(json);
+},
+
+inserirConteudo: async (req, res) => {
+  let json = { erro: '', result: {} };
+  console.log('Entrou em Inserir Conteudo');
+
+  let Titulo1 = req.body.Titulo1;
+  let Titulo2 = req.body.Titulo2;
+  let codigoConteudo = req.body.codigoConteudo;
+  let descricao1 = req.body.descricao1;
+  let descricao2= req.body.descricao2;
+  let link1 = req.body.link1;
+  let link2 = req.body.link2;
+  console.log('Entrou em inserir Conteudo');
+  if (Titulo1 && Titulo2 && codigoConteudo && descricao1 && descricao2 && link1 && link2) {
+    try {
+      // Aqui você pode implementar a lógica de inserção do treinamento no banco de dados
+      // Exemplo:
+      let Conteudo = await UserServices.inserirConteudo(Titulo1,Titulo2,codigoConteudo,descricao1,descricao2,link1,link2);
+      json.result = {
+        Conteudo,
+        Titulo1,
+        Titulo2,
+        codigoConteudo,
+        descricao1,
+        descricao2,
+        link1,
+        link2
+      };
+    } catch (error) {
+      json.erro = 'Erro ao inserir o Conteudo';
+      console.error(error);
+    }
+  } else {
+    json.erro = 'Campos não enviados';
   }
+  res.json(json);
+},
 }

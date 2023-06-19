@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
   UNIQUE INDEX `idUsuario_UNIQUE` (`idUsuario` ASC) VISIBLE,
   UNIQUE INDEX `Email_UNIQUE` (`Email` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 14
+AUTO_INCREMENT = 17
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`mentor` (
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `mydb`.`usuario` (`idUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 6
+AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`aluno` (
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `mydb`.`usuario` (`idUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 13
+AUTO_INCREMENT = 14
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`treinamento` (
   UNIQUE INDEX `NomeComercial_UNIQUE` (`NomeComercial` ASC) VISIBLE,
   UNIQUE INDEX `idTreinamento_UNIQUE` (`idTreinamento` ASC) VISIBLE)
 ENGINE = InnoDB
-AUTO_INCREMENT = 19
+AUTO_INCREMENT = 23
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -127,7 +127,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`alunotreinamento` (
     FOREIGN KEY (`Treinamento_idTreinamento`)
     REFERENCES `mydb`.`treinamento` (`idTreinamento`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 76
+AUTO_INCREMENT = 86
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`empresa` (
     FOREIGN KEY (`Usuario_idUsuario`)
     REFERENCES `mydb`.`usuario` (`idUsuario`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 3
+AUTO_INCREMENT = 4
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -203,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`conteudotreinamento` (
   `linkVideo2` VARCHAR(145) NOT NULL,
   PRIMARY KEY (`idConteudoTreinamento`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 8
+AUTO_INCREMENT = 124
 DEFAULT CHARACTER SET = utf8mb3;
 
 
@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pergunta` (
     FOREIGN KEY (`Quiz_idQuiz`)
     REFERENCES `mydb`.`quiz` (`idQuiz`))
 ENGINE = InnoDB
-AUTO_INCREMENT = 19
+AUTO_INCREMENT = 20
 DEFAULT CHARACTER SET = utf8mb3;
 
 
