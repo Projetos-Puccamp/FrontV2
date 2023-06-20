@@ -11,7 +11,7 @@ window.addEventListener('DOMContentLoaded', function () {
   //Primeiro verificar o status do aluno neste curso+
   //Pegar as perguntas em treinamentoshasquiz --> quiz --> where status == status do aluno no curso
 
-  alert('entrou em testes');
+  
 
   const requestOptions = {
     method: 'POST',
@@ -36,7 +36,6 @@ window.addEventListener('DOMContentLoaded', function () {
         var row = document.createElement('div');
         row.classList.add('row');
         container.appendChild(row);
-        this.alert(Perguntas);
         var count = 0;
         var countP = 1;
         Object.keys(Perguntas).forEach(key => {
@@ -138,9 +137,6 @@ window.addEventListener('DOMContentLoaded', function () {
         if (selectedOptions.length > 0) {
           var message = 'Opções selecionadas: ' + selectedOptions.join(' ');
           var messageid = 'Opções selecionadas: ' + selectedOptionsId.join(' ');
-          alert(message);
-          alert(messageid);
-          alert(Perguntas[0].status);
 
           valoresSelecionados = {
           Respostas: selectedOptions,
@@ -149,7 +145,6 @@ window.addEventListener('DOMContentLoaded', function () {
           IdUsuario: localStorage.getItem('id'),
           IdTreinamento: localStorage.getItem('idCodigotreinamento')
           }
-          alert(valoresSelecionados);
           const requestOptions = {
             method: 'POST',
             headers: {
