@@ -682,6 +682,7 @@ VerificarTreinamento: async (req, res) => {
   console.log(Aprovado);
 
   if(Aprovado === 'F'){
+    await UserServices.inserirAlunoVaga(IdAluno, req.body.codigo);
     json.result = true;
   }else{
     json.result = false;

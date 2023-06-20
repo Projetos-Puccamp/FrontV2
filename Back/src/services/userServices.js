@@ -434,7 +434,16 @@ module.exports = {
       });
     });
   },
-
+  inserirAlunoVaga: (IdAluno, codigo) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('insert into canditatovagaemprego (Aluno_idAluno, VagaEmprego_idVagaEmprego) values (?, ?);', [IdAluno, codigo], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        if (results.length > 0) {
+          aceito(results[0].status);
+        } else { aceito(false); }
+      });
+    });
+  },
 
   excluir: (codigo) => {
     return new Promise((aceito, rejeitado) => {

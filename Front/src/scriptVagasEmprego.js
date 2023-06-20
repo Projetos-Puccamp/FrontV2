@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', function() {
             <p>Descrição: ${vaga.descricao}</p>
             <p>Requisitos: ${vaga.requisitos}</p>
             <p>Faixa Salarial: ${vaga.salario}</p>
-            <button class="btn-inscrever-se" data-codigo="${vaga.codigo}">Atualizar Vagas</button>
+            <button class="btn-inscrever-se" data-codigo="${vaga.codigo}">Inscrever</button>
             <br>
           `;
           row.appendChild(div);
@@ -69,9 +69,9 @@ window.addEventListener('DOMContentLoaded', function() {
       .then(response => response.json())
       .then(data => {
           if(data.result){
-            alert('funfou');
+            alert('Inscrição Realizada com sucesso!');
           } else{
-            alert('error');
+            alert('Você não atende aos requisitos.');
           }
           
       })
