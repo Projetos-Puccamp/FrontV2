@@ -1,74 +1,94 @@
-window.addEventListener('DOMContentLoaded', function(event) {
-    event.preventDefault();
-    var id = {
-      id: localStorage.getItem('id'),
-  
-    };
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(id)
-      };
-  
-      // Realiza a requisição para a API
-      fetch('http://localhost:3001/api/mentor/historico', requestOptions)
-      .then(response => response.json())
-      .then(dataC => {
-        console.log('another onee:'+id);
-        if (dataC && typeof dataC === 'object') {
-  
-          var historicos = dataC.result;
-    
-  
-          var container = document.getElementById('container');
-          var row = document.createElement('div');
+window.addEventListener('DOMContentLoaded', function() {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include'
+    //body: JSON.stringify(usuario)
+  };
+
+  // Realiza a requisição para a API
+  fetch('http://localhost:3001/api/users/curso/men', requestOptions)
+  .then(response => response.json())
+  .then(dataC => {
+    const ValorTeste =localStorage.getItem('id');
+    console.log('another onee:'+ValorTeste);
+    if (dataC && typeof dataC === 'object') {
+      var cursos = dataC.result;
+
+      var container = document.getElementById('container');
+
+      var row = document.createElement('div');
+      row.classList.add('row');
+      container.appendChild(row);
+
+      var count = 0;
+      Object.keys(cursos).forEach(key => {
+        var curso = cursos[key];
+      
+        var div = document.createElement('div');
+        div.classList.add('curso-card');
+        div.style.marginRight = '25px'
+        div.innerHTML = `
+          
+          <h2 class="curso-titulo">${curso.nome}</h2>
+          <p>Codigo: ${curso.codigo}</p>
+          <p>Nome do aluno: ${curso.nomeAluno}</p>
+          `;
+        row.appendChild(div);
+        count++;
+
+        if (count % 1 === 0) {
+          row = document.createElement('div');
           row.classList.add('row');
           container.appendChild(row);
-          var count = 0;
-          Object.keys(historicos).forEach(key => {
-            var historico = historicos[key];
-            var div = document.createElement('div');
-            div.classList.add('resultado-card');
-            if(historico.status==='N'){
-              div.innerHTML = `
-              <h1> Em andamento</h1>
-              <p text=>${historico.nomecurso}</p> 
-              <p>Status: A fazer teste de aptidão</p> 
-              <input text='${historico.local}' IdT='${historico.codigoT}' class="btn-ver" type="submit" value="Entrar">
-            `; 
-            row.appendChild(div);
-            count++;
-            if (count % 2 === 0) {
-              row = document.createElement('div');
-              row.classList.add('row');
-              container.appendChild(row);
-            }
-              }
-  
-          });
-  
-  
-          addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            var buttonClicked = event.target.querySelector('input[type="submit"]:focus');
-            var Tela = buttonClicked.getAttribute('text');
-            this.alert('Tela é'+ Tela);
-            var buttonClicked2 = event.target.querySelector('input[type="submit"]:focus');
-            var Codigo = buttonClicked2.getAttribute('IdT');
-            localStorage.setItem('idCodigotreinamento',Codigo);
-            window.location.href = Tela;//manda pra outra tela
-  
-          });
-  
-        } else {
-          alert('Deu Xabu!');
         }
+      });
+
+    
+    } else {
+      alert('Deu Xabu!');
+    }
+  })
+  .catch(error => {
+    console.error('Erro:', error);
+  });
+
+  addEventListener('submit', function(event) {
+    event.preventDefault();
+    var buttonClicked = event.target.querySelector('input[type="submit"]:focus');
+    var idTreinamento = buttonClicked.getAttribute('text');
+    console.log('aaaaa:'+idTreinamento);
+    var idUsuario = localStorage.getItem('id');
+    console.log('aaaaaissii:'+idUsuario);
+
+    var CursoTreinamento = {
+      idTreinamento:idTreinamento,
+      idUsuario: idUsuario,
+    };
+    
+    const requestOptions = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(CursoTreinamento)
+    };
+    
+    
+     fetch('http://localhost:3001/api/adm/Aluno_Treinamento', requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        alert('Inscrição realizada!');
       })
       .catch(error => {
+        // Trata erros
         console.error('Erro:', error);
       });
-      
-    }); 
+
+  });
+
+
+  });
+  

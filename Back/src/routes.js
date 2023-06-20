@@ -7,6 +7,7 @@ router.post('/users/cads', UserControllers.inserir);
 router.post('/users/login', UserControllers.login);
 router.get('/users/vagas', UserControllers.FillVagas);
 router.get('/users/curso', UserControllers.FillCursos);
+router.get('/users/curso/men', UserControllers.FillCursosPAluno);
 router.get('/users', UserControllers.buscarTodos);
 router.post('/users/historico', UserControllers.buscarHistorico);
 router.post('/users/case', UserControllers.FillCase);

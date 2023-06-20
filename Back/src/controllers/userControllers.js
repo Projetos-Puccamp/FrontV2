@@ -689,5 +689,18 @@ VerificarTreinamento: async (req, res) => {
   }
 
   res.json(json);
-}
+},
+  FillCursosPAluno: async (req, res) => {
+    let json = { erro: '', result: [] };
+    let cursos = await UserServices.buscarTodosCursos();
+    for (let i in cursos) {
+      json.result.push({
+        codigo: cursos[i].Treinamento_idTreinamento,
+        nome: cursos[i].NomeTreinamento,
+        nomeAluno: cursos[i].Aluno_idAluno,
+        testehref: 'Plogin.html'
+      });
+    }
+    res.json(json);
+  }
 }
