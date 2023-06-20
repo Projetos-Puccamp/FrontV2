@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', function() {
-    this.alert(localStorage.getItem('idCodigotreinamento'))
     IdTreinamento ={
         IdTreinamento: localStorage.getItem('idCodigotreinamento'),
     } 

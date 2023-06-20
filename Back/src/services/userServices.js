@@ -147,6 +147,14 @@ module.exports = {
       });
     });
   },
+  inserirQuiz: (idquiz, Nomequiz) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('INSERT INTO quiz (idQuiz,Titulo) VALUES (?,?)', [idquiz, Nomequiz], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
   inserirM: (nome, email, senha) => {
     return new Promise((aceito, rejeitado) => {
       db.query('INSERT INTO usuario (nome,email, senha, Nivelpermissao) VALUES (?,?,?,4)', [nome, email, senha], (error, results) => {
@@ -363,7 +371,6 @@ module.exports = {
      
     });
   },
-  ///anfdkjabshfbwjidhklfgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   calculaNota: (IdPerguntas, Resposta) => {
     return new Promise((aceito, rejeitado) => {
       let Nota = 0;
@@ -407,10 +414,48 @@ module.exports = {
     });
   },
 
+  buscaReqVaga: (codigo) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('SELECT Treinamento_idTreinamento FROM treinamentosparavaga WHERE VagaEmprego_idVagaEmprego = ?', [codigo], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        if (results.length > 0) {
+          aceito(results[0].Treinamento_idTreinamento);
+        } else { aceito(false); }
+      });
+    });
+  },
+  fnotreinamento: (requisito,IdAluno) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('SELECT status FROM alunotreinamento WHERE Treinamento_idTreinamento = ? AND Aluno_idAluno = ?', [requisito, IdAluno], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        if (results.length > 0) {
+          aceito(results[0].status);
+        } else { aceito(false); }
+      });
+    });
+  },
+  inserirAlunoVaga: (IdAluno, codigo) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('insert into canditatovagaemprego (Aluno_idAluno, VagaEmprego_idVagaEmprego) values (?, ?);', [IdAluno, codigo], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        if (results.length > 0) {
+          aceito(results[0].status);
+        } else { aceito(false); }
+      });
+    });
+  },
 
   excluir: (codigo) => {
     return new Promise((aceito, rejeitado) => {
       db.query('DELETE FROM users WHERE codigo = ?', [codigo], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
+  buscarTodosCursosM: () => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('SELECT * FROM alunotreinamento', (error, results) => {
         if (error) { rejeitado(error); return; }
         aceito(results);
       });

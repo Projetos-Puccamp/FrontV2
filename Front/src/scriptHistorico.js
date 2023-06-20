@@ -137,7 +137,6 @@ window.addEventListener('DOMContentLoaded', function(event) {
           
           var buttonClicked = event.target.querySelector('input[type="submit"]:focus');
           var Tela = buttonClicked.getAttribute('text');
-          this.alert('Tela é'+ Tela);
           var buttonClicked2 = event.target.querySelector('input[type="submit"]:focus');
           var Codigo = buttonClicked2.getAttribute('IdT');
           localStorage.setItem('idCodigotreinamento',Codigo);

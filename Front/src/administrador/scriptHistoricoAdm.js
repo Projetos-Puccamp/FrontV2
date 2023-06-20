@@ -9,7 +9,7 @@ window.addEventListener('DOMContentLoaded', function() {
     };
   
     // Realiza a requisição para a API
-    fetch('http://localhost:3001/api/users/curso', requestOptions)
+    fetch('http://localhost:3001/api/users/curso/men', requestOptions)
     .then(response => response.json())
     .then(dataC => {
       const ValorTeste =localStorage.getItem('id');
@@ -24,9 +24,9 @@ window.addEventListener('DOMContentLoaded', function() {
         container.appendChild(row);
   
         var count = 0;
-        console.log('teste de rota do ver treinamentos+cursos');
         Object.keys(cursos).forEach(key => {
           var curso = cursos[key];
+        
           var div = document.createElement('div');
           div.classList.add('curso-card');
           div.style.marginRight = '25px'
@@ -34,12 +34,7 @@ window.addEventListener('DOMContentLoaded', function() {
             
             <h2 class="curso-titulo">${curso.nome}</h2>
             <p>Codigo: ${curso.codigo}</p>
-            <p>Descrição: ${curso.descricao}</p>
-            <p>Carga Horaria: ${curso.carga}</p>
-            <p>Data Inicio: ${new Date(curso.inicio).toLocaleDateString('pt-BR')}</p>
-            <p>Data Fim: ${new Date(curso.fim).toLocaleDateString('pt-BR')}</p>
-            <a class="btn-inscrever-se" href="atualizarTreinamento.html" id='${curso.codigo}' >Alterar Treinamento</a>
-            <br>
+            <p>Nome do aluno: ${curso.nomeAluno}</p>
             `;
           row.appendChild(div);
           count++;
@@ -49,15 +44,6 @@ window.addEventListener('DOMContentLoaded', function() {
             row.classList.add('row');
             container.appendChild(row);
           }
-          var btnsInscrever = document.getElementsByClassName('btn-inscrever-se');
-          Array.from(btnsInscrever).forEach(btn => {
-            btn.addEventListener('click', function(event) {
-              
-              var treinamentoId = event.target.getAttribute('id');
-              localStorage.setItem('IdTreinamento', treinamentoId);
-            });
-
-          });
         });
   
       
@@ -67,6 +53,40 @@ window.addEventListener('DOMContentLoaded', function() {
     })
     .catch(error => {
       console.error('Erro:', error);
+    });
+  
+    addEventListener('submit', function(event) {
+      event.preventDefault();
+      var buttonClicked = event.target.querySelector('input[type="submit"]:focus');
+      var idTreinamento = buttonClicked.getAttribute('text');
+      console.log('aaaaa:'+idTreinamento);
+      var idUsuario = localStorage.getItem('id');
+      console.log('aaaaaissii:'+idUsuario);
+  
+      var CursoTreinamento = {
+        idTreinamento:idTreinamento,
+        idUsuario: idUsuario,
+      };
+      
+      const requestOptions = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(CursoTreinamento)
+      };
+      
+      
+       fetch('http://localhost:3001/api/adm/Aluno_Treinamento', requestOptions)
+        .then(response => response.json())
+        .then(data => {
+          alert('Inscrição realizada!');
+        })
+        .catch(error => {
+          // Trata erros
+          console.error('Erro:', error);
+        });
+  
     });
   
   

@@ -32,10 +32,10 @@ window.addEventListener('DOMContentLoaded', function() {
           div.style.marginRight = '25px'
           div.innerHTML = `
             <p>Vaga: ${vaga.vaga}</p>
+            <p>Código: ${vaga.codigo}</p>
             <p>Descrição: ${vaga.descricao}</p>
             <p>Requisitos: ${vaga.requisitos}</p>
             <p>Faixa Salarial: ${vaga.salario}</p>
-            <button class="btn-inscrever-se" data-codigo="${vaga.codigo}">Inscrever</button>
             <br>
           `;
           row.appendChild(div);
@@ -48,40 +48,6 @@ window.addEventListener('DOMContentLoaded', function() {
             container.appendChild(row);
           }
         });
-        container.addEventListener('click', function(event) {
-          if (event.target.classList.contains('btn-inscrever-se')) {
-            var codigoVaga = event.target.getAttribute('data-codigo');
-            console.log(codigoVaga);
-          
-          let user = { 
-            codigo: codigoVaga,
-            idUsuario: localStorage.getItem('id')
-          }
-          const requestOptions = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            credentials: 'include',
-            body: JSON.stringify(user)
-          };
-          fetch('http://localhost:3001/api/users/inscvaga', requestOptions)
-      .then(response => response.json())
-      .then(data => {
-          if(data.result){
-            alert('Inscrição Realizada com sucesso!');
-          } else{
-            alert('Você não atende aos requisitos.');
-          }
-          
-      })
-      .catch(error => {
-        console.error('Erro:', error);
-      });
-    }
-    });
-
-
       } else {
         alert('Deu Xabu!');
       }

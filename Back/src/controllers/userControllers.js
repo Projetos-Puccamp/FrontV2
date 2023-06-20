@@ -279,6 +279,23 @@ module.exports = {
     }
     res.json(json);
   },
+  inserirQuiz: async (req, res) => {
+    console.log('entrou');
+    let json = { erro: '', result: {} };
+    let id = req.body.idQuiz;
+    let titulo = req.body.titulo;
+    if (id && titulo) {
+      let Quiz = await UserServices.inserirQuiz(id,titulo);
+      json.result = {
+        quiz: Quiz,
+        id,
+        titulo
+      };
+    } else {
+      json.erro = 'Campos não enviados';
+    }
+    res.json(json);
+  },
   inserirVaga: async (req, res) => {
     let json = { erro: '', result: {} };
     let id = req.body.id;
@@ -652,4 +669,38 @@ inserirConteudo: async (req, res) => {
   }
   res.json(json);
 },
+VerificarTreinamento: async (req, res) => {
+  console.log('Entrou em Verificar treinamento');
+  let json = { erro: '', result: {} };
+  let IdAluno = await UserServices.buscaIdAluno(req.body.idUsuario);
+  console.log(IdAluno);
+
+  let requisito = await UserServices.buscaReqVaga(req.body.codigo);
+  console.log(requisito);
+
+  let Aprovado = await UserServices.fnotreinamento(requisito, IdAluno);
+  console.log(Aprovado);
+
+  if(Aprovado === 'F'){
+    await UserServices.inserirAlunoVaga(IdAluno, req.body.codigo);
+    json.result = true;
+  }else{
+    json.result = false;
+  }
+
+  res.json(json);
+},
+  FillCursosPAluno: async (req, res) => {
+    let json = { erro: '', result: [] };
+    let cursos = await UserServices.buscarTodosCursosM();
+    for (let i in cursos) {
+      json.result.push({
+        codigo: cursos[i].Treinamento_idTreinamento,
+        nome: cursos[i].NomeTreinamento,
+        nomeAluno: cursos[i].Aluno_idAluno,
+        testehref: 'Plogin.html'
+      });
+    }
+    res.json(json);
+  }
 }
