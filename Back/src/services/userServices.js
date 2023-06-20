@@ -13,7 +13,7 @@ module.exports = {
 
   buscarTodosCursos: () => {
     return new Promise((aceito, rejeitado) => {
-      db.query('SELECT * FROM alunotreinamento', (error, results) => {
+      db.query('SELECT * FROM treinamento', (error, results) => {
         if (error) { rejeitado(error); return; }
         aceito(results);
       });
@@ -448,6 +448,14 @@ module.exports = {
   excluir: (codigo) => {
     return new Promise((aceito, rejeitado) => {
       db.query('DELETE FROM users WHERE codigo = ?', [codigo], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        aceito(results);
+      });
+    });
+  },
+  buscarTodosCursosM: () => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('SELECT * FROM alunotreinamento', (error, results) => {
         if (error) { rejeitado(error); return; }
         aceito(results);
       });

@@ -692,7 +692,7 @@ VerificarTreinamento: async (req, res) => {
 },
   FillCursosPAluno: async (req, res) => {
     let json = { erro: '', result: [] };
-    let cursos = await UserServices.buscarTodosCursos();
+    let cursos = await UserServices.buscarTodosCursosM();
     for (let i in cursos) {
       json.result.push({
         codigo: cursos[i].Treinamento_idTreinamento,
