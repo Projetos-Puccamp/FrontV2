@@ -48,10 +48,10 @@ window.addEventListener('DOMContentLoaded', function() {
             container.appendChild(row);
           }
         });
-        var btnInscreverSe = document.getElementsByClassName('btn-inscrever-se')[0];
-        btnInscreverSe.addEventListener('click', function(event){
-          event.preventDefault();
-          var codigoVaga = event.target.getAttribute('data-codigo');
+        container.addEventListener('click', function(event) {
+          if (event.target.classList.contains('btn-inscrever-se')) {
+            var codigoVaga = event.target.getAttribute('data-codigo');
+            console.log(codigoVaga);
           
           let user = { 
             codigo: codigoVaga,
@@ -68,15 +68,18 @@ window.addEventListener('DOMContentLoaded', function() {
           fetch('http://localhost:3001/api/users/inscvaga', requestOptions)
       .then(response => response.json())
       .then(data => {
-          if(data)
+          if(data.result){
             alert('funfou');
+          } else{
+            alert('error');
+          }
+          
       })
       .catch(error => {
         console.error('Erro:', error);
       });
-
-
-});
+    }
+    });
 
 
       } else {

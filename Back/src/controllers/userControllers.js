@@ -672,14 +672,19 @@ inserirConteudo: async (req, res) => {
 VerificarTreinamento: async (req, res) => {
   console.log('Entrou em Verificar treinamento');
   let json = { erro: '', result: {} };
-  let IdAluno = await UserServices.buscaIdAluno(req.body.IdUsuario);
+  let IdAluno = await UserServices.buscaIdAluno(req.body.idUsuario);
+  console.log(IdAluno);
 
   let requisito = await UserServices.buscaReqVaga(req.body.codigo);
+  console.log(requisito);
 
-  let Aprovado = await UserServices.fnotreinamento(requisito);
+  let Aprovado = await UserServices.fnotreinamento(requisito, IdAluno);
+  console.log(Aprovado);
 
-  if(Aprovado == 'F'){
+  if(Aprovado === 'F'){
     json.result = true;
+  }else{
+    json.result = false;
   }
 
   res.json(json);
