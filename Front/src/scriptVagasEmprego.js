@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', function() {
             <p>Descrição: ${vaga.descricao}</p>
             <p>Requisitos: ${vaga.requisitos}</p>
             <p>Faixa Salarial: ${vaga.salario}</p>
-            <a class="btn-inscrever-se" href="Paluno.html">Inscrever-se</a>
+            <button class="btn-inscrever-se" data-codigo="${vaga.codigo}">Atualizar Vagas</button>
             <br>
           `;
           row.appendChild(div);
@@ -48,6 +48,37 @@ window.addEventListener('DOMContentLoaded', function() {
             container.appendChild(row);
           }
         });
+        var btnInscreverSe = document.getElementsByClassName('btn-inscrever-se')[0];
+        btnInscreverSe.addEventListener('click', function(event){
+          event.preventDefault();
+          var codigoVaga = event.target.getAttribute('data-codigo');
+          
+          let user = { 
+            codigo: codigoVaga,
+            idUsuario: localStorage.getItem('id')
+          }
+          const requestOptions = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify(user)
+          };
+          fetch('http://localhost:3001/api/users/inscvaga', requestOptions)
+      .then(response => response.json())
+      .then(data => {
+          if(data)
+            alert('funfou');
+      })
+      .catch(error => {
+        console.error('Erro:', error);
+      });
+
+
+});
+
+
       } else {
         alert('Deu Xabu!');
       }

@@ -371,7 +371,6 @@ module.exports = {
      
     });
   },
-  ///anfdkjabshfbwjidhklfgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
   calculaNota: (IdPerguntas, Resposta) => {
     return new Promise((aceito, rejeitado) => {
       let Nota = 0;
@@ -412,6 +411,27 @@ module.exports = {
         .catch((error) => {
           rejeitado(error);
         });
+    });
+  },
+
+  buscaReqVaga: (codigo) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('SELECT Treinamento_idTreinamento FROM treinamentosparavaga WHERE VagaEmprego_idVagaEmprego = ?', [codigo], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        if (results.length > 0) {
+          aceito(results[0].vaga);
+        } else { aceito(false); }
+      });
+    });
+  },
+  fnotreinamento: (requisito) => {
+    return new Promise((aceito, rejeitado) => {
+      db.query('SELECT status FROM alunotreinamento WHERE Treinamento_idTreinamento = ?', [requisito], (error, results) => {
+        if (error) { rejeitado(error); return; }
+        if (results.length > 0) {
+          aceito(results[0].status);
+        } else { aceito(false); }
+      });
     });
   },
 

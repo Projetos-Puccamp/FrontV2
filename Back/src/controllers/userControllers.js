@@ -669,4 +669,19 @@ inserirConteudo: async (req, res) => {
   }
   res.json(json);
 },
+VerificarTreinamento: async (req, res) => {
+  console.log('Entrou em Verificar treinamento');
+  let json = { erro: '', result: {} };
+  let IdAluno = await UserServices.buscaIdAluno(req.body.IdUsuario);
+
+  let requisito = await UserServices.buscaReqVaga(req.body.codigo);
+
+  let Aprovado = await UserServices.fnotreinamento(requisito);
+
+  if(Aprovado == 'F'){
+    json.result = true;
+  }
+
+  res.json(json);
+}
 }

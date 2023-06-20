@@ -12,6 +12,7 @@ router.post('/users/historico', UserControllers.buscarHistorico);
 router.post('/users/case', UserControllers.FillCase);
 router.post('/users/teste', UserControllers.FillPerguntas);
 router.post('/users/verificaResp', UserControllers.VerificarRespostas);
+router.post('/users/inscvaga', UserControllers.VerificarTreinamento);
 //rotas de empresa
 router.post('/emps/cads', UserControllers.inserirVaga);
 router.put('/emps/cads/att', UserControllers.atualizarDescricao);
